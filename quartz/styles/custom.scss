@@ -1,3 +1,60 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Force narrow reading column
+article {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+// Headings
+h1 {
+  font-size: 1.8rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  line-height: 1.4;
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+// Paragraph spacing
+p {
+  margin-bottom: 1.4rem;
+}
+
+// Horizontal rules
+hr {
+  border: none;
+  border-top: 1px solid var(--lightgray);
+  margin: 2.5rem 0;
+}
+
+// Blockquotes
+blockquote {
+  border-left: 3px solid var(--gray);
+  padding-left: 1.2rem;
+  color: var(--darkgray);
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+// Collapse sidebars
+.sidebar.left,
+.sidebar.right {
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+}
+
+.page > #quartz-body {
+  grid-template:
+    "grid-header"
+    "grid-center"
+    "grid-footer" / auto !important;
+  padding: 0 2rem;
+}
