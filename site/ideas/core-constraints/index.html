@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9DEMEQG7C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N9DEMEQG7C');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Core Constraints — Positive Constraint</title>
+<meta name="description" content="A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything non-essential. Every">
+<meta property="og:title" content="Core Constraints — Positive Constraint">
+<meta property="og:description" content="A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything non-essential. Every">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>/* Color variables — automatically flipped in dark mode */
+:root {
+  /* Light mode */
+  --color-text-primary: #171717;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #A3A3A3;
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #F5F5F5;
+  --color-border-primary: #E5E5E5;
+  --color-border-secondary: #E5E5E5;
+  --color-border-tertiary: #E5E5E5;
+
+  /* Fixed across modes */
+  --color-red: #FF4040;
+  --color-red-hover: #E63636;
+  --color-red-dark: #CC2020;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: #FAFAFA;
+    --color-text-secondary: #A3A3A3;
+    --color-text-tertiary: #737373;
+    --color-background-primary: #171717;
+    --color-background-secondary: #262626;
+    --color-border-primary: #404040;
+    --color-border-secondary: #525252;
+    --color-border-tertiary: #262626;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3xl);
+  height: 64px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  position: sticky;
+  top: 0;
+  background: var(--color-background-primary);
+  z-index: 40;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-mark {
+  width: 24px;
+  height: 24px;
+  color: currentColor;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-red);
+}
+
+/* Page container */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-lg);
+  }
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-primary {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-text-secondary);
+}
+
+.btn-accent {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn-accent:hover {
+  background: var(--color-red-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 0.5px solid var(--color-border-secondary);
+}
+
+.btn-ghost:hover {
+  background: var(--color-background-secondary);
+}
+
+/* Links */
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+a:hover {
+  border-bottom-color: var(--color-red);
+}
+
+/* Typography */
+h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: var(--space-2xl) 0 var(--space-md) 0;
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: var(--space-xl) 0 var(--space-sm) 0;
+  color: var(--color-text-primary);
+}
+
+p {
+  margin: var(--space-lg) 0;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xl);
+}
+
+.breadcrumb a {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb-sep {
+  margin: 0 var(--space-sm);
+}
+
+/* Piece header */
+.piece-summary {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.piece-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.meta-item {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+article {
+  margin-top: var(--space-2xl);
+  max-width: 600px;
+}
+
+/* Tags */
+.tag-category {
+  display: inline-block;
+  background: #FFF0F0;
+  color: var(--color-red-dark);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag-category {
+    background: rgba(255, 64, 64, 0.1);
+    color: #FF8080;
+  }
+}
+
+.tag-label {
+  display: inline-block;
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+/* Grab bar (export buttons) */
+.grab-bar {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+  margin: var(--space-2xl) 0;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+@media (max-width: 640px) {
+  .grab-bar {
+    flex-direction: column;
+  }
+
+  .grab-bar .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Connection cards */
+.connections {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+}
+
+.connections h4 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.conn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .conn-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conn-item {
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: var(--space-md);
+  background: var(--color-background-primary);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.conn-item:hover {
+  border-color: var(--color-border-secondary);
+  background: var(--color-background-secondary);
+}
+
+.conn-type {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.conn-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-red);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.conn-summary {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  display: block;
+}
+
+.conn-label {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  display: block;
+  margin-top: var(--space-xs);
+}
+
+/* Pull quotes */
+.pullquote {
+  border-left: 3px solid var(--color-red);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+  margin: var(--space-2xl) 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+/* Footer */
+.footer {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  border-top: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">
+    <svg class="nav-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/>
+      <circle cx="50" cy="50" r="8" fill="currentColor"/>
+    </svg>
+    Positive Constraint
+  </a>
+  <ul class="nav-links">
+    <li><a href="/ideas/" class="active">Ideas</a></li>
+    <li><a href="/map/">Map</a></li>
+    <li><a href="/ideas/about/">About</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="breadcrumb"><a href="/ideas/">Ideas</a><span class="breadcrumb-sep">/</span>Concepts</div>
+
+  <header>
+    <div class="tag-category">CONCEPTS</div>
+    <h1>Core Constraints</h1>
+    <p class="piece-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything non-essential. Every business has…</p>
+    <div class="piece-meta"><span class="tag-label">concept</span><span class="tag-label">methodology</span><span class="meta-item">1 min read</span></div>
+  </header>
+
+  <article>
+    <p>A <strong>core constraint</strong> is the irreducible truth at the center of a problem domain. It’s what remains when you’ve <a href="/ideas/abstraction/">abstracted</a> away everything non-essential.</p>
+<p>Every business has them. Most businesses haven’t named them.</p>
+<hr/>
+<h2>Why they matter</h2>
+<p>Markets change. Technologies shift. Customer preferences evolve. But core constraints are stable — they describe what is <em>fundamentally true</em> about a problem, not what happens to be true today.</p>
+<p>When you build your business identity around core constraints, you gain:</p>
+<ul>
+<li><strong>Clarity</strong> — you know what decisions to make and which to skip</li>
+<li><strong>Resilience</strong> — your strategy doesn’t break when the market shifts</li>
+<li><strong>Narrative power</strong> — you can explain your value in terms that stick</li>
+</ul>
+<p>This is the foundation of everything <a href="/ideas/positive-constraint/">Positive Constraint</a> does.</p>
+<hr/>
+<h2>Examples from past work</h2>
+<table><thead><tr><th>Company</th><th>Constraint 1</th><th>Constraint 2</th></tr></thead><tbody><tr><td><a href="/ideas/work-tapouts/">Tapouts</a></td><td>Child safety</td><td>Kids-first design</td></tr><tr><td><a href="/ideas/work-cortisense/">CortiSense</a></td><td>Healthy production</td><td>Least overhead</td></tr><tr><td><a href="/ideas/work-user1st/">User1st</a></td><td>Inclusiveness</td><td>Velocity</td></tr><tr><td><a href="/ideas/work-leap-commerce/">LEAP Commerce</a></td><td>Serviceability</td><td>Velocity</td></tr></tbody></table>
+<hr/>
+<h2>How they’re found</h2>
+<p>Core constraints don’t come from brainstorming. They come from <a href="/ideas/abstraction/">abstraction</a> — from getting close to the problem domain, interviewing stakeholders, and then stepping back far enough to see the shape of the thing.</p>
+<p>See <a href="/ideas/process/">The Process</a> for the full methodology.</p>
+  </article>
+
+  <div class="grab-bar">
+    <button id="copyBtn" class="btn btn-accent">Copy as markdown</button>
+    <button id="downloadBtn" class="btn btn-ghost">Download .md</button>
+  </div>
+
+  <section class="connections"><div><h4>Applies To</h4><div class="conn-grid"><a href="/ideas/process/" class="conn-item"><span class="conn-type">APPLIES TO</span><span class="conn-title">The Process</span><span class="conn-summary">Every engagement follows four phases. The depth and duration of each phase depends on the scope of the project — see how</span><span class="conn-label">applies to The Process</span></a></div></div><div><h4>Contextualizes</h4><div class="conn-grid"><a href="/ideas/positive-constraint/" class="conn-item"><span class="conn-type">CONTEXTUALIZES</span><span class="conn-title">Positive Constraint</span><span class="conn-summary">A positive constraint is a constraint that, rather than blocking progress, shapes it. A limiting condition that — when y</span><span class="conn-label">contextualizes Positive Constraint</span></a></div></div><div><h4>Illustrates</h4><div class="conn-grid"><a href="/ideas/work-tapouts/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">Tapouts</span><span class="conn-summary">Domain: Emotional well-being platform for kids Geography: USA Engagement type: Pitch deck · Early-stage strategy “Omer h</span><span class="conn-label">illustrates Tapouts</span></a><a href="/ideas/work-cortisense/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">CortiSense</span><span class="conn-summary">Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSen</span><span class="conn-label">illustrates CortiSense</span></a><a href="/ideas/work-user1st/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">User1st</span><span class="conn-summary">Domain: Developer Tools — Inclusion Geography: Israel Engagement type: Value strategy · Investor pitch Background User1s</span><span class="conn-label">illustrates User1st</span></a><a href="/ideas/work-leap-commerce/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">LEAP Commerce</span><span class="conn-summary">Domain: eCommerce Enablement Geography: Singapore Engagement type: Investment pitch · Value strategy Background LEAP was</span><span class="conn-label">illustrates LEAP Commerce</span></a></div></div></section>
+
+</main>
+
+<footer class="footer">
+  <div>← <a href="/ideas/">Back to all ideas</a></div>
+  <div><a href="/map/">View on map</a> →</div>
+</footer>
+
+<script>
+var PIECE = { title: "Core Constraints", slug: "core-constraints" };
+var RELATED = [{"title": "Positive Constraint", "label": "contextualizes", "url": "/ideas/positive-constraint/"}, {"title": "The Process", "label": "applies to", "url": "/ideas/process/"}, {"title": "Tapouts", "label": "illustrates", "url": "/ideas/work-tapouts/"}, {"title": "CortiSense", "label": "illustrates", "url": "/ideas/work-cortisense/"}, {"title": "User1st", "label": "illustrates", "url": "/ideas/work-user1st/"}, {"title": "LEAP Commerce", "label": "illustrates", "url": "/ideas/work-leap-commerce/"}];
+
+function pieceMarkdown() {
+  var body = document.querySelector('article').innerText.trim();
+  var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
+  if (RELATED.length) {
+    md += 'Related:\n';
+    RELATED.forEach(function (r) {
+      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '\n';
+    });
+  }
+  return md;
+}
+
+document.getElementById('copyBtn').addEventListener('click', function () {
+  var btn = this;
+  navigator.clipboard.writeText(pieceMarkdown()).then(function () {
+    btn.textContent = 'Copied!';
+    setTimeout(function () { btn.textContent = 'Copy as markdown'; }, 2000);
+  });
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function () {
+  var a = document.createElement('a');
+  a.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(pieceMarkdown());
+  a.download = PIECE.slug + '.md';
+  a.click();
+});
+</script>
+
+</body>
+</html>

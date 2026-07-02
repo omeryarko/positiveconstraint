@@ -1,0 +1,172 @@
+---
+name: publish-idea
+description: >
+  Publish a new idea/article to positiveconstraint.com — format it as a site
+  page, add the Google Analytics tag, place it under /ideas/<slug>/, register it
+  in the knowledge map (node + summary + edges), add it to the ideas index, wire
+  it to related ideas in both directions, and recompute all link counts — then
+  stage, diff, and deploy over FTP. Use this whenever the user wants to add,
+  publish, or post new content, an article, a piece, or an "idea" to their
+  Positive Constraint site, or mentions updating the map / ideas list / a new
+  /ideas page. Also use it when they hand you a draft (markdown or prose) and say
+  "put this on the site."
+---
+
+# Publish an idea to positiveconstraint.com
+
+This skill turns a piece of content into a fully wired page on
+positiveconstraint.com. The site is hand-built static HTML — no build step, no
+shared template, live-FTP deploy, **no git undo**. So the whole point here is to
+make every derived thing (map counts, index counts, reverse connections) update
+consistently and to never push to production without a human seeing the diff
+first.
+
+## The one script does the mechanical work
+
+`scripts/publish.py` handles all the deterministic surgery. You handle judgment:
+turning the user's content into clean input, and *proposing which existing ideas
+it should connect to*. Don't hand-edit the HTML files — the script keeps a dozen
+coupled numbers in sync (per-card connection counts, per-category filter counts,
+map node/edge arrays, two header counts) that are easy to get subtly wrong by
+hand.
+
+## Prerequisites — a fresh local mirror
+
+The script edits a **copy** of the live site and diffs against it, so it needs an
+up-to-date mirror at `./site`. If `./site` is missing or you suspect the live
+site changed since it was pulled, re-mirror first (FTP creds are in memory under
+`reference-ftp-credentials`):
+
+```
+export PC_FTP_USER='claude2@positiveconstraint.com'
+export PC_FTP_PASS='<from reference-ftp-credentials memory>'
+python3 scripts/pull_site.py --dest ./site
+```
+
+Skip this if `./site` was pulled moments ago.
+
+## Workflow
+
+### 1. Get the content into the input format
+
+The script reads one markdown file with YAML front-matter. Full spec:
+`references/input-format.md`. Minimum required: `slug`, `title`, `category`,
+`summary`. Shape:
+
+```yaml
+---
+slug: altitude-thinking
+title: Altitude Thinking
+category: concepts            # concepts | services | work | about | frameworks
+summary: >
+  One-paragraph italic hook. The map node uses the first ~100 characters.
+tags: [constraints, abstraction]
+read_time: 8 min read
+connections: []              # filled in step 2, after the user approves
+---
+## First heading
+Body in the site's lightweight markdown (see references/input-format.md for the
+@youtube / @image / blockquote shorthand).
+```
+
+If the user gave you raw prose, convert it: pick a `slug` (kebab-case, matches
+the URL `/ideas/<slug>/`), write a tight italic `summary`, choose a `category`,
+draft `tags`, estimate `read_time`, and translate the body into the shorthand.
+Show them the front-matter you inferred before continuing.
+
+### 2. Propose connections, let the user approve
+
+This is the judgment step the user asked to keep. Read the existing node
+summaries so your suggestions are grounded:
+
+```
+grep -o '"id": "[^"]*", "title": "[^"]*", "category": "[^"]*", "summary": "[^"]*"' site/map/index.html
+```
+
+Then propose a short ranked list of connections — for each: the **target** slug,
+a **label** (how the new idea relates to the target, e.g. `builds on`,
+`illustrates`, `applies to`), and a **reverse_label** (how the target relates
+back, shown on the target's page, e.g. `applied in`, `illustrated by`). Labels
+are free text rendered as-is; keep them lowercase and verb-like to match the
+site. Present them and let the user add/remove/relabel before you write them into
+the front-matter `connections:` list:
+
+```yaml
+connections:
+  - {target: abstraction, label: builds on, reverse_label: applied in}
+  - {target: core-constraints, label: illustrates, reverse_label: illustrated by}
+```
+
+`reverse_label` defaults to `label` if omitted. A piece cannot connect to itself.
+
+### 3. Stage
+
+```
+python3 scripts/publish.py stage --input <piece.md> --site ./site --stage ./.publish-stage
+```
+
+This builds the new page (with the GA tag baked in from the template), wires
+connections both ways, updates the map and ideas index, recomputes every count,
+and prints:
+- the list of files that will be uploaded (NEW vs edit),
+- a warning if the body references `/media/...` images not yet in `site/media/`,
+- unified diffs of every edited file.
+
+If media is missing, drop the image files into `site/media/` and re-run stage.
+
+### 4. Review the diff with the user
+
+Show the staged summary and diffs. Point out anything notable — especially that
+the header counts change (they self-correct a pre-existing stale count: the live
+"12 ideas · 34 connections" becomes the true node/edge totals). Get an explicit
+go-ahead. This is the only safety gate before production.
+
+### 5. Deploy
+
+Export the FTP credentials from memory, then deploy:
+
+```
+export PC_FTP_USER='claude2@positiveconstraint.com'
+export PC_FTP_PASS='<from reference-ftp-credentials memory>'
+python3 scripts/publish.py deploy --stage ./.publish-stage --site ./site
+```
+
+Deploy backs up every live file it overwrites into `./.publish-stage/backup-<ts>/`
+(with a `rollback.json` listing new vs overwritten files) **before** uploading,
+creates the `/ideas/<slug>/` directory as needed, uploads the manifest, and
+refreshes your local `./site` mirror to the new live state. To roll back, re-
+upload the backup copies and delete the newly created files.
+
+### 6. Verify
+
+Fetch the new URL and a touched page to confirm they're live:
+
+```
+curl -s -o /dev/null -w "%{http_code}\n" https://positiveconstraint.com/ideas/<slug>/
+```
+
+Spot-check the map and ideas index in a browser if the user wants.
+
+## Design guarantees (why you can trust the output)
+
+- **Single tree.** Content lives only at `/ideas/<slug>/`. The old `/pieces/`
+  tree was deleted; don't recreate it.
+- **Counts are derived, never typed.** Map/index headers = live node/edge totals;
+  each card's "N connections" = that page's `RELATED` length; filter-pill counts =
+  actual cards per category. Publishing self-heals the stale live counts.
+- **Cards can't drift from export.** A page's connection cards are generated from
+  the same `RELATED[]` array the "Copy as markdown" buttons read.
+- **Minimal, reviewable diffs.** Existing content is edited surgically —
+  connections are *appended* to target pages, leaving every existing card
+  byte-identical. New content only appears where it should.
+- **Category quirk preserved.** Positive Constraint is `frameworks` on the map but
+  `concepts` in the index; the script counts each surface by its own labels rather
+  than forcing them to agree, so it won't "fix" (i.e. disturb) that on unrelated
+  pages.
+
+## Adding a genuinely new category
+
+If `category` is one the site hasn't seen, also pass `category_label` and
+`category_color` (a hex like `#FF4040` or a `var(--color-...)` token) in the
+front-matter. The script will register it in the map's `COLORS`/`COLORS_LABEL`
+and add filter pills to both the map and the ideas index.

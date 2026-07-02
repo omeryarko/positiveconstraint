@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9DEMEQG7C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N9DEMEQG7C');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Positive Constraint</title>
+<meta name="description" content="I founded Positive Constraint thanks to two things I learned from my dad. Following your passion is the key to a life worth living By being true to yoursel">
+<meta property="og:title" content="About — Positive Constraint">
+<meta property="og:description" content="I founded Positive Constraint thanks to two things I learned from my dad. Following your passion is the key to a life worth living By being true to yoursel">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>/* Color variables — automatically flipped in dark mode */
+:root {
+  /* Light mode */
+  --color-text-primary: #171717;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #A3A3A3;
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #F5F5F5;
+  --color-border-primary: #E5E5E5;
+  --color-border-secondary: #E5E5E5;
+  --color-border-tertiary: #E5E5E5;
+
+  /* Fixed across modes */
+  --color-red: #FF4040;
+  --color-red-hover: #E63636;
+  --color-red-dark: #CC2020;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: #FAFAFA;
+    --color-text-secondary: #A3A3A3;
+    --color-text-tertiary: #737373;
+    --color-background-primary: #171717;
+    --color-background-secondary: #262626;
+    --color-border-primary: #404040;
+    --color-border-secondary: #525252;
+    --color-border-tertiary: #262626;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3xl);
+  height: 64px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  position: sticky;
+  top: 0;
+  background: var(--color-background-primary);
+  z-index: 40;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-mark {
+  width: 24px;
+  height: 24px;
+  color: currentColor;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-red);
+}
+
+/* Page container */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-lg);
+  }
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-primary {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-text-secondary);
+}
+
+.btn-accent {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn-accent:hover {
+  background: var(--color-red-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 0.5px solid var(--color-border-secondary);
+}
+
+.btn-ghost:hover {
+  background: var(--color-background-secondary);
+}
+
+/* Links */
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+a:hover {
+  border-bottom-color: var(--color-red);
+}
+
+/* Typography */
+h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: var(--space-2xl) 0 var(--space-md) 0;
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: var(--space-xl) 0 var(--space-sm) 0;
+  color: var(--color-text-primary);
+}
+
+p {
+  margin: var(--space-lg) 0;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xl);
+}
+
+.breadcrumb a {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb-sep {
+  margin: 0 var(--space-sm);
+}
+
+/* Piece header */
+.piece-summary {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.piece-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.meta-item {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+article {
+  margin-top: var(--space-2xl);
+  max-width: 600px;
+}
+
+/* Tags */
+.tag-category {
+  display: inline-block;
+  background: #FFF0F0;
+  color: var(--color-red-dark);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag-category {
+    background: rgba(255, 64, 64, 0.1);
+    color: #FF8080;
+  }
+}
+
+.tag-label {
+  display: inline-block;
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+/* Grab bar (export buttons) */
+.grab-bar {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+  margin: var(--space-2xl) 0;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+@media (max-width: 640px) {
+  .grab-bar {
+    flex-direction: column;
+  }
+
+  .grab-bar .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Connection cards */
+.connections {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+}
+
+.connections h4 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.conn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .conn-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conn-item {
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: var(--space-md);
+  background: var(--color-background-primary);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.conn-item:hover {
+  border-color: var(--color-border-secondary);
+  background: var(--color-background-secondary);
+}
+
+.conn-type {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.conn-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-red);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.conn-summary {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  display: block;
+}
+
+.conn-label {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  display: block;
+  margin-top: var(--space-xs);
+}
+
+/* Pull quotes */
+.pullquote {
+  border-left: 3px solid var(--color-red);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+  margin: var(--space-2xl) 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+/* Footer */
+.footer {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  border-top: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">
+    <svg class="nav-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/>
+      <circle cx="50" cy="50" r="8" fill="currentColor"/>
+    </svg>
+    Positive Constraint
+  </a>
+  <ul class="nav-links">
+    <li><a href="/ideas/" class="active">Ideas</a></li>
+    <li><a href="/map/">Map</a></li>
+    <li><a href="/ideas/about/">About</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="breadcrumb"><a href="/ideas/">Ideas</a><span class="breadcrumb-sep">/</span>About</div>
+
+  <header>
+    <div class="tag-category">ABOUT</div>
+    <h1>About</h1>
+    <p class="piece-summary">I founded Positive Constraint thanks to two things I learned from my dad. Following your passion is the key to a life worth living By being true to yourself and…</p>
+    <div class="piece-meta"><span class="tag-label">about</span><span class="tag-label">origin</span><span class="meta-item">3 min read</span></div>
+  </header>
+
+  <article>
+    <p>I founded <a href="/ideas/positive-constraint/">Positive Constraint</a> thanks to two things I learned from my dad.</p>
+<hr/>
+<h2>Following your passion is the key to a life worth living</h2>
+<p>By being true to yourself and following your passion, you get to live a life worth living.</p>
+<p>I learned this lesson from my dad. My dad doesn’t let anyone or anything stop him from doing what he loves. He’s always been like that — with his strong character and his unshakeable frame of reality around his choices, his values, and his beliefs. When his parents pushed him to study electronics or tried to stop him from marrying my mom, he always ended up doing what he wanted. Even when it cost him dearly — relationships, time, money, energy, or frustration — he followed his passion. Whatever it costs him, living a life full of passion is worth it.</p>
+<p>I always liked solving problems. Growing up, I loved playing LEGO and Civilization. In my 20-year startup career, solving tech problems first, and later on business problems, was exciting. But over time, the sense of achievement faded. Problems were fewer, took longer to solve, and I had to rely on less passionate people. It was no longer fun. I decided to follow my passion — to find new puzzles to solve, even if it meant giving up my good but boring, high-paying job.</p>
+<hr/>
+<h2>Reaching Beyond the Obvious</h2>
+<p>I like to joke and say that my dad sees the world as a big black circle with a small white box in its center. Everything in this white center is true. Everything else is pure nonsense, ridiculous, wrong. His harsh opinions on people I loved, his stubborn worldviews, and his quick judgment of the world — all fueled my inner conflict about how to interpret reality.</p>
+<p>As a child — sometimes confused, in a kind of teenage rebellion, or simply because I couldn’t see the logic in his perspective — I looked for better explanations for why the world is the way it is. I looked for better explanations to satisfy my curiosity. Explanations that aren’t so confusing and contradicting the way I understand them. When the answers I got from my dad weren’t making sense, I started making my own sense of the world. Thanks to my dad, I learned to reach beyond the obvious. To look for better answers. To see reality anew.</p>
+<p>This became the seed of <a href="/ideas/abstraction/">abstraction</a> — the practice of filtering out noise to surface what truly matters.</p>
+<hr/>
+<h2>Positive Constraint</h2>
+<p>It took a decade for these paths to cross, and another half a decade or so to form these ideas into a coherent worldview and philosophy. Into <a href="/ideas/positive-constraint/">Positive Constraint</a>.</p>
+<p>After leaving my job, I began mentoring startup founders. Each startup faced its own value puzzle — defining the problem, value proposition, business model, positioning, competition, and more. Startups varied in size, market, technology, and founder backgrounds. By following my passion and solving these diverse problems, I was able to help others follow theirs. I found heaven.</p>
+<p>There was one problem. To help founders with their complex issues, I had to improve quickly at solving different problems for different startups. There is no template or methodology one can use. I had to find my own way to figure this out.</p>
+<p>And then it hit me — I discovered <a href="/ideas/core-constraints/">constraints</a> and the power of <a href="/ideas/abstraction/">abstraction</a>. Using constraints, I was able to reach beyond the obvious and see reality anew. Using constraints, I was able to abstract away complexity and make problems simple. Using constraints, I was able to see creative solutions and help startups grow.</p>
+<p>Ever since I founded Positive Constraint 5 years ago, I’ve been using constraints to help founders of early-stage startups follow their own passion. To make startups resilient to change in a world that changes disturbingly fast. To help builders and creators turn an apparent disadvantage into an unfair advantage. To help craft compelling stories that attract investors, align teams, and resonate with customers.</p>
+<p>If you also have an interesting value puzzle for me, or if you find yourself looking for better answers, let’s <a href="/ideas/contact/">chat</a>.</p>
+  </article>
+
+  <div class="grab-bar">
+    <button id="copyBtn" class="btn btn-accent">Copy as markdown</button>
+    <button id="downloadBtn" class="btn btn-ghost">Download .md</button>
+  </div>
+
+  <section class="connections"><div><h4>Builds On</h4><div class="conn-grid"><a href="/ideas/abstraction/" class="conn-item"><span class="conn-type">BUILDS ON</span><span class="conn-title">Abstraction</span><span class="conn-summary">Abstraction is the act of filtering out unnecessary detail to surface what truly matters. It’s the core cognitive tool b</span><span class="conn-label">builds on Abstraction</span></a><a href="/ideas/core-constraints/" class="conn-item"><span class="conn-type">BUILDS ON</span><span class="conn-title">Core Constraints</span><span class="conn-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted a</span><span class="conn-label">builds on Core Constraints</span></a><a href="/ideas/positive-constraint/" class="conn-item"><span class="conn-type">BUILDS ON</span><span class="conn-title">Positive Constraint</span><span class="conn-summary">A positive constraint is a constraint that, rather than blocking progress, shapes it. A limiting condition that — when y</span><span class="conn-label">builds on Positive Constraint</span></a></div></div></section>
+
+</main>
+
+<footer class="footer">
+  <div>← <a href="/ideas/">Back to all ideas</a></div>
+  <div><a href="/map/">View on map</a> →</div>
+</footer>
+
+<script>
+var PIECE = { title: "About", slug: "about" };
+var RELATED = [{"title": "Abstraction", "label": "builds on", "url": "/ideas/abstraction/"}, {"title": "Core Constraints", "label": "builds on", "url": "/ideas/core-constraints/"}, {"title": "Positive Constraint", "label": "builds on", "url": "/ideas/positive-constraint/"}];
+
+function pieceMarkdown() {
+  var body = document.querySelector('article').innerText.trim();
+  var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
+  if (RELATED.length) {
+    md += 'Related:\n';
+    RELATED.forEach(function (r) {
+      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '\n';
+    });
+  }
+  return md;
+}
+
+document.getElementById('copyBtn').addEventListener('click', function () {
+  var btn = this;
+  navigator.clipboard.writeText(pieceMarkdown()).then(function () {
+    btn.textContent = 'Copied!';
+    setTimeout(function () { btn.textContent = 'Copy as markdown'; }, 2000);
+  });
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function () {
+  var a = document.createElement('a');
+  a.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(pieceMarkdown());
+  a.download = PIECE.slug + '.md';
+  a.click();
+});
+</script>
+
+</body>
+</html>

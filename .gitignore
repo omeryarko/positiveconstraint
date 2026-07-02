@@ -1,0 +1,11 @@
+# Claude Code personal settings — contains FTP credentials, never commit
+.claude/settings.local.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor/OS junk
+*.swp
+*~
