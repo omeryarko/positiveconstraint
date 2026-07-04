@@ -16,10 +16,16 @@ description: >
 
 This skill turns a piece of content into a fully wired page on
 positiveconstraint.com. The site is hand-built static HTML — no build step, no
-shared template, live-FTP deploy, **no git undo**. So the whole point here is to
-make every derived thing (map counts, index counts, reverse connections) update
+shared template, live-FTP deploy. So the whole point here is to make every
+derived thing (map counts, index counts, reverse connections) update
 consistently and to never push to production without a human seeing the diff
 first.
+
+The folder is now a git repo (pushed to github.com/omeryarko/positiveconstraint,
+see `project-git-version-control` memory). FTP is still the only deploy path —
+git is version-control + backup. Two consequences for this skill: there is now a
+real undo (revert the commit, re-deploy), and **every successful deploy must be
+committed and pushed** (step 7) so the backup tracks the live site.
 
 ## The one script does the mechanical work
 
@@ -33,9 +39,11 @@ hand.
 ## Prerequisites — a fresh local mirror
 
 The script edits a **copy** of the live site and diffs against it, so it needs an
-up-to-date mirror at `./site`. If `./site` is missing or you suspect the live
-site changed since it was pulled, re-mirror first (FTP creds are in memory under
-`reference-ftp-credentials`):
+up-to-date mirror at `./site`. Because `./site` is git-tracked, `git status` is a
+fast first check: a clean tree means the mirror matches the last publish. If
+`./site` is missing, dirty in a way you can't account for, or you suspect the
+live site changed since it was pulled, re-mirror first (FTP creds are in memory
+under `reference-ftp-credentials`):
 
 ```
 export PC_FTP_USER='claude2@positiveconstraint.com'
@@ -146,6 +154,21 @@ curl -s -o /dev/null -w "%{http_code}\n" https://positiveconstraint.com/ideas/<s
 ```
 
 Spot-check the map and ideas index in a browser if the user wants.
+
+### 7. Snapshot to git
+
+Deploy refreshed `./site` to the new live state, so commit that and push — this
+keeps the GitHub backup in step with production and gives you a revertable point.
+
+```
+git add -A
+git commit -m "Publish idea: <slug>"
+git push
+```
+
+Never commit `.claude/settings.local.json` (it holds the plaintext FTP creds and
+is gitignored — the repo is public). If a deploy later proves bad, this commit is
+your undo: `git revert` it, then re-run deploy from the reverted `./site`.
 
 ## Design guarantees (why you can trust the output)
 
