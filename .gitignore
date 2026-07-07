@@ -9,3 +9,4 @@
 # Editor/OS junk
 *.swp
 *~
+.publish-stage/
