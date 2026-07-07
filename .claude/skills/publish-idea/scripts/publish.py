@@ -453,7 +453,9 @@ def do_deploy(args):
     write(os.path.join(backup, "rollback.json"), json.dumps(rollback, indent=2))
     # refresh the local mirror so future runs diff against the new live state
     for m in manifest:
-        shutil.copy2(os.path.join(stage, m["path"]), os.path.join(site, m["path"]))
+        dst = os.path.join(site, m["path"])
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        shutil.copy2(os.path.join(stage, m["path"]), dst)
     print(f"\nDone. Backup of overwritten files: {backup}")
 
 def ensure_dirs(ftp, remote):
