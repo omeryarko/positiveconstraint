@@ -626,53 +626,111 @@ article {
   border-radius: 50%;
 }
 
-/* Map teaser */
-.map-teaser {
-  display: block;
+/* Live embedded map */
+.map-live {
   background: var(--color-background-secondary);
   border: 0.5px solid var(--color-border-tertiary);
   border-radius: 12px;
-  padding: var(--space-2xl);
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
+  padding: var(--space-xl);
   margin-bottom: var(--space-2xl);
-  transition: all 0.15s;
 }
-
-.map-teaser:hover {
-  border-color: var(--color-border-secondary);
-  background: var(--color-background-primary);
-}
-
-.map-teaser-icon {
-  font-size: 48px;
-  margin-bottom: var(--space-lg);
-}
-
-.map-teaser-title {
+.map-live-head { text-align: center; margin-bottom: var(--space-lg); }
+.map-live-title {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 18px;
   margin-bottom: var(--space-sm);
 }
-
-.map-teaser-desc {
+.map-live-desc {
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
+  max-width: 440px;
+  margin: 0 auto;
 }
-
-.map-teaser-meta {
+.mini-graph-area {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  width: 100%;
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+}
+svg.mini-graph { width: 100%; height: 100%; display: block; }
+.node-circle { cursor: pointer; transition: opacity 0.15s; }
+.node-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  pointer-events: none;
+  text-anchor: middle;
+  fill: var(--color-text-secondary);
+  transition: opacity 0.15s;
+}
+.edge {
+  stroke: var(--color-border-secondary);
+  stroke-width: 0.5;
+  transition: opacity 0.15s;
+}
+.edge.highlight { stroke: var(--color-red); stroke-width: 1.5; }
+.dimmed { opacity: 0.12; }
+.node-tooltip {
+  position: absolute;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 260px;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+.tooltip-category {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.tooltip-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.tooltip-summary {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.tooltip-link {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-red);
+}
+.map-live-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.map-live-meta {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--color-text-tertiary);
-  margin-bottom: var(--space-lg);
 }
-
-.map-teaser .btn {
-  display: inline-block;
+@media (max-width: 640px) {
+  .mini-graph-area { height: 320px; }
+  .map-live-foot { flex-direction: column; }
+  .map-live-foot .btn { width: 100%; text-align: center; }
 }
 
 /* Subscribe block */
@@ -757,7 +815,7 @@ article {
   <p class="hero-tagline">Wisdom for your context.</p>
   <p class="hero-desc">The world is too complex to predict and too fast to adapt to. But not everything changes. Constraints-thinking looks past the noise to what holds still — the forces, truths, and structures that shape everything around them.<br><br>These ideas are what that lens reveals. Short, standalone pieces — frameworks, patterns, pitfalls, plays — each one found by asking what doesn't change, and why it matters.<br><br>Browse the map. Follow the connections. Grab what's useful.</p>
   <div class="hero-buttons">
-    <a href="/map/" class="btn btn-primary">Explore the map →</a>
+    <a href="/map/" class="btn btn-accent">Explore the map →</a>
     <a href="/ideas/" class="btn btn-ghost">Browse all ideas</a>
   </div>
 </section>
@@ -775,13 +833,20 @@ article {
     <button class="filter-pill" onclick="location.href='/ideas/?cat=concepts'"><span class="filter-dot" style="background:#FF4040"></span>Concepts · 4</button><button class="filter-pill" onclick="location.href='/ideas/?cat=services'"><span class="filter-dot" style="background:var(--color-text-primary)"></span>Services · 1</button><button class="filter-pill" onclick="location.href='/ideas/?cat=work'"><span class="filter-dot" style="background:var(--color-text-secondary)"></span>Work · 5</button><button class="filter-pill" onclick="location.href='/ideas/?cat=about'"><span class="filter-dot" style="background:var(--color-text-tertiary)"></span>About · 3</button>
   </div>
 
-  <a href="/map/" class="map-teaser">
-    <div class="map-teaser-icon">◯</div>
-    <div class="map-teaser-title">See how ideas connect</div>
-    <div class="map-teaser-desc">Explore the full network of relationships between concepts, principles, patterns, and case studies.</div>
-    <div class="map-teaser-meta">12 ideas · 34 connections</div>
-    <span class="btn btn-primary">View the map →</span>
-  </a>
+  <div class="map-live">
+    <div class="map-live-head">
+      <div class="map-live-title">See how ideas connect</div>
+      <div class="map-live-desc">The living network of relationships between concepts, frameworks, patterns, and case studies. Hover a node to explore — click to read.</div>
+    </div>
+    <div class="mini-graph-area" id="miniGraphArea">
+      <svg class="mini-graph" id="miniGraph"></svg>
+      <div class="node-tooltip" id="miniTooltip"></div>
+    </div>
+    <div class="map-live-foot">
+      <div class="map-live-meta">17 ideas · 43 connections</div>
+      <a href="/map/" class="btn btn-accent">Open the full map →</a>
+    </div>
+  </div>
 </section>
 
 <section class="pc-subscribe pc-subscribe--hero" style="padding-bottom: var(--space-3xl);">
@@ -802,6 +867,143 @@ article {
   <div>Positive Constraint · by Omer Yarkowich</div>
   <div>Every idea is grabbable as markdown</div>
 </footer>
+
+<script>
+/* Live knowledge map — mirrors /map/ */
+var MAP_NODES = [{"id": "about", "title": "About", "category": "about", "summary": "I founded Positive Constraint thanks to two things I learned from my dad. Following your passion is the key to"}, {"id": "abstraction", "title": "Abstraction", "category": "concepts", "summary": "Abstraction is the act of filtering out unnecessary detail to surface what truly matters. It’s the core cognit"}, {"id": "contact", "title": "Contact", "category": "about", "summary": "Have an interesting value puzzle? Looking for better answers? Let’s chat. Omer Yarkowich Positive Constraint T"}, {"id": "core-constraints", "title": "Core Constraints", "category": "concepts", "summary": "A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve ab"}, {"id": "faq", "title": "FAQ", "category": "about", "summary": "How are you better than other consultants? Well, I have no idea — I’ve never used their services. Neither have"}, {"id": "positive-constraint", "title": "Positive Constraint", "category": "frameworks", "summary": "The world is too complex to predict and too fast to adapt to. Resilience can no longer be found in predictions"}, {"id": "process", "title": "The Process", "category": "concepts", "summary": "Every engagement follows four phases. The depth and duration of each phase depends on the scope of the project"}, {"id": "services", "title": "Services", "category": "services", "summary": "All three services draw from the same foundation: core constraints and abstraction. The difference is how far "}, {"id": "work-cortisense", "title": "CortiSense", "category": "work", "summary": "Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Backgroun"}, {"id": "work", "title": "Work", "category": "work", "summary": "Value creation comes in many forms. It is not limited to a certain industry, a certain geography, or a certain"}, {"id": "work-leap-commerce", "title": "LEAP Commerce", "category": "work", "summary": "Domain: eCommerce Enablement Geography: Singapore Engagement type: Investment pitch · Value strategy Backgroun"}, {"id": "work-tapouts", "title": "Tapouts", "category": "work", "summary": "Domain: Emotional well-being platform for kids Geography: USA Engagement type: Pitch deck · Early-stage strate"}, {"id": "work-user1st", "title": "User1st", "category": "work", "summary": "Domain: Developer Tools — Inclusion Geography: Israel Engagement type: Value strategy · Investor pitch Backgro"}, {"id": "three-reds-in-haifa", "title": "3 Reds in Haifa", "category": "reflections", "summary": "Three red lights, two kids, and a dental bill — a red light is a constraint too: an unchanging eleme"}, {"id": "desired-reality", "title": "Desired Reality", "category": "frameworks", "summary": "Desired Reality is the goal in the language of Positive Constraint — your Now expressed, then refram"}, {"id": "three-axes", "title": "The Three Axes", "category": "concepts", "summary": "Every company is defined by three axes: one northstar KPI for the value it creates, and two that for"}, {"id": "innovation", "title": "Innovation", "category": "concepts", "summary": "Innovation is finding new solutions to pre-existing problems given new constraints. The problem was "}];
+var MAP_EDGES = [["about", "abstraction"], ["about", "core-constraints"], ["about", "positive-constraint"], ["abstraction", "core-constraints"], ["abstraction", "positive-constraint"], ["abstraction", "process"], ["core-constraints", "positive-constraint"], ["core-constraints", "process"], ["core-constraints", "work-tapouts"], ["core-constraints", "work-cortisense"], ["core-constraints", "work-user1st"], ["core-constraints", "work-leap-commerce"], ["positive-constraint", "process"], ["process", "work-tapouts"], ["process", "work-cortisense"], ["process", "work-user1st"], ["process", "work-leap-commerce"], ["services", "abstraction"], ["services", "core-constraints"], ["services", "process"], ["services", "work"], ["faq", "abstraction"], ["faq", "positive-constraint"], ["faq", "contact"], ["contact", "faq"], ["contact", "work"], ["work", "work-tapouts"], ["work", "work-cortisense"], ["work", "work-user1st"], ["work", "work-leap-commerce"], ["three-reds-in-haifa", "positive-constraint"], ["three-reds-in-haifa", "core-constraints"], ["three-reds-in-haifa", "abstraction"], ["three-reds-in-haifa", "process"], ["desired-reality", "positive-constraint"], ["desired-reality", "core-constraints"], ["three-axes", "core-constraints"], ["three-axes", "abstraction"], ["three-axes", "positive-constraint"], ["three-axes", "services"], ["innovation", "positive-constraint"], ["innovation", "core-constraints"], ["innovation", "abstraction"]];
+var MAP_COLORS = {"concepts": "#FF4040", "frameworks": "#FF4040", "services": "var(--color-text-primary)", "work": "var(--color-text-secondary)", "about": "var(--color-text-tertiary)", "reflections": "#E0A458"};
+var MAP_LABELS = {"concepts": "Concepts", "services": "Services", "work": "Work", "about": "About", "reflections": "Reflections", "frameworks": "Frameworks"};
+
+(function () {
+  var svg = document.getElementById('miniGraph');
+  var area = document.getElementById('miniGraphArea');
+  var tooltip = document.getElementById('miniTooltip');
+  if (!svg || !area) return;
+  var W = area.clientWidth, H = area.clientHeight;
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+  var byId = {};
+  MAP_NODES.forEach(function (n, i) {
+    var a = (i / MAP_NODES.length) * Math.PI * 2;
+    n.x = W / 2 + Math.cos(a) * Math.min(W, H) * 0.3;
+    n.y = H / 2 + Math.sin(a) * Math.min(W, H) * 0.3;
+    n.vx = 0; n.vy = 0;
+    byId[n.id] = n;
+  });
+  var edges = MAP_EDGES.filter(function (e) { return byId[e[0]] && byId[e[1]]; });
+
+  var SPRING = 100;
+  for (var it = 0; it < 300; it++) {
+    var cool = 1 - it / 300;
+    for (var i = 0; i < MAP_NODES.length; i++) {
+      var a = MAP_NODES[i];
+      a.vx = (W / 2 - a.x) * 0.002;
+      a.vy = (H / 2 - a.y) * 0.002;
+      for (var j = 0; j < MAP_NODES.length; j++) {
+        if (i === j) continue;
+        var b = MAP_NODES[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d2 = dx * dx + dy * dy + 0.01;
+        var f = 2600 / d2;
+        var d = Math.sqrt(d2);
+        a.vx += (dx / d) * f;
+        a.vy += (dy / d) * f;
+      }
+    }
+    edges.forEach(function (e) {
+      var a = byId[e[0]], b = byId[e[1]];
+      var dx = b.x - a.x, dy = b.y - a.y;
+      var d = Math.sqrt(dx * dx + dy * dy) + 0.01;
+      var f = (d - SPRING) * 0.02;
+      a.vx += (dx / d) * f; a.vy += (dy / d) * f;
+      b.vx -= (dx / d) * f; b.vy -= (dy / d) * f;
+    });
+    MAP_NODES.forEach(function (n) {
+      n.x += n.vx * cool;
+      n.y += n.vy * cool;
+      n.x = Math.max(40, Math.min(W - 40, n.x));
+      n.y = Math.max(26, Math.min(H - 26, n.y));
+    });
+  }
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var edgeEls = [], nodeEls = [], labelEls = [];
+
+  edges.forEach(function (e) {
+    var a = byId[e[0]], b = byId[e[1]];
+    var line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+    line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+    line.setAttribute('class', 'edge');
+    svg.appendChild(line);
+    edgeEls.push({ el: line, s: e[0], t: e[1] });
+  });
+
+  MAP_NODES.forEach(function (n) {
+    var label = document.createElementNS(NS, 'text');
+    label.setAttribute('x', n.x);
+    label.setAttribute('y', n.y - 13);
+    label.setAttribute('class', 'node-label');
+    label.textContent = n.title.length > 16 ? n.title.slice(0, 15) + '…' : n.title;
+    svg.appendChild(label);
+    labelEls.push({ el: label, n: n });
+
+    var c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', n.x); c.setAttribute('cy', n.y);
+    c.setAttribute('r', 6);
+    c.setAttribute('style', 'fill:' + (MAP_COLORS[n.category] || '#999'));
+    c.setAttribute('stroke', 'var(--color-background-primary)');
+    c.setAttribute('stroke-width', 2);
+    c.setAttribute('class', 'node-circle');
+    c.addEventListener('mouseenter', function () { focusNode(n, c); });
+    c.addEventListener('mouseleave', clearFocus);
+    c.addEventListener('click', function () { window.location.href = '/ideas/' + n.id + '/'; });
+    svg.appendChild(c);
+    nodeEls.push({ el: c, n: n });
+  });
+
+  function neighbors(id) {
+    var set = {}; set[id] = true;
+    edges.forEach(function (e) {
+      if (e[0] === id) set[e[1]] = true;
+      if (e[1] === id) set[e[0]] = true;
+    });
+    return set;
+  }
+
+  function focusNode(n, c) {
+    c.setAttribute('r', 9);
+    var near = neighbors(n.id);
+    nodeEls.forEach(function (x) { x.el.classList.toggle('dimmed', !near[x.n.id]); });
+    labelEls.forEach(function (x) { x.el.classList.toggle('dimmed', !near[x.n.id]); });
+    edgeEls.forEach(function (x) {
+      var on = x.s === n.id || x.t === n.id;
+      x.el.classList.toggle('highlight', on);
+      x.el.classList.toggle('dimmed', !on);
+    });
+    tooltip.innerHTML =
+      '<div class="tooltip-category">' + (MAP_LABELS[n.category] || n.category) + '</div>' +
+      '<div class="tooltip-title">' + n.title + '</div>' +
+      '<div class="tooltip-summary">' + n.summary + '</div>' +
+      '<div class="tooltip-link">Click to read →</div>';
+    tooltip.style.display = 'block';
+    var scale = area.clientWidth / W;
+    var tx = n.x * scale + 14, ty = n.y * scale + 14;
+    if (tx + 270 > area.clientWidth) tx = n.x * scale - 274;
+    if (ty + 140 > area.clientHeight) ty = n.y * scale - 150;
+    tooltip.style.left = Math.max(8, tx) + 'px';
+    tooltip.style.top = Math.max(8, ty) + 'px';
+  }
+
+  function clearFocus() {
+    tooltip.style.display = 'none';
+    nodeEls.forEach(function (x) { x.el.setAttribute('r', 6); x.el.classList.remove('dimmed'); });
+    labelEls.forEach(function (x) { x.el.classList.remove('dimmed'); });
+    edgeEls.forEach(function (x) { x.el.classList.remove('highlight'); x.el.classList.remove('dimmed'); });
+  }
+})();
+</script>
 
 <script>
 document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {

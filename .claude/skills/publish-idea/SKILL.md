@@ -82,6 +82,25 @@ the URL `/ideas/<slug>/`), write a tight italic `summary`, choose a `category`,
 draft `tags`, estimate `read_time`, and translate the body into the shorthand.
 Show them the front-matter you inferred before continuing.
 
+**Content fidelity — the author's words are the author's.** This is a hard rule,
+not a preference. The body of the idea is theirs; reproduce it *verbatim*. When
+you build the input file you may only:
+
+- wrap their existing words in the site's markup (`##`/`###` headings, `**bold**`,
+  `*italic*`, blockquotes, the `@youtube`/`@image` shorthand), and
+- add the *metadata* they didn't write — `slug`, `summary`, `tags`, `read_time`,
+  `connections`.
+
+You may **not** add, remove, rephrase, expand, condense, "tighten," reorder, or
+"improve" a single sentence of the body — not even a clause. The `summary` and
+headings are the only prose you author, and the summary lives in front-matter,
+never spliced into the body. If you genuinely think the text needs an edit,
+*propose it separately as a suggestion* and let the author decide — never fold it
+in silently. (This is the exact failure from the "Innovation" publish: the body
+was expanded during this conversion step before the script ever ran. The script
+is faithful; the risk is here.) `stage` prints the final body as plain text under
+a "verbatim check" header (step 4) so this is auditable before anything ships.
+
 ### 2. Propose connections, let the user approve
 
 This is the judgment step the user asked to keep. Read the existing node
@@ -114,11 +133,12 @@ python3 scripts/publish.py stage --input <piece.md> --site ./site --stage ./.pub
 ```
 
 This builds the new page (with the GA tag baked in from the template), wires
-connections both ways, updates the map and ideas index, recomputes every count,
-and prints:
+connections both ways, updates the map, the homepage live mini-map, and the
+ideas index, recomputes every count, and prints:
 - the list of files that will be uploaded (NEW vs edit),
 - a warning if the body references `/media/...` images not yet in `site/media/`,
-- unified diffs of every edited file.
+- unified diffs of every edited file,
+- the new page's body as plain text, under a **verbatim check** header.
 
 If media is missing, drop the image files into `site/media/` and re-run stage.
 
@@ -126,8 +146,11 @@ If media is missing, drop the image files into `site/media/` and re-run stage.
 
 Show the staged summary and diffs. Point out anything notable — especially that
 the header counts change (they self-correct a pre-existing stale count: the live
-"12 ideas · 34 connections" becomes the true node/edge totals). Get an explicit
-go-ahead. This is the only safety gate before production.
+"12 ideas · 34 connections" becomes the true node/edge totals). **Read the
+"verbatim check" body back to the author and get an explicit yes that the wording
+is exactly theirs** — this is the guard against the content drifting during
+conversion. Then get the go-ahead to ship. This is the only safety gate before
+production.
 
 ### 5. Deploy
 
@@ -174,9 +197,19 @@ your undo: `git revert` it, then re-run deploy from the reverted `./site`.
 
 - **Single tree.** Content lives only at `/ideas/<slug>/`. The old `/pieces/`
   tree was deleted; don't recreate it.
+- **Content fidelity.** The script never touches idea prose — it renders the
+  input body and wires structure around it. The one place content can drift is the
+  human conversion in step 1, which is why that step forbids editing the body and
+  `stage` prints the body verbatim for sign-off. What the author wrote is what
+  ships.
 - **Counts are derived, never typed.** Map/index headers = live node/edge totals;
   each card's "N connections" = that page's `RELATED` length; filter-pill counts =
   actual cards per category. Publishing self-heals the stale live counts.
+- **Homepage mini-map stays in lockstep.** The homepage embeds the same graph
+  (`MAP_NODES`/`MAP_EDGES`/`MAP_COLORS`/`MAP_LABELS`) plus a `map-live-meta` count;
+  the script updates all of them alongside `/map/` so the two can't diverge. It
+  deliberately leaves the curated "Start here" featured cards and the homepage
+  category pills alone — those are author-picked, not derived.
 - **Cards can't drift from export.** A page's connection cards are generated from
   the same `RELATED[]` array the "Copy as markdown" buttons read.
 - **Minimal, reviewable diffs.** Existing content is edited surgically —

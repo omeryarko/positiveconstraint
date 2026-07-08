@@ -319,6 +319,40 @@ def do_stage(args):
         mp = mp.replace("</section>", pill + "</section>", 1)
     write(map_path, mp)
 
+    # --- homepage live mini-map: nodes, edges, colors, counts -------------
+    # The homepage (index.html) embeds the same graph under MAP_* var names.
+    # Keep it in lockstep with the map so the two never diverge. This only
+    # touches the graph data + its meta count — the curated "Start here"
+    # featured cards and homepage category pills stay author-controlled.
+    home_path = os.path.join(stage, "index.html")
+    if os.path.exists(home_path):
+        hp = read(home_path)
+        if re.search(r'var MAP_NODES = ', hp):
+            hnodes = js_array(hp, "MAP_NODES")
+            hedges = js_array(hp, "MAP_EDGES")
+            hcolors = js_array(hp, "MAP_COLORS")
+            hlabels = js_array(hp, "MAP_LABELS")
+            if not any(n.get("id") == slug for n in hnodes):
+                hnodes.append({"id": slug, "title": title, "category": cat,
+                               "summary": strip_summary(page)})
+            hexisting = {tuple(sorted(e)) for e in hedges}
+            for c in conns:
+                key = tuple(sorted([slug, c["target"]]))
+                if key not in hexisting:
+                    hedges.append([slug, c["target"]]); hexisting.add(key)
+            if cat not in hcolors:
+                hcolors[cat] = data.get("category_color", cat_color(cat, hcolors))
+            if cat not in hlabels:
+                hlabels[cat] = cat_label
+            hp = set_js(hp, "MAP_NODES", hnodes)
+            hp = set_js(hp, "MAP_EDGES", hedges)
+            hp = set_js(hp, "MAP_COLORS", hcolors)
+            hp = set_js(hp, "MAP_LABELS", hlabels)
+            hp = re.sub(r'(<div class="map-live-meta">)[^<]*(</div>)',
+                        rf'\g<1>{len(hnodes)} ideas · {len(hedges)} connections\2',
+                        hp, count=1)
+            write(home_path, hp)
+
     # --- ideas index: card, counts, filter pill ---------------------------
     idx_path = os.path.join(stage, "ideas", "index.html")
     idx = read(idx_path)
@@ -361,7 +395,17 @@ def do_stage(args):
 
     manifest = build_manifest(site, stage)
     write(os.path.join(stage, "manifest.json"), json.dumps(manifest, indent=2))
-    print_summary(site, stage, manifest, missing, n_nodes, n_edges)
+    print_summary(site, stage, manifest, missing, n_nodes, n_edges, article_text(page))
+
+def article_text(page_html):
+    """Plain-text of the new page's <article> body, for a verbatim content check.
+    The script never edits idea prose; printing it lets the author confirm that
+    what goes live is exactly what they wrote — no added or reworded sentences."""
+    m = re.search(r'<article[^>]*>(.*?)</article>', page_html, re.S)
+    body = m.group(1) if m else ""
+    body = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', body, flags=re.S)
+    txt = re.sub(r'<[^>]+>', '', body)
+    return html.unescape(re.sub(r'\n{3,}', '\n\n', txt)).strip()
 
 def byid_title(stage, slug):
     p = os.path.join(stage, "ideas", slug, "index.html")
@@ -394,7 +438,7 @@ def read_bytes(p):
     with open(p, "rb") as f:
         return f.read()
 
-def print_summary(site, stage, manifest, missing, n_nodes, n_edges):
+def print_summary(site, stage, manifest, missing, n_nodes, n_edges, new_body=None):
     print("\n=== publish-idea: staged changes ===")
     print(f"map/ideas counts -> {n_nodes} ideas · {n_edges} connections")
     print(f"{len(manifest)} file(s) will be uploaded:\n")
@@ -416,6 +460,11 @@ def print_summary(site, stage, manifest, missing, n_nodes, n_edges):
         print("\n".join(d[:80]))
         if len(d) > 80:
             print(f"  ... ({len(d)-80} more diff lines)")
+    if new_body is not None:
+        print("\n--- new page body, exactly as it will publish (verbatim check) ---")
+        print("Confirm this is word-for-word the author's text — no added or")
+        print("reworded sentences — before deploying.\n")
+        print(new_body)
     print("\nReview above, then run:  publish.py deploy --stage", stage)
 
 # -------------------------------------------------------------------- deploy
