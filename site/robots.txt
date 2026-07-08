@@ -1,0 +1,52 @@
+# positiveconstraint.com
+# These ideas are meant to be read, quoted, and seeded into AI contexts.
+# All crawlers welcome — including AI assistants and their user-triggered fetchers.
+# AI-oriented index of every idea: https://positiveconstraint.com/llms.txt
+
+User-agent: *
+Allow: /
+
+# --- AI crawlers & assistants: explicitly welcomed ---
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google (Gemini / AI training) & Apple
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl, Meta, others
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /

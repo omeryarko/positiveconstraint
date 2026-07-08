@@ -480,6 +480,7 @@ function pieceMarkdown() {
 
 document.getElementById('copyBtn').addEventListener('click', function () {
   var btn = this;
+  if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title });
   navigator.clipboard.writeText(pieceMarkdown()).then(function () {
     btn.textContent = 'Copied!';
     setTimeout(function () { btn.textContent = 'Copy as markdown'; }, 2000);
@@ -487,6 +488,7 @@ document.getElementById('copyBtn').addEventListener('click', function () {
 });
 
 document.getElementById('downloadBtn').addEventListener('click', function () {
+  if (window.gtag) gtag('event', 'idea_download', { idea_slug: PIECE.slug, idea_title: PIECE.title });
   var a = document.createElement('a');
   a.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(pieceMarkdown());
   a.download = PIECE.slug + '.md';
