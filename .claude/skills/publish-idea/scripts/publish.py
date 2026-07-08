@@ -223,6 +223,42 @@ def add_conn_card(page, lbl, card):
 
 # --------------------------------------------------------------------- stage
 
+def add_llms_entry(stage, slug, title, cat, summary):
+    """Insert one bullet into /llms.txt under the section matching the category.
+    Surgical, like the ideas-index card insert: leaves the rest of the file
+    untouched. No-op if the site has no llms.txt or the slug is already listed."""
+    path = os.path.join(stage, "llms.txt")
+    if not os.path.exists(path):
+        return
+    section = {
+        "concepts": "## Core ideas",
+        "frameworks": "## Core ideas",
+        "reflections": "## Core ideas",
+        "services": "## Practice & work",
+        "work": "## Practice & work",
+    }.get(cat, "## Optional")
+    txt = read(path)
+    if f"/ideas/{slug}/)" in txt:
+        return
+    desc = " ".join(summary.split())
+    line = f"- [{title}](https://positiveconstraint.com/ideas/{slug}/): {desc}\n"
+    lines = txt.splitlines(keepends=True)
+    try:
+        start = next(i for i, l in enumerate(lines) if l.strip() == section)
+    except StopIteration:
+        return
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        if lines[i].startswith("## "):
+            end = i
+            break
+    ins = end
+    while ins > start + 1 and lines[ins - 1].strip() == "":
+        ins -= 1
+    lines.insert(ins, line)
+    write(path, "".join(lines))
+
+
 def do_stage(args):
     site, stage = os.path.abspath(args.site), os.path.abspath(args.stage)
     assets = args.assets or os.path.join(os.path.dirname(__file__), "..", "assets")
@@ -386,6 +422,9 @@ def do_stage(args):
         idx = idx.replace('</section>\n\n<section class="pieces-list">',
                           pill + '</section>\n\n<section class="pieces-list">', 1)
     write(idx_path, idx)
+
+    # --- llms.txt: AI-oriented index of ideas -----------------------------
+    add_llms_entry(stage, slug, title, cat, data["summary"])
 
     # --- media presence check ---------------------------------------------
     missing = []

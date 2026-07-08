@@ -212,6 +212,14 @@ your undo: `git revert` it, then re-run deploy from the reverted `./site`.
   category pills alone — those are author-picked, not derived.
 - **Cards can't drift from export.** A page's connection cards are generated from
   the same `RELATED[]` array the "Copy as markdown" buttons read.
+- **Seeding analytics + AI index.** Every page's "Copy as markdown" / "Download .md"
+  buttons fire GA events (`idea_copy` / `idea_download`, tagged with `idea_slug`) so
+  you can rank which ideas people carry into AI tools. The template carries these,
+  so new pages inherit them. On stage, the script also appends the new idea to
+  `/llms.txt` (AI-oriented index) under the section matching its category —
+  concepts/frameworks/reflections → "Core ideas", services/work → "Practice & work",
+  else "Optional". `/robots.txt` explicitly welcomes AI crawlers; it's static and
+  needs no per-publish update.
 - **Minimal, reviewable diffs.** Existing content is edited surgically —
   connections are *appended* to target pages, leaving every existing card
   byte-identical. New content only appears where it should.
