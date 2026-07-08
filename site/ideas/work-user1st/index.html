@@ -456,6 +456,65 @@ article {
     gap: var(--space-lg);
   }
 }
+
+/* Subscribe block */
+.pc-subscribe { max-width: 680px; margin: 0 auto; padding: 0 var(--space-lg); }
+.pc-subscribe-inner {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  padding: var(--space-lg) var(--space-xl);
+  display: flex; align-items: center; gap: var(--space-xl); flex-wrap: wrap;
+}
+.pc-subscribe-text { flex: 1; min-width: 220px; }
+.pc-subscribe-title {
+  font-family: var(--font-display); font-size: 15px; font-weight: 600;
+  color: var(--color-text-primary); margin-bottom: 2px;
+}
+.pc-subscribe-desc {
+  font-family: var(--font-body); font-size: 13px; font-style: italic;
+  color: var(--color-text-secondary); line-height: 1.5;
+}
+.pc-subscribe-form { display: flex; gap: var(--space-sm); flex: 1; min-width: 240px; }
+.pc-subscribe-form input {
+  flex: 1; height: 40px; padding: 0 14px;
+  font-family: var(--font-display); font-size: 14px;
+  color: var(--color-text-primary); background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary); border-radius: 6px;
+}
+.pc-subscribe-form input:focus { outline: none; border-color: var(--color-red); }
+.pc-subscribe-form button {
+  height: 40px; padding: 0 18px;
+  font-family: var(--font-display); font-size: 13px; font-weight: 500;
+  color: var(--color-white); background: var(--color-black);
+  border: none; border-radius: 6px; cursor: pointer; white-space: nowrap;
+  transition: background 0.15s;
+}
+.pc-subscribe-form button:hover { background: var(--color-text-secondary); }
+.pc-subscribe-note {
+  font-family: var(--font-display); font-size: 12px;
+  color: var(--color-text-tertiary); margin-top: var(--space-sm);
+}
+.pc-subscribe--hero .pc-subscribe-inner {
+  flex-direction: column; text-align: center; padding: var(--space-2xl) var(--space-xl);
+}
+.pc-subscribe--hero .pc-subscribe-eyebrow {
+  font-family: var(--font-display); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-text-tertiary); margin-bottom: var(--space-sm);
+}
+.pc-subscribe--hero .pc-subscribe-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.pc-subscribe--hero .pc-subscribe-desc {
+  font-style: normal; font-size: 16px; max-width: 420px; margin: var(--space-sm) auto var(--space-lg);
+}
+.pc-subscribe--hero .pc-subscribe-form { flex: none; width: 100%; max-width: 440px; }
+.pc-subscribe--hero .pc-subscribe-form button { background: var(--color-red); }
+.pc-subscribe--hero .pc-subscribe-form button:hover { background: var(--color-red-hover); }
+@media (max-width: 640px) {
+  .pc-subscribe-inner { flex-direction: column; align-items: stretch; }
+  .pc-subscribe-form { flex-direction: column; }
+  .pc-subscribe-form button { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -513,6 +572,21 @@ article {
 
 </main>
 
+<section class="pc-subscribe" style="margin-bottom: var(--space-2xl);">
+  <div class="pc-subscribe-inner">
+    <div class="pc-subscribe-text">
+      <div class="pc-subscribe-title">Get new ideas weekly</div>
+      <div class="pc-subscribe-desc">One email a week when new ideas enter the vault.</div>
+    </div>
+    <form class="pc-subscribe-form" method="post" target="popupwindow"
+          action="https://buttondown.com/api/emails/embed-subscribe/positiveconstraint"
+          onsubmit="window.open('https://buttondown.com/positiveconstraint','popupwindow')">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
 <footer class="footer">
   <div>← <a href="/ideas/">Back to all ideas</a></div>
   <div><a href="/map/">View on map</a> →</div>
@@ -550,5 +624,18 @@ document.getElementById('downloadBtn').addEventListener('click', function () {
 });
 </script>
 
+<script>
+document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    fetch(form.action, { method: 'POST', body: data, mode: 'no-cors' });
+    var inner = form.closest('.pc-subscribe-inner');
+    inner.innerHTML = '<div class="pc-subscribe-text" style="text-align:center;width:100%">'
+      + '<div class="pc-subscribe-title">Thanks — check your inbox</div>'
+      + '<div class="pc-subscribe-desc">Confirm your email to start getting weekly ideas.</div></div>';
+  });
+});
+</script>
 </body>
 </html>

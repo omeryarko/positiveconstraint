@@ -1,6 +1,9 @@
 # Claude Code personal settings — contains FTP credentials, never commit
 .claude/settings.local.json
 
+# Secrets — Buttondown API token, never commit
+.claude/secrets/
+
 # macOS
 .DS_Store
 .AppleDouble
