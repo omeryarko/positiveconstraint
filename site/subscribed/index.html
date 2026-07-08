@@ -10,12 +10,10 @@
   gtag('config', 'G-N9DEMEQG7C');
 </script>
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CortiSense — Positive Constraint</title>
-<meta name="description" content="Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSense needed help proving to a multina">
-<meta property="og:title" content="CortiSense — Positive Constraint">
-<meta property="og:description" content="Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSense needed help proving to a multina">
-<meta property="og:type" content="article">
+<title>You’re in — Positive Constraint</title>
+<meta name="description" content="You’re subscribed to Positive Constraint. New ideas, once a week.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -456,6 +454,227 @@ article {
     gap: var(--space-lg);
   }
 }
+</style>
+<style>
+/* Hero section */
+.hero {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: var(--space-sm);
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-xl) 0;
+}
+
+.hero-desc {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2xl);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-bottom: var(--space-3xl);
+}
+
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Featured pieces section */
+.featured {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+}
+
+.featured-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-lg);
+}
+
+.piece-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.piece-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  padding: var(--space-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.piece-card:hover {
+  border-color: var(--color-border-secondary);
+  background: var(--color-background-secondary);
+}
+
+.piece-card-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-red-dark);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.piece-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.piece-card-summary {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-md);
+}
+
+.piece-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.piece-card-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* Category filters */
+.category-section {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+  border-top: 0.5px solid var(--color-border-tertiary);
+  padding-top: var(--space-2xl);
+}
+
+.category-filters {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+}
+
+.filter-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+  border-color: var(--color-red);
+  color: var(--color-red);
+  background: var(--color-background-secondary);
+}
+
+.filter-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+/* Map teaser */
+.map-teaser {
+  display: block;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 12px;
+  padding: var(--space-2xl);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: var(--space-2xl);
+  transition: all 0.15s;
+}
+
+.map-teaser:hover {
+  border-color: var(--color-border-secondary);
+  background: var(--color-background-primary);
+}
+
+.map-teaser-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-lg);
+}
+
+.map-teaser-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: var(--space-sm);
+}
+
+.map-teaser-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.map-teaser-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-lg);
+}
+
+.map-teaser .btn {
+  display: inline-block;
+}
 
 /* Subscribe block */
 .pc-subscribe { max-width: 680px; margin: 0 auto; padding: 0 var(--space-lg); }
@@ -528,113 +747,26 @@ article {
     Positive Constraint
   </a>
   <ul class="nav-links">
-    <li><a href="/ideas/" class="active">Ideas</a></li>
+    <li><a href="/ideas/">Ideas</a></li>
     <li><a href="/map/">Map</a></li>
     <li><a href="/ideas/about/">About</a></li>
   </ul>
 </nav>
 
-<main class="page">
-  <div class="breadcrumb"><a href="/ideas/">Ideas</a><span class="breadcrumb-sep">/</span>Work</div>
-
-  <header>
-    <div class="tag-category">WORK</div>
-    <h1>CortiSense</h1>
-    <p class="piece-summary">Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSense needed help proving to a multinational…</p>
-    <div class="piece-meta"><span class="tag-label">work</span><span class="tag-label">case-study</span><span class="tag-label">iot</span><span class="tag-label">predictive-maintenance</span><span class="tag-label">israel</span><span class="meta-item">1 min read</span></div>
-  </header>
-
-  <article>
-    <p><strong>Domain:</strong> Predictive Maintenance, IoT<br/>
-<strong>Geography:</strong> Israel<br/>
-<strong>Engagement type:</strong> Value proposition · B2B pitch</p>
-<hr/>
-<h2>Background</h2>
-<p>CortiSense needed help proving to a multinational corporate its unique value proposition. Before we could find the right way to pitch, we needed to find out what it is exactly that we’re pitching.</p>
-<hr/>
-<h2>The Process</h2>
-<p>A well-balanced team creates an interesting set of interviews, each drawing a different angle of the value proposition. After interviewing customers and digging into their competition, the answer became clear.</p>
-<p>See <a href="/ideas/process/">The Process</a> for how a typical engagement unfolds.</p>
-<hr/>
-<h2>Core Constraints Uncovered</h2>
-<p><strong>Healthy production</strong> — Maintenance leaders are there to ensure that nothing deviates from perfect. Anything that can contribute to that beating rhythm of production will be in high demand.</p>
-<p><strong>Least overhead</strong> — Production, every manufacturer can tell you, is a matter of balance. A dance of machines and machinists to create something new. And if you can remove some of their burden, the better.</p>
-<hr/>
-<p>← Back to <a href="/ideas/work/">Work</a></p>
-  </article>
-
-  <div class="grab-bar">
-    <button id="copyBtn" class="btn btn-accent">Copy as markdown</button>
-    <button id="downloadBtn" class="btn btn-ghost">Download .md</button>
-  </div>
-
-  
-
-</main>
-
-<section class="pc-subscribe" style="margin-bottom: var(--space-2xl);">
-  <div class="pc-subscribe-inner">
-    <div class="pc-subscribe-text">
-      <div class="pc-subscribe-title">Get new ideas weekly</div>
-      <div class="pc-subscribe-desc">One email a week when new ideas enter the vault.</div>
-    </div>
-    <form class="pc-subscribe-form" method="post"
-          action="https://buttondown.com/api/emails/embed-subscribe/positiveconstraint">
-      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
-      <button type="submit">Subscribe</button>
-    </form>
+<section class="hero">
+  <h1>You’re in.</h1>
+  <p class="hero-tagline">Welcome to the vault.</p>
+  <p class="hero-desc">Your subscription is confirmed. Once a week, you’ll get an email when new ideas enter the vault — the week’s additions and how they connect. Nothing else.</p>
+  <div class="hero-buttons">
+    <a href="/ideas/" class="btn btn-primary">Browse all ideas →</a>
+    <a href="/map/" class="btn btn-ghost">Explore the map</a>
   </div>
 </section>
 
 <footer class="footer">
-  <div>← <a href="/ideas/">Back to all ideas</a></div>
-  <div><a href="/map/">View on map</a> →</div>
+  <div>Positive Constraint · by Omer Yarkowich</div>
+  <div>Every idea is grabbable as markdown</div>
 </footer>
 
-<script>
-var PIECE = { title: "CortiSense", slug: "work-cortisense" };
-var RELATED = [];
-
-function pieceMarkdown() {
-  var body = document.querySelector('article').innerText.trim();
-  var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
-  if (RELATED.length) {
-    md += 'Related:\n';
-    RELATED.forEach(function (r) {
-      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '\n';
-    });
-  }
-  return md;
-}
-
-document.getElementById('copyBtn').addEventListener('click', function () {
-  var btn = this;
-  navigator.clipboard.writeText(pieceMarkdown()).then(function () {
-    btn.textContent = 'Copied!';
-    setTimeout(function () { btn.textContent = 'Copy as markdown'; }, 2000);
-  });
-});
-
-document.getElementById('downloadBtn').addEventListener('click', function () {
-  var a = document.createElement('a');
-  a.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(pieceMarkdown());
-  a.download = PIECE.slug + '.md';
-  a.click();
-});
-</script>
-
-<script>
-document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var data = new FormData(form);
-    fetch(form.action, { method: 'POST', body: data, mode: 'no-cors' });
-    var inner = form.closest('.pc-subscribe-inner');
-    inner.innerHTML = '<div class="pc-subscribe-text" style="text-align:center;width:100%">'
-      + '<div class="pc-subscribe-title">Thanks — check your inbox</div>'
-      + '<div class="pc-subscribe-desc">Confirm your email to start getting weekly ideas.</div></div>';
-  });
-});
-</script>
 </body>
 </html>
