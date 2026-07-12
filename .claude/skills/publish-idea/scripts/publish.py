@@ -318,11 +318,14 @@ def do_stage(args):
         tpath = os.path.join(stage, "ideas", c["target"], "index.html")
         tp = read(tpath)
         trel = js_array(tp, "RELATED")
-        trel.append({"title": title, "label": c["reverse_label"], "url": f"/ideas/{slug}/"})
-        tp = set_js(tp, "RELATED", trel)
-        card = compact_card(f"/ideas/{slug}/", c["reverse_label"], title, new_summary)
-        tp = add_conn_card(tp, c["reverse_label"], card)
-        write(tpath, tp)
+        # idempotent: only add the reverse link + card if this slug isn't already
+        # linked, so a re-run (re-stage/re-deploy) doesn't duplicate the card.
+        if not any(r.get("url") == f"/ideas/{slug}/" for r in trel):
+            trel.append({"title": title, "label": c["reverse_label"], "url": f"/ideas/{slug}/"})
+            tp = set_js(tp, "RELATED", trel)
+            card = compact_card(f"/ideas/{slug}/", c["reverse_label"], title, new_summary)
+            tp = add_conn_card(tp, c["reverse_label"], card)
+            write(tpath, tp)
         target_related_len[c["target"]] = len(trel)
 
     # --- map: nodes, edges, colors, counts --------------------------------
@@ -333,8 +336,9 @@ def do_stage(args):
     colors = js_array(mp, "COLORS")
     clabels = js_array(mp, "COLORS_LABEL")
 
-    nodes.append({"id": slug, "title": title, "category": cat,
-                  "summary": strip_summary(page)})
+    if not any(n.get("id") == slug for n in nodes):
+        nodes.append({"id": slug, "title": title, "category": cat,
+                      "summary": strip_summary(page)})
     existing = {tuple(sorted(e)) for e in edges}
     for c in conns:
         key = tuple(sorted([slug, c["target"]]))
@@ -406,7 +410,9 @@ def do_stage(args):
             f'<div class="piece-card-summary">{strip_summary(page)}</div>'
             f'<div class="piece-card-meta"><span class="piece-card-dot" '
             f'style="background:{col}"></span>{len(related)} connections</div></a>')
-    idx = idx.replace("</a>\n  </div>\n</section>", "</a>" + card + "\n  </div>\n</section>", 1)
+    # idempotent: don't insert a second card for this slug on a re-run
+    if f'href="/ideas/{slug}/" class="piece-card"' not in idx:
+        idx = idx.replace("</a>\n  </div>\n</section>", "</a>" + card + "\n  </div>\n</section>", 1)
     idx = re.sub(r'(<div class="pieces-meta">)[^<]*(</div>)',
                  rf'\g<1>{n_nodes} ideas · {n_edges} connections\2', idx, count=1)
     # bump connection counts on the affected target cards to their new RELATED length
