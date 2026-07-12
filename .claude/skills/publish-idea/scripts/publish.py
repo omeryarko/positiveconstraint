@@ -150,13 +150,17 @@ def set_js(content, var, value):
                   lambda m: m.group(1) + json.dumps(value) + m.group(3),
                   content, count=1, flags=re.S)
 
-def strip_summary(page_html, limit=100):
+def strip_summary(page_html, limit=140):
     m = re.search(r'<p class="piece-summary">(.*?)</p>', page_html, re.S)
     if not m:
         return ""
     txt = re.sub(r'<[^>]+>', '', m.group(1))
     txt = html.unescape(re.sub(r'\s+', ' ', txt)).strip()
-    return txt[:limit]
+    if len(txt) <= limit:
+        return txt
+    # cut on a word boundary and add an ellipsis, never mid-word
+    cut = txt[:limit].rsplit(" ", 1)[0].rstrip(",.;:—- ")
+    return cut + "…"
 
 CAT_COLORS = {"concepts": "#FF4040", "frameworks": "#FF4040",
               "services": "var(--color-text-primary)",
@@ -168,63 +172,45 @@ def cat_color(cat, colors):
 
 # ---------------------------------------------------- connection card render
 
-def render_connections(related, stage, self_slug):
-    """Render the <section class="connections"> inner HTML from a RELATED list.
-    Grouped by label, matching the site's existing card markup."""
+# How many related-idea cards a standalone page shows. The map/graph keeps every
+# edge; the page just caps the visible cards to stay clean.
+MAX_CARDS = 4
+
+def render_connections(related, stage, self_slug=None):
+    """Render the <section class="connections"> inner HTML from a RELATED list:
+    one flat "Related Ideas" group, up to MAX_CARDS cards, no relationship labels."""
     if not related:
         return ""
-    groups = {}
-    order = []
-    for r in related:
-        lbl = r["label"]
-        if lbl not in groups:
-            groups[lbl] = []; order.append(lbl)
-        groups[lbl].append(r)
-    out = []
-    for lbl in order:
-        cards = []
-        for r in groups[lbl]:
-            slug = r["url"].strip("/").split("/")[-1]
-            summ = strip_summary(read(os.path.join(stage, "ideas", slug, "index.html")))
-            cards.append(
-                f'        <a href="{r["url"]}" class="conn-item">\n'
-                f'          <span class="conn-type">{lbl.upper()}</span>\n'
-                f'          <span class="conn-title">{r["title"]}</span>\n'
-                f'          <span class="conn-summary">{summ}</span>\n'
-                f'          <span class="conn-label">{lbl} {r["title"]}</span>\n'
-                f'        </a>')
-        out.append(
-            "    <div>\n"
-            f'      <h4>{lbl.title()}</h4>\n'
-            '      <div class="conn-grid">\n' + "\n".join(cards) + "\n      </div>\n    </div>")
-    return "\n".join(out)
+    cards = []
+    for r in related[:MAX_CARDS]:
+        slug = r["url"].strip("/").split("/")[-1]
+        summ = strip_summary(read(os.path.join(stage, "ideas", slug, "index.html")))
+        cards.append(
+            f'      <a href="{r["url"]}" class="conn-item">\n'
+            f'        <span class="conn-title">{r["title"]}</span>\n'
+            f'        <span class="conn-summary">{summ}</span>\n'
+            f'      </a>')
+    return ('    <h4>Related Ideas</h4>\n'
+            '    <div class="conn-grid">\n' + "\n".join(cards) + "\n    </div>")
 
 def set_connections(page_html, inner):
-    return re.sub(r'(<section class="connections">).*?(</section>)',
-                  lambda m: m.group(1) + "\n" + inner + "\n  " + m.group(2),
-                  page_html, count=1, flags=re.S)
+    """Replace the connections section's inner HTML. If there are no related
+    ideas, drop the whole <section> so the page has no empty gap."""
+    if not inner:
+        return re.sub(r'\s*<section class="connections">.*?</section>', '',
+                      page_html, count=1, flags=re.S)
+    if '<section class="connections">' in page_html:
+        return re.sub(r'(<section class="connections">).*?(</section>)',
+                      lambda m: m.group(1) + "\n" + inner + "\n  " + m.group(2),
+                      page_html, count=1, flags=re.S)
+    # no section present (e.g. a page that had no related ideas) — add one back
+    # right before the closing </main>.
+    section = '\n  <section class="connections">\n' + inner + '\n  </section>\n'
+    return page_html.replace("</main>", section + "</main>", 1)
 
-def compact_card(url, lbl, title, summ):
-    return (f'<a href="{url}" class="conn-item">'
-            f'<span class="conn-type">{lbl.upper()}</span>'
-            f'<span class="conn-title">{title}</span>'
-            f'<span class="conn-summary">{summ}</span>'
-            f'<span class="conn-label">{lbl} {title}</span></a>')
-
-def add_conn_card(page, lbl, card):
-    """Append one card to a target page's connections section without touching
-    any existing card. Merges into a same-label group if present, else adds a
-    new group. Works on both the compact and pretty section styles on the site."""
-    m = re.search(r'<section class="connections">.*?</section>', page, re.S)
-    section = m.group(0)
-    label_title = lbl.title()
-    pat = re.compile(r'(<h4>' + re.escape(label_title) + r'</h4>\s*<div class="conn-grid">)(.*?)(</div>)', re.S)
-    if pat.search(section):
-        section = pat.sub(lambda g: g.group(1) + g.group(2) + card + g.group(3), section, count=1)
-    else:
-        group = f'<div><h4>{label_title}</h4><div class="conn-grid">{card}</div></div>'
-        section = section.replace("</section>", group + "</section>", 1)
-    return page[:m.start()] + section + page[m.end():]
+def rebuild_connections(page, related, stage):
+    """Set a page's connections section to the flat, capped render of its RELATED."""
+    return set_connections(page, render_connections(related, stage))
 
 # --------------------------------------------------------------------- stage
 
@@ -339,25 +325,25 @@ def do_stage(args):
     page = page.replace("{{ARTICLE}}", render_body(body))
     page = page.replace("{{PIECE_JSON}}", json.dumps({"title": title, "slug": slug}))
     page = page.replace("{{RELATED_JSON}}", json.dumps(related))
+    page = page.replace("{{CONNECTIONS}}", "")                       # clear placeholder
     write(os.path.join(stage, "ideas", slug, "index.html"), page)   # summary now readable
-    conn_inner = render_connections(related, stage, slug)
-    page = page.replace("{{CONNECTIONS}}", conn_inner if conn_inner else "")
+    page = set_connections(page, render_connections(related, stage, slug))
     write(os.path.join(stage, "ideas", slug, "index.html"), page)
 
-    # --- reverse connections on targets (append-only) ---------------------
-    new_summary = strip_summary(page)
+    # --- reverse connections on targets -----------------------------------
+    # The visible cards are always a pure function of a page's RELATED[:4], so we
+    # re-render the whole connections section rather than splice one card in.
     target_related_len = {}
     for c in conns:
         tpath = os.path.join(stage, "ideas", c["target"], "index.html")
         tp = read(tpath)
         trel = js_array(tp, "RELATED")
-        # idempotent: only add the reverse link + card if this slug isn't already
-        # linked, so a re-run (re-stage/re-deploy) doesn't duplicate the card.
+        # idempotent: only add the reverse link if this slug isn't already linked,
+        # so a re-run (re-stage/re-deploy) doesn't duplicate it.
         if not any(r.get("url") == f"/ideas/{slug}/" for r in trel):
             trel.append({"title": title, "label": c["reverse_label"], "url": f"/ideas/{slug}/"})
             tp = set_js(tp, "RELATED", trel)
-            card = compact_card(f"/ideas/{slug}/", c["reverse_label"], title, new_summary)
-            tp = add_conn_card(tp, c["reverse_label"], card)
+            tp = rebuild_connections(tp, trel, stage)
             write(tpath, tp)
         target_related_len[c["target"]] = len(trel)
 

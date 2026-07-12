@@ -19,9 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>/* Color variables — automatically flipped in dark mode */
+<style>
 :root {
-  /* Light mode */
   --color-text-primary: #171717;
   --color-text-secondary: #525252;
   --color-text-tertiary: #A3A3A3;
@@ -30,20 +29,14 @@
   --color-border-primary: #E5E5E5;
   --color-border-secondary: #E5E5E5;
   --color-border-tertiary: #E5E5E5;
-
-  /* Fixed across modes */
   --color-red: #FF4040;
   --color-red-hover: #E63636;
   --color-red-dark: #CC2020;
   --color-black: #000000;
   --color-white: #FFFFFF;
-
-  /* Typography */
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -66,16 +59,8 @@
   }
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 
 body {
   font-family: var(--font-body);
@@ -86,7 +71,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* Navigation */
 .nav {
   display: flex;
   align-items: center;
@@ -111,11 +95,7 @@ body {
   font-weight: 500;
 }
 
-.nav-mark {
-  width: 24px;
-  height: 24px;
-  color: currentColor;
-}
+.nav-mark { width: 24px; height: 24px; color: currentColor; }
 
 .nav-links {
   display: flex;
@@ -134,25 +114,16 @@ body {
   transition: color 0.15s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--color-red);
-}
+.nav-links a:hover, .nav-links a.active { color: var(--color-red); }
 
-/* Page container */
 .page {
   max-width: 680px;
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-lg);
 }
 
-@media (max-width: 640px) {
-  .page {
-    padding: var(--space-lg);
-  }
-}
+@media (max-width: 640px) { .page { padding: var(--space-lg); } }
 
-/* Buttons */
 .btn {
   font-family: var(--font-display);
   font-size: 14px;
@@ -164,47 +135,19 @@ body {
   transition: all 0.15s;
 }
 
-.btn-primary {
-  background: var(--color-black);
-  color: var(--color-white);
-}
+.btn-accent { background: var(--color-red); color: var(--color-white); }
+.btn-accent:hover { background: var(--color-red-hover); }
+.btn-ghost { background: transparent; color: var(--color-text-primary); border: 0.5px solid var(--color-border-secondary); }
+.btn-ghost:hover { background: var(--color-background-secondary); }
 
-.btn-primary:hover {
-  background: var(--color-text-secondary);
-}
-
-.btn-accent {
-  background: var(--color-red);
-  color: var(--color-white);
-}
-
-.btn-accent:hover {
-  background: var(--color-red-hover);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--color-text-primary);
-  border: 0.5px solid var(--color-border-secondary);
-}
-
-.btn-ghost:hover {
-  background: var(--color-background-secondary);
-}
-
-/* Links */
 a {
   color: var(--color-red);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s;
 }
+a:hover { border-bottom-color: var(--color-red); }
 
-a:hover {
-  border-bottom-color: var(--color-red);
-}
-
-/* Typography */
 h1 {
   font-family: var(--font-display);
   font-size: 32px;
@@ -235,31 +178,18 @@ h3 {
   color: var(--color-text-primary);
 }
 
-p {
-  margin: var(--space-lg) 0;
-}
+p { margin: var(--space-lg) 0; }
+p:first-child { margin-top: 0; }
 
-p:first-child {
-  margin-top: 0;
-}
-
-/* Breadcrumb */
 .breadcrumb {
   font-family: var(--font-display);
   font-size: 13px;
   color: var(--color-text-tertiary);
   margin-bottom: var(--space-xl);
 }
+.breadcrumb a { color: var(--color-text-secondary); }
+.breadcrumb-sep { margin: 0 var(--space-sm); }
 
-.breadcrumb a {
-  color: var(--color-text-secondary);
-}
-
-.breadcrumb-sep {
-  margin: 0 var(--space-sm);
-}
-
-/* Piece header */
 .piece-summary {
   font-family: var(--font-body);
   font-style: italic;
@@ -277,18 +207,10 @@ p:first-child {
   margin-top: var(--space-md);
 }
 
-.meta-item {
-  font-family: var(--font-display);
-  font-size: 12px;
-  color: var(--color-text-tertiary);
-}
+.meta-item { font-family: var(--font-display); font-size: 12px; color: var(--color-text-tertiary); }
 
-article {
-  margin-top: var(--space-2xl);
-  max-width: 600px;
-}
+article { margin-top: var(--space-2xl); max-width: 600px; }
 
-/* Tags */
 .tag-category {
   display: inline-block;
   background: #FFF0F0;
@@ -304,10 +226,7 @@ article {
 }
 
 @media (prefers-color-scheme: dark) {
-  .tag-category {
-    background: rgba(255, 64, 64, 0.1);
-    color: #FF8080;
-  }
+  .tag-category { background: rgba(255, 64, 64, 0.1); color: #FF8080; }
 }
 
 .tag-label {
@@ -322,7 +241,6 @@ article {
   margin-right: var(--space-sm);
 }
 
-/* Grab bar (export buttons) */
 .grab-bar {
   display: flex;
   gap: var(--space-md);
@@ -333,22 +251,11 @@ article {
 }
 
 @media (max-width: 640px) {
-  .grab-bar {
-    flex-direction: column;
-  }
-
-  .grab-bar .btn {
-    width: 100%;
-    text-align: center;
-  }
+  .grab-bar { flex-direction: column; }
+  .grab-bar .btn { width: 100%; text-align: center; }
 }
 
-/* Connection cards */
-.connections {
-  margin-top: var(--space-2xl);
-  padding-top: var(--space-xl);
-}
-
+.connections { margin-top: var(--space-2xl); padding-top: var(--space-xl); }
 .connections h4 {
   font-family: var(--font-display);
   font-size: 12px;
@@ -365,11 +272,7 @@ article {
   gap: var(--space-md);
 }
 
-@media (max-width: 640px) {
-  .conn-grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 640px) { .conn-grid { grid-template-columns: 1fr; } }
 
 .conn-item {
   border: 0.5px solid var(--color-border-tertiary);
@@ -381,50 +284,13 @@ article {
   transition: all 0.15s;
 }
 
-.conn-item:hover {
-  border-color: var(--color-border-secondary);
-  background: var(--color-background-secondary);
-}
+.conn-item:hover { border-color: var(--color-border-secondary); background: var(--color-background-secondary); }
+.conn-type { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-tertiary); display: block; margin-bottom: var(--space-sm); }
+.conn-title { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--color-red); display: block; margin-bottom: var(--space-xs); }
+.conn-summary { font-family: var(--font-body); font-size: 13px; font-style: italic; color: var(--color-text-secondary); line-height: 1.55; display: block; }
+.conn-label { font-size: 11px; font-style: italic; color: var(--color-text-tertiary); display: block; margin-top: var(--space-xs); }
 
-.conn-type {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-  display: block;
-  margin-bottom: var(--space-sm);
-}
-
-.conn-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--color-red);
-  display: block;
-  margin-bottom: var(--space-xs);
-}
-
-.conn-summary {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-style: italic;
-  color: var(--color-text-secondary);
-  line-height: 1.55;
-  display: block;
-}
-
-.conn-label {
-  font-size: 11px;
-  font-style: italic;
-  color: var(--color-text-tertiary);
-  display: block;
-  margin-top: var(--space-xs);
-}
-
-/* Pull quotes */
-.pullquote {
+blockquote {
   border-left: 3px solid var(--color-red);
   padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
   margin: var(--space-2xl) 0;
@@ -435,7 +301,102 @@ article {
   color: var(--color-text-primary);
 }
 
-/* Footer */
+blockquote p { margin: 0; }
+blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; font-style: normal; color: var(--color-text-tertiary); font-family: var(--font-display); }
+
+.media-video {
+  position: relative;
+  width: 100%;
+  margin: var(--space-xl) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.media-16-9 { padding-bottom: 56.25%; }
+.media-1-1 { padding-bottom: 100%; }
+
+.media-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.media-img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  margin: var(--space-xl) 0;
+}
+
+.media-figure {
+  margin: var(--space-xl) 0;
+}
+
+.media-figure .media-img {
+  margin: 0;
+}
+
+.media-figure figcaption {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.video-link-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: var(--space-xl) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border-bottom: none;
+}
+
+.video-link-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.video-link-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  padding-left: 4px;
+  transition: background 0.15s;
+}
+
+.video-link-card:hover .video-link-play {
+  background: var(--color-red);
+}
+
+.video-link-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  text-align: right;
+}
+
 .footer {
   max-width: 680px;
   margin: 0 auto;
@@ -449,13 +410,7 @@ article {
   color: var(--color-text-secondary);
 }
 
-@media (max-width: 640px) {
-  .footer {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-lg);
-  }
-}
+@media (max-width: 640px) { .footer { flex-direction: column; text-align: center; gap: var(--space-lg); } }
 
 /* Subscribe block */
 .pc-subscribe { max-width: 680px; margin: 0 auto; padding: 0 var(--space-lg); }
@@ -515,6 +470,183 @@ article {
   .pc-subscribe-form { flex-direction: column; }
   .pc-subscribe-form button { width: 100%; }
 }
+
+/* ============ Top action bar (prominent CTAs under header) ============ */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin: var(--space-xl) 0 0 0;
+  padding-top: var(--space-lg);
+  border-top: 0.5px solid var(--color-border-tertiary);
+}
+.action-bar .btn { display: inline-flex; align-items: center; gap: 7px; }
+.action-bar .btn svg { width: 15px; height: 15px; }
+@media (max-width: 640px) {
+  .action-bar .btn { flex: 1; justify-content: center; }
+}
+
+/* ============ Share modal ============ */
+.share-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.share-overlay.open { opacity: 1; pointer-events: auto; }
+
+.share-modal {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  padding: var(--space-xl);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.2s;
+}
+.share-overlay.open .share-modal { transform: translateY(0) scale(1); }
+
+.share-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+.share-head h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+.share-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  padding: 4px;
+  line-height: 0;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.share-close:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+.share-close svg { width: 20px; height: 20px; }
+
+/* Share "art" — the social preview card (follows page theme) */
+.share-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 0.5px solid var(--color-border-secondary);
+  background: linear-gradient(150deg, var(--color-background-secondary) 0%, var(--color-background-primary) 100%);
+  color: var(--color-text-primary);
+  padding: var(--space-xl);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.share-card::after {
+  content: "";
+  position: absolute;
+  right: -60px; bottom: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,64,64,0.28) 0%, rgba(255,64,64,0) 70%);
+}
+.share-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+.share-card-brand svg { width: 20px; height: 20px; color: var(--color-text-primary); }
+.share-card-cat {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: var(--space-sm);
+}
+.share-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm) 0;
+  position: relative;
+  z-index: 1;
+}
+.share-card-summary {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+.share-card-url {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+/* Share targets */
+.share-targets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+.share-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 4px;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  transition: all 0.15s;
+}
+.share-target:hover { border-color: var(--color-red); color: var(--color-text-primary); background: var(--color-background-primary); }
+.share-target svg { width: 22px; height: 22px; }
+.share-target-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+@media (max-width: 640px) {
+  .share-targets { grid-template-columns: repeat(3, 1fr); }
+}
 </style>
 </head>
 <body>
@@ -541,7 +673,24 @@ article {
     <div class="tag-category">CONCEPTS</div>
     <h1>Core Constraints</h1>
     <p class="piece-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything non-essential. Every business has…</p>
-    <div class="piece-meta"><span class="tag-label">concept</span><span class="tag-label">methodology</span><span class="meta-item">1 min read</span></div>
+    <div class="piece-meta">
+<span class="tag-label">concept</span><span class="tag-label">methodology</span><span class="meta-item">1 min read</span>
+    </div>
+
+    <div class="action-bar">
+      <button id="copyBtn" class="btn btn-accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy as markdown
+      </button>
+      <button id="downloadBtn" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download .md
+      </button>
+      <button id="shareBtn" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
   </header>
 
   <article>
@@ -564,14 +713,39 @@ article {
 <h2>How they’re found</h2>
 <p>Core constraints don’t come from brainstorming. They come from <a href="/ideas/abstraction/">abstraction</a> — from getting close to the problem domain, interviewing stakeholders, and then stepping back far enough to see the shape of the thing.</p>
 <p>See <a href="/ideas/process/">The Process</a> for the full methodology.</p>
+  
   </article>
 
   <div class="grab-bar">
-    <button id="copyBtn" class="btn btn-accent">Copy as markdown</button>
-    <button id="downloadBtn" class="btn btn-ghost">Download .md</button>
+    <button id="shareBtnBottom" class="btn btn-accent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;vertical-align:-2px;margin-right:6px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Share this idea
+    </button>
+    <button id="copyBtnBottom" class="btn btn-ghost">Copy as markdown</button>
+    <button id="downloadBtnBottom" class="btn btn-ghost">Download .md</button>
   </div>
 
-  <section class="connections"><div><h4>Applies To</h4><div class="conn-grid"><a href="/ideas/process/" class="conn-item"><span class="conn-type">APPLIES TO</span><span class="conn-title">The Process</span><span class="conn-summary">Every engagement follows four phases. The depth and duration of each phase depends on the scope of the project — see how</span><span class="conn-label">applies to The Process</span></a></div></div><div><h4>Contextualizes</h4><div class="conn-grid"><a href="/ideas/positive-constraint/" class="conn-item"><span class="conn-type">CONTEXTUALIZES</span><span class="conn-title">Positive Constraint</span><span class="conn-summary">A positive constraint is a constraint that, rather than blocking progress, shapes it. A limiting condition that — when y</span><span class="conn-label">contextualizes Positive Constraint</span></a></div></div><div><h4>Illustrates</h4><div class="conn-grid"><a href="/ideas/work-tapouts/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">Tapouts</span><span class="conn-summary">Domain: Emotional well-being platform for kids Geography: USA Engagement type: Pitch deck · Early-stage strategy “Omer h</span><span class="conn-label">illustrates Tapouts</span></a><a href="/ideas/work-cortisense/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">CortiSense</span><span class="conn-summary">Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSen</span><span class="conn-label">illustrates CortiSense</span></a><a href="/ideas/work-user1st/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">User1st</span><span class="conn-summary">Domain: Developer Tools — Inclusion Geography: Israel Engagement type: Value strategy · Investor pitch Background User1s</span><span class="conn-label">illustrates User1st</span></a><a href="/ideas/work-leap-commerce/" class="conn-item"><span class="conn-type">ILLUSTRATES</span><span class="conn-title">LEAP Commerce</span><span class="conn-summary">Domain: eCommerce Enablement Geography: Singapore Engagement type: Investment pitch · Value strategy Background LEAP was</span><span class="conn-label">illustrates LEAP Commerce</span></a></div></div><div><h4>Illustrated By</h4><div class="conn-grid"><a href="/ideas/three-reds-in-haifa/" class="conn-item"><span class="conn-type">ILLUSTRATED BY</span><span class="conn-title">3 Reds in Haifa</span><span class="conn-summary">Three red lights, two kids, and a dental bill — a red light is a constraint too: an unchanging eleme</span><span class="conn-label">illustrated by 3 Reds in Haifa</span></a></div></div><div><h4>Applied Through</h4><div class="conn-grid"><a href="/ideas/desired-reality/" class="conn-item"><span class="conn-type">APPLIED THROUGH</span><span class="conn-title">Desired Reality</span><span class="conn-summary">Desired Reality is the goal in the language of Positive Constraint — your Now expressed, then refram</span><span class="conn-label">applied through Desired Reality</span></a></div></div><div><h4>Applied In</h4><div class="conn-grid"><a href="/ideas/three-axes/" class="conn-item"><span class="conn-type">APPLIED IN</span><span class="conn-title">The Three Axes</span><span class="conn-summary">Every company is defined by three axes: one northstar KPI for the value it creates, and two that for</span><span class="conn-label">applied in The Three Axes</span></a><a href="/ideas/innovation/" class="conn-item"><span class="conn-type">APPLIED IN</span><span class="conn-title">Innovation</span><span class="conn-summary">Innovation is finding new solutions to pre-existing problems given new constraints. The problem was </span><span class="conn-label">applied in Innovation</span></a><a href="/ideas/embrace-the-unchanging/" class="conn-item"><span class="conn-type">APPLIED IN</span><span class="conn-title">Embrace the Unchanging</span><span class="conn-summary">The world is too complex to predict and too fast to adapt to. The path to resilience lies not in wha</span><span class="conn-label">applied in Embrace the Unchanging</span></a></div></div></section>
+  <section class="connections">
+    <h4>Related Ideas</h4>
+    <div class="conn-grid">
+      <a href="/ideas/positive-constraint/" class="conn-item">
+        <span class="conn-title">Positive Constraint</span>
+        <span class="conn-summary">The world is too complex to predict and too fast to adapt to. Resilience can no longer be found in predictions or in moving faster. But…</span>
+      </a>
+      <a href="/ideas/process/" class="conn-item">
+        <span class="conn-title">The Process</span>
+        <span class="conn-summary">Every engagement follows four phases. The depth and duration of each phase depends on the scope of the project — see how long it takes for…</span>
+      </a>
+      <a href="/ideas/work-tapouts/" class="conn-item">
+        <span class="conn-title">Tapouts</span>
+        <span class="conn-summary">Domain: Emotional well-being platform for kids Geography: USA Engagement type: Pitch deck · Early-stage strategy “Omer helped us articulate…</span>
+      </a>
+      <a href="/ideas/work-cortisense/" class="conn-item">
+        <span class="conn-title">CortiSense</span>
+        <span class="conn-summary">Domain: Predictive Maintenance, IoT Geography: Israel Engagement type: Value proposition · B2B pitch Background CortiSense needed help…</span>
+      </a>
+    </div>
+  </section>
 
 </main>
 
@@ -594,6 +768,52 @@ article {
   <div><a href="/map/">View on map</a> →</div>
 </footer>
 
+<!-- Share modal -->
+<div class="share-overlay" id="shareOverlay" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="share-modal">
+    <div class="share-head">
+      <h3 id="shareTitle">Share this idea</h3>
+      <button class="share-close" id="shareClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="share-card">
+      <div class="share-card-brand">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="50" cy="50" r="8" fill="currentColor"/></svg>
+        Positive Constraint
+      </div>
+      <div class="share-card-cat">CONCEPTS</div>
+      <div class="share-card-title">Core Constraints</div>
+      <p class="share-card-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything non-essential. Every business has…</p>
+      <div class="share-card-url" id="shareCardUrl">positiveconstraint.com</div>
+    </div>
+
+    <div class="share-targets">
+      <a class="share-target" id="shareCopyLink" href="#" role="button">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span id="shareCopyLinkLabel">Copy link</span>
+      </a>
+      <a class="share-target" id="shareEmail" href="#">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+        <span>Email</span>
+      </a>
+      <a class="share-target" id="shareLinkedIn" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>
+        <span>LinkedIn</span>
+      </a>
+      <a class="share-target" id="shareX" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg></span>
+        <span>X</span>
+      </a>
+      <a class="share-target" id="shareReddit" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.01 13.47c.06.24.09.49.09.75 0 2.55-2.97 4.62-6.63 4.62s-6.63-2.07-6.63-4.62c0-.26.03-.52.09-.76a1.38 1.38 0 1 1 1.5-2.24 6.77 6.77 0 0 1 3.66-1.16l.7-3.28a.29.29 0 0 1 .34-.22l2.3.49a.96.96 0 1 1-.12.55l-2.03-.43-.62 2.92a6.75 6.75 0 0 1 3.6 1.16 1.38 1.38 0 1 1 1.58 2.23zm-6.9.32a.96.96 0 1 0 0-1.92.96.96 0 0 0 0 1.92zm4.8-.96a.96.96 0 1 0-1.92 0 .96.96 0 0 0 1.92 0zm-1.03 2.68a.29.29 0 0 0-.4.01c-.5.5-1.53.54-1.83.54s-1.33-.04-1.83-.54a.29.29 0 1 0-.4.4c.63.63 1.83.68 2.23.68s1.6-.05 2.23-.68a.29.29 0 0 0 0-.41z"/></svg></span>
+        <span>Reddit</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
 var PIECE = { title: "Core Constraints", slug: "core-constraints" };
 var RELATED = [{"title": "Positive Constraint", "label": "contextualizes", "url": "/ideas/positive-constraint/"}, {"title": "The Process", "label": "applies to", "url": "/ideas/process/"}, {"title": "Tapouts", "label": "illustrates", "url": "/ideas/work-tapouts/"}, {"title": "CortiSense", "label": "illustrates", "url": "/ideas/work-cortisense/"}, {"title": "User1st", "label": "illustrates", "url": "/ideas/work-user1st/"}, {"title": "LEAP Commerce", "label": "illustrates", "url": "/ideas/work-leap-commerce/"}, {"title": "3 Reds in Haifa", "label": "illustrated by", "url": "/ideas/three-reds-in-haifa/"}, {"title": "Desired Reality", "label": "applied through", "url": "/ideas/desired-reality/"}, {"title": "The Three Axes", "label": "applied in", "url": "/ideas/three-axes/"}, {"title": "Innovation", "label": "applied in", "url": "/ideas/innovation/"}, {"title": "Embrace the Unchanging", "label": "applied in", "url": "/ideas/embrace-the-unchanging/"}];
@@ -610,22 +830,127 @@ function pieceMarkdown() {
   return md;
 }
 
-document.getElementById('copyBtn').addEventListener('click', function () {
-  var btn = this;
-  if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title });
-  navigator.clipboard.writeText(pieceMarkdown()).then(function () {
-    btn.textContent = 'Copied!';
-    setTimeout(function () { btn.textContent = 'Copy as markdown'; }, 2000);
+// Robust copy: Clipboard API where allowed, textarea + execCommand fallback otherwise.
+function copyText(text) {
+  return new Promise(function (resolve, reject) {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(resolve, function () { fallback(); });
+    } else {
+      fallback();
+    }
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('copy failed'));
+      } catch (e) { reject(e); }
+    }
   });
-});
+}
 
-document.getElementById('downloadBtn').addEventListener('click', function () {
-  if (window.gtag) gtag('event', 'idea_download', { idea_slug: PIECE.slug, idea_title: PIECE.title });
-  var a = document.createElement('a');
-  a.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(pieceMarkdown());
-  a.download = PIECE.slug + '.md';
-  a.click();
-});
+function wireCopy(btn) {
+  if (!btn) return;
+  var original = btn.innerHTML;
+  btn.addEventListener('click', function () {
+    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title });
+    copyText(pieceMarkdown()).then(function () {
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.innerHTML = original; }, 2000);
+    }, function () {
+      btn.textContent = 'Press Ctrl+C';
+      setTimeout(function () { btn.innerHTML = original; }, 2000);
+    });
+  });
+}
+wireCopy(document.getElementById('copyBtn'));
+wireCopy(document.getElementById('copyBtnBottom'));
+
+function wireDownload(btn) {
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    if (window.gtag) gtag('event', 'idea_download', { idea_slug: PIECE.slug, idea_title: PIECE.title });
+    var blob = new Blob([pieceMarkdown()], { type: 'text/markdown;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = PIECE.slug + '.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+}
+wireDownload(document.getElementById('downloadBtn'));
+wireDownload(document.getElementById('downloadBtnBottom'));
+
+/* ---------- Share modal ---------- */
+(function () {
+  var overlay = document.getElementById('shareOverlay');
+  if (!overlay) return;
+  var shareUrl = window.location.href;
+  var shareTitle = PIECE.title + ' — Positive Constraint';
+
+  document.getElementById('shareCardUrl').textContent =
+    window.location.host + window.location.pathname;
+
+  function buildLinks() {
+    var u = encodeURIComponent(shareUrl);
+    var t = encodeURIComponent(shareTitle);
+    document.getElementById('shareEmail').href =
+      'mailto:?subject=' + t + '&body=' + encodeURIComponent(shareTitle + '\n\n' + shareUrl);
+    document.getElementById('shareLinkedIn').href =
+      'https://www.linkedin.com/sharing/share-offsite/?url=' + u;
+    document.getElementById('shareX').href =
+      'https://twitter.com/intent/tweet?url=' + u + '&text=' + t;
+    document.getElementById('shareReddit').href =
+      'https://www.reddit.com/submit?url=' + u + '&title=' + t;
+  }
+
+  function openShare() {
+    buildLinks();
+    overlay.classList.add('open');
+    if (window.gtag) gtag('event', 'idea_share_open', { idea_slug: PIECE.slug, idea_title: PIECE.title });
+  }
+  function closeShare() { overlay.classList.remove('open'); }
+
+  var top = document.getElementById('shareBtn');
+  var bottom = document.getElementById('shareBtnBottom');
+  if (top) top.addEventListener('click', openShare);
+  if (bottom) bottom.addEventListener('click', openShare);
+  document.getElementById('shareClose').addEventListener('click', closeShare);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeShare(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeShare(); });
+
+  function trackTarget(network) {
+    if (window.gtag) gtag('event', 'idea_share', { idea_slug: PIECE.slug, idea_title: PIECE.title, share_network: network });
+  }
+  document.getElementById('shareEmail').addEventListener('click', function () { trackTarget('email'); });
+  document.getElementById('shareLinkedIn').addEventListener('click', function () { trackTarget('linkedin'); });
+  document.getElementById('shareX').addEventListener('click', function () { trackTarget('x'); });
+  document.getElementById('shareReddit').addEventListener('click', function () { trackTarget('reddit'); });
+
+  var copyLink = document.getElementById('shareCopyLink');
+  var copyLabel = document.getElementById('shareCopyLinkLabel');
+  copyLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    copyText(shareUrl).then(function () {
+      copyLabel.textContent = 'Copied!';
+      trackTarget('copy_link');
+      setTimeout(function () { copyLabel.textContent = 'Copy link'; }, 2000);
+    }, function () {
+      copyLabel.textContent = 'Press Ctrl+C';
+      setTimeout(function () { copyLabel.textContent = 'Copy link'; }, 2000);
+    });
+  });
+})();
 </script>
 
 <script>
@@ -641,5 +966,6 @@ document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {
   });
 });
 </script>
+
 </body>
 </html>
