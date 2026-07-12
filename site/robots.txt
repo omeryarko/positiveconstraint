@@ -3,6 +3,8 @@
 # All crawlers welcome — including AI assistants and their user-triggered fetchers.
 # AI-oriented index of every idea: https://positiveconstraint.com/llms.txt
 
+Sitemap: https://positiveconstraint.com/sitemap.xml
+
 User-agent: *
 Allow: /
 

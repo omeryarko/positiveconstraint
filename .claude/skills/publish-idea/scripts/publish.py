@@ -264,6 +264,39 @@ def add_llms_entry(stage, slug, title, cat, summary):
     write(path, "".join(lines))
 
 
+def update_sitemap(stage, slug, cat):
+    """Keep /sitemap.xml in step with a publish: append a <url> for the new page
+    and refresh <lastmod> on the surfaces every publish rewrites (home, ideas
+    index, map). Surgical string edits in the same spirit as add_llms_entry;
+    no-op if the site has no sitemap.xml, idempotent on the slug."""
+    path = os.path.join(stage, "sitemap.xml")
+    if not os.path.exists(path):
+        return
+    today = datetime.date.today().isoformat()
+    txt = read(path)
+
+    # bump lastmod on the always-touched surfaces
+    for surface in ("https://positiveconstraint.com/",
+                    "https://positiveconstraint.com/ideas/",
+                    "https://positiveconstraint.com/map/"):
+        txt = re.sub(
+            r'(<loc>%s</loc>\s*<lastmod>)[^<]*(</lastmod>)' % re.escape(surface),
+            r'\g<1>%s\g<2>' % today, txt, count=1)
+
+    # add the new page's <url> once, just before </urlset>
+    loc = f"https://positiveconstraint.com/ideas/{slug}/"
+    if f"<loc>{loc}</loc>" not in txt:
+        priority = "0.6" if cat == "work" else "0.7"
+        entry = (f"  <url>\n"
+                 f"    <loc>{loc}</loc>\n"
+                 f"    <lastmod>{today}</lastmod>\n"
+                 f"    <priority>{priority}</priority>\n"
+                 f"  </url>\n")
+        txt = txt.replace("</urlset>", entry + "</urlset>", 1)
+
+    write(path, txt)
+
+
 def do_stage(args):
     site, stage = os.path.abspath(args.site), os.path.abspath(args.stage)
     assets = args.assets or os.path.join(os.path.dirname(__file__), "..", "assets")
@@ -436,6 +469,9 @@ def do_stage(args):
 
     # --- llms.txt: AI-oriented index of ideas -----------------------------
     add_llms_entry(stage, slug, title, cat, data["summary"])
+
+    # --- sitemap.xml: add the new page, refresh touched surfaces -----------
+    update_sitemap(stage, slug, cat)
 
     # --- media presence check ---------------------------------------------
     missing = []

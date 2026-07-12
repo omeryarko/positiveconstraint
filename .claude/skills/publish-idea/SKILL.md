@@ -218,8 +218,12 @@ your undo: `git revert` it, then re-run deploy from the reverted `./site`.
   so new pages inherit them. On stage, the script also appends the new idea to
   `/llms.txt` (AI-oriented index) under the section matching its category —
   concepts/frameworks/reflections → "Core ideas", services/work → "Practice & work",
-  else "Optional". `/robots.txt` explicitly welcomes AI crawlers; it's static and
-  needs no per-publish update.
+  else "Optional". It also updates `/sitemap.xml`: appends a `<url>` for the new
+  page (priority 0.7, or 0.6 for `work`) and refreshes `<lastmod>` on the surfaces
+  every publish rewrites (home, `/ideas/`, `/map/`). Both edits are idempotent, so
+  re-staging the same slug won't duplicate entries. `/robots.txt` (which points
+  crawlers at the sitemap) explicitly welcomes AI crawlers; it's static and needs
+  no per-publish update.
 - **Minimal, reviewable diffs.** Existing content is edited surgically —
   connections are *appended* to target pages, leaving every existing card
   byte-identical. New content only appears where it should.
