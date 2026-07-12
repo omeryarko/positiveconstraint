@@ -43,7 +43,7 @@ Blocks are separated by blank lines.
 | plain paragraph | `<p>` |
 | `**bold**` / `*italic*` / `[text](url)` | inline `<strong>` / `<em>` / `<a>` |
 | a `>`-prefixed block, optional `> — Author` last line | `<blockquote><p>…</p><cite>— Author</cite></blockquote> |
-| `@youtube[VIDEO_ID \| title \| 16-9]` | responsive YouTube embed. Ratio `16-9` (default) or `1-1`. |
+| `@youtube[VIDEO_ID \| title \| 16-9]` | responsive YouTube embed. Ratio `16-9` (default) or `1-1`. Add a trailing `\| autoplay` field for muted autoplay + loop (e.g. `@youtube[ID \| title \| 1-1 \| autoplay]`) — best for short looping clips, not talking-head videos. |
 | `@image[/media/file.png \| alt text \| caption]` | `<figure class="media-figure">` with caption. Omit the caption for a plain `<img class="media-img">`. |
 
 Raw HTML entities (e.g. `&mdash;`, `&nbsp;`) pass through untouched, so you can

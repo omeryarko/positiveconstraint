@@ -104,9 +104,14 @@ def render_body(md):
             parts = [p.strip() for p in m.group(1).split("|")]
             vid = parts[0]; title = parts[1] if len(parts) > 1 else ""
             ratio = parts[2] if len(parts) > 2 else "16-9"
+            flags = [p.lower() for p in parts[3:]]
+            src = f"https://www.youtube.com/embed/{vid}"
+            if "autoplay" in flags:
+                # muted autoplay + loop (mute is required for browsers to honor autoplay)
+                src += f"?autoplay=1&mute=1&loop=1&playlist={vid}&playsinline=1"
             out.append(
                 f'    <div class="media-video media-{ratio}">\n'
-                f'      <iframe src="https://www.youtube.com/embed/{vid}" title="{title}" '
+                f'      <iframe src="{src}" title="{title}" '
                 f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
                 f'gyroscope; picture-in-picture" allowfullscreen></iframe>\n    </div>')
         elif b.startswith("@image"):
