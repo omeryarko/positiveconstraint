@@ -481,8 +481,8 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
   padding-top: var(--space-lg);
   border-top: 0.5px solid var(--color-border-tertiary);
 }
-.action-bar .btn { display: inline-flex; align-items: center; gap: 7px; }
-.action-bar .btn svg { width: 15px; height: 15px; }
+.action-bar .btn, .grab-bar .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.action-bar .btn svg, .grab-bar .btn svg { width: 15px; height: 15px; }
 @media (max-width: 640px) {
   .action-bar .btn { flex: 1; justify-content: center; }
 }
@@ -679,6 +679,7 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
       <span class="tag-label">abstraction</span>
       <span class="meta-item">3 min read</span>
     
+    
     </div>
 
     <div class="action-bar">
@@ -714,15 +715,22 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
 
     <p>Desired Reality is also a constraint we can impose on our brain to make it <em>conjure</em> the ways to get it. It helps us see reality anew in constraints and align the expression.</p>
   
+  
   </article>
 
   <div class="grab-bar">
-    <button id="shareBtnBottom" class="btn btn-accent">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;vertical-align:-2px;margin-right:6px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      Share this idea
+    <button id="copyBtnBottom" class="btn btn-accent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy as markdown
     </button>
-    <button id="copyBtnBottom" class="btn btn-ghost">Copy as markdown</button>
-    <button id="downloadBtnBottom" class="btn btn-ghost">Download .md</button>
+    <button id="downloadBtnBottom" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download .md
+    </button>
+    <button id="shareBtnBottom" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Share
+    </button>
   </div>
 
   <section class="connections">
