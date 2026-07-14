@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1c1c1c 0%, #262626 100%);
+    color: #FAFAFA;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    padding: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .glow {
+    position: absolute;
+    right: -140px; bottom: -160px;
+    width: 620px; height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,64,64,0.30) 0%, rgba(255,64,64,0) 68%);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 26px; font-weight: 500; color: rgba(255,255,255,0.85);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .brand svg { width: 40px; height: 40px; }
+  .main { position: relative; z-index: 1; flex-shrink: 0; }
+  .cat {
+    font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #FF5A5A; margin-bottom: 20px;
+  }
+  .title {
+    font-size: 62px; font-weight: 700; line-height: 1.06; letter-spacing: -0.02em;
+    max-width: 1010px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .summary {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic; font-size: 27px; line-height: 1.42;
+    color: rgba(255,255,255,0.75); margin-top: 22px; max-width: 920px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .url {
+    font-family: 'JetBrains Mono', monospace; font-size: 22px;
+    color: rgba(255,255,255,0.5);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="brand">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="#FAFAFA" stroke-width="9"/><circle cx="50" cy="50" r="8" fill="#FAFAFA"/></svg>
+    Positive Constraint
+  </div>
+  <div class="main">
+    <div class="cat">{{CATEGORY_UPPER}}</div>
+    <div class="title">{{TITLE}}</div>
+    <div class="summary">{{SUMMARY}}</div>
+  </div>
+  <div class="url">positiveconstraint.com</div>
+</body>
+</html>

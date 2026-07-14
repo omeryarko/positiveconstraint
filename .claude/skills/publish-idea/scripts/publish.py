@@ -321,6 +321,7 @@ def do_stage(args):
     page = page.replace("{{CATEGORY_LABEL}}", cat_label)
     page = page.replace("{{CATEGORY_UPPER}}", cat_label.upper())
     page = page.replace("{{SUMMARY}}", data["summary"])
+    page = page.replace("{{SLUG}}", slug)
     page = page.replace("{{META}}", meta.rstrip("\n"))
     page = page.replace("{{ARTICLE}}", render_body(body))
     page = page.replace("{{PIECE_JSON}}", json.dumps({"title": title, "slug": slug}))
@@ -329,6 +330,17 @@ def do_stage(args):
     write(os.path.join(stage, "ideas", slug, "index.html"), page)   # summary now readable
     page = set_connections(page, render_connections(related, stage, slug))
     write(os.path.join(stage, "ideas", slug, "index.html"), page)
+
+    # --- Open Graph share image (link-unfurl preview) ---------------------
+    # Rendered with headless Chrome so the card matches the site's web fonts.
+    # Non-fatal: a publish still succeeds if rendering is unavailable.
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        from make_og import render_og
+        render_og(title, cat_label.upper(), data["summary"],
+                  os.path.join(stage, "media", "og", f"{slug}.png"))
+    except Exception as e:
+        print(f"  ⚠ could not render OG image for {slug}: {e}")
 
     # --- reverse connections on targets -----------------------------------
     # The visible cards are always a pure function of a page's RELATED[:4], so we
