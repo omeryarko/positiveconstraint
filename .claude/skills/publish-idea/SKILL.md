@@ -2,7 +2,8 @@
 name: publish-idea
 description: >
   Publish a new idea/article to positiveconstraint.com — format it as a site
-  page, add the Google Analytics tag, place it under /ideas/<slug>/, register it
+  page, add the Google Analytics tag, place it under /ideas/<slug>/, generate its
+  Open Graph link-preview image, register it
   in the knowledge map (node + summary + edges), add it to the ideas index, wire
   it to related ideas in both directions, and recompute all link counts — then
   stage, diff, and deploy over FTP. Use this whenever the user wants to add,
@@ -36,7 +37,21 @@ coupled numbers in sync (per-card connection counts, per-category filter counts,
 map node/edge arrays, two header counts) that are easy to get subtly wrong by
 hand.
 
+It also renders the page's **Open Graph link-preview image** — the card that
+unfurls when the URL is shared on X / LinkedIn / Slack / iMessage. Each idea gets
+a 1200×630 PNG at `/media/og/<slug>.png` (from `assets/og-template.html`, a light
+card matching the site) plus the `og:*` / `twitter:*` meta tags in the page head.
+This is one static image per URL — link previews can't be theme-aware — so the
+card is fixed light for every viewer.
+
 ## Prerequisites — a fresh local mirror
+
+**Headless Chrome** must be present to render the OG image (it uses the site's
+web fonts). The step is non-fatal: if Chrome isn't found, `stage` still succeeds
+but prints `⚠ could not render OG image for <slug>` and that page ships without a
+preview card until re-staged where Chrome is available. On macOS the script finds
+Google Chrome automatically.
+
 
 The script edits a **copy** of the live site and diffs against it, so it needs an
 up-to-date mirror at `./site`. Because `./site` is git-tracked, `git status` is a
