@@ -113,10 +113,18 @@ grep -o '"id": "[^"]*", "title": "[^"]*", "category": "[^"]*", "summary": "[^"]*
 Then propose a short ranked list of connections — for each: the **target** slug,
 a **label** (how the new idea relates to the target, e.g. `builds on`,
 `illustrates`, `applies to`), and a **reverse_label** (how the target relates
-back, shown on the target's page, e.g. `applied in`, `illustrated by`). Labels
-are free text rendered as-is; keep them lowercase and verb-like to match the
-site. Present them and let the user add/remove/relabel before you write them into
-the front-matter `connections:` list:
+back, e.g. `applied in`, `illustrated by`). Present them and let the user
+add/remove before you write them into the front-matter `connections:` list:
+
+**Note on labels: they are no longer shown on the page.** The redesigned idea
+pages render connections as a single flat **"Related Ideas"** grid (title +
+summary cards only) — the old per-label groupings and `conn-type`/`conn-label`
+displays are gone. Labels now survive in exactly one place: the "Copy as
+markdown" / "Download .md" export (`- Title — label → url`). So the real judgment
+is *which* ideas to connect and in what order; the label text is minor
+export-only metadata. Don't spend a round-trip haggling over label wording — pick
+sensible lowercase verb phrases (`illustrates`, `builds on`) and move on. Keep
+labels free text, lowercase and verb-like.
 
 ```yaml
 connections:
