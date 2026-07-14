@@ -2,7 +2,8 @@
 name: publish-idea
 description: >
   Publish a new idea/article to positiveconstraint.com — format it as a site
-  page, add the Google Analytics tag, place it under /ideas/<slug>/, generate its
+  page, add the analytics tags (Google Analytics + LinkedIn Insight), place it
+  under /ideas/<slug>/, generate its
   Open Graph link-preview image, register it
   in the knowledge map (node + summary + edges), add it to the ideas index, wire
   it to related ideas in both directions, and recompute all link counts — then
@@ -155,7 +156,8 @@ connections:
 python3 scripts/publish.py stage --input <piece.md> --site ./site --stage ./.publish-stage
 ```
 
-This builds the new page (with the GA tag baked in from the template), wires
+This builds the new page (with the GA and LinkedIn Insight tags baked in from
+the template — see "Tracking tags" below), wires
 connections both ways, updates the map, the homepage live mini-map, and the
 ideas index, recomputes every count, and prints:
 - the list of files that will be uploaded (NEW vs edit),
@@ -235,6 +237,16 @@ your undo: `git revert` it, then re-run deploy from the reverted `./site`.
   category pills alone — those are author-picked, not derived.
 - **Cards can't drift from export.** A page's connection cards are generated from
   the same `RELATED[]` array the "Copy as markdown" buttons read.
+- **Tracking tags.** Every page carries two, both baked into `page-template.html`
+  so new pages inherit them with no extra step: Google Analytics (`G-N9DEMEQG7C`)
+  in `<head>`, and the LinkedIn Insight Tag (partner `3001121`) in the footer
+  directly above `</body>`. The LinkedIn tag must stay in the footer, not `<head>`
+  — LinkedIn's own instructions specify that placement, its `<noscript>` fallback
+  is an `<img>` (invalid inside `<head>`), and initializing after the DOM exists is
+  what lets LinkedIn Website Actions auto-attach to the Copy/Download buttons.
+  Website Actions groups buttons by their **visible text**, so the labels
+  "Copy as markdown" and "Download .md" are load-bearing: renaming them in the
+  template silently breaks the CTA retargeting audience built on those names.
 - **Seeding analytics + AI index.** Every page's "Copy as markdown" / "Download .md"
   buttons fire GA events (`idea_copy` / `idea_download`, tagged with `idea_slug`) so
   you can rank which ideas people carry into AI tools. The template carries these,
