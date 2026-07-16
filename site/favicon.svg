@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* Optically weighted for 16px tabs: heavier than the 24px nav mark. */
+    .mark { fill: none; stroke: #171717; stroke-width: 13; }
+    .dot { fill: #171717; }
+    @media (prefers-color-scheme: dark) {
+      .mark { stroke: #FFFFFF; }
+      .dot { fill: #FFFFFF; }
+    }
+  </style>
+  <circle class="mark" cx="50" cy="50" r="38"/>
+  <circle class="dot" cx="50" cy="50" r="12"/>
+</svg>
