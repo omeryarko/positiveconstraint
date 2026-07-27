@@ -14,3 +14,6 @@
 *~
 .publish-stage/
 .publish-stage-redesign/
+
+# Python virtualenv for GA4 / Search Console analytics tooling
+.venv-analytics/
