@@ -1,0 +1,16 @@
+# DNS baseline for positiveconstraint.com
+# captured 2026-07-30T08:00:41Z
+# updated 2026-07-30: SPF cleaned (dropped +a, ip4:198.177.120.13,
+# include:spf.web-hosting.com -- Namecheap-era mechanisms nothing depends on;
+# +a would post-migration authorise Cloudflare's shared proxy IPs as senders).
+# Original pre-cleanup SPF for reference: v=spf1 +a +mx +ip4:198.177.120.13
+# include:spf.web-hosting.com include:_spf.google.com ~all
+MX positiveconstraint.com 1 aspmx.l.google.com.
+MX positiveconstraint.com 10 alt3.aspmx.l.google.com.
+MX positiveconstraint.com 10 alt4.aspmx.l.google.com.
+MX positiveconstraint.com 5 alt1.aspmx.l.google.com.
+MX positiveconstraint.com 5 alt2.aspmx.l.google.com.
+TXT _dmarc.positiveconstraint.com v=DMARC1; p=none;
+TXT default._domainkey.positiveconstraint.com v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApOyOjLxJndNvJBlyl3DOxlGGy/ZzSgk93uFnG/IeKAykIviZeisua5LKZwmYyBJ+0/Hns2RKmpshZYAKndG0m6d1joJfQxx9cmtF6NQI9WVhrXciZn6pvjcIMwKp1wA06T5SAPGaKrYJTwQR3Hxuje7PvreMjLNzAusliaR8ziuPnzRTZXL9yTj3mA5lmBRrRSW3ZVgz1sNhrLZUWzXJsG/QyZzuRMdbb0jMdkCo5klwqPH07620YyzToqLNYVxOUNEWmqM0Uu8rsd6MUMJHqZ/FCBYN4IrBWFV/4wTeHtnyo68dVTkxYJ/4WDZ0o4kTNyyH9zf1BzTtl4GvAWrJYQIDAQAB;
+TXT positiveconstraint.com google-site-verification=vADjdxW0rpnFcP4Iydx4iIlsz-Yuhyva8KIOHo2neHk
+TXT positiveconstraint.com v=spf1 +mx include:_spf.google.com ~all

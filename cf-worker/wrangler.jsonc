@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "positiveconstraint",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-29",
+  "assets": {
+    "directory": "../site",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": true
+  },
+  "observability": {
+    "enabled": true
+  },
+  "analytics_engine_datasets": [
+    {
+      "binding": "AI_SERVE_SIGNAL",
+      "dataset": "ai_serve_signal"
+    }
+  ]
+}

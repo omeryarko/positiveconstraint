@@ -17,3 +17,16 @@
 
 # Python virtualenv for GA4 / Search Console analytics tooling
 .venv-analytics/
+
+# Cloudflare Worker: local deps and wrangler state, never commit
+cf-worker/node_modules/
+cf-worker/.wrangler/
+cf-worker/.dev.vars
+cf-worker/worker-configuration.d.ts
+cf-worker/scripts/__pycache__/
+# Serve-signal data + logs: local-growing, back up separately (noisy in git)
+cf-worker/serve-signal-history.jsonl
+cf-worker/serve-signal-cron.log
+
+# Claude Code worktree scratch
+.claude/worktrees/
