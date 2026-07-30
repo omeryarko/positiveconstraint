@@ -7,7 +7,8 @@ description: >
   Open Graph link-preview image, register it
   in the knowledge map (node + summary + edges), add it to the ideas index, wire
   it to related ideas in both directions, and recompute all link counts — then
-  stage, diff, and deploy over FTP. Use this whenever the user wants to add,
+  stage, diff, and deploy via wrangler to the Cloudflare Worker. Use this
+  whenever the user wants to add,
   publish, or post new content, an article, a piece, or an "idea" to their
   Positive Constraint site, or mentions updating the map / ideas list / a new
   /ideas page. Also use it when they hand you a draft (markdown or prose) and say
@@ -18,16 +19,27 @@ description: >
 
 This skill turns a piece of content into a fully wired page on
 positiveconstraint.com. The site is hand-built static HTML — no build step, no
-shared template, live-FTP deploy. So the whole point here is to make every
-derived thing (map counts, index counts, reverse connections) update
-consistently and to never push to production without a human seeing the diff
-first.
+shared template, deployed via `wrangler deploy` to the Cloudflare Worker that
+serves the site (see `cloudflare-migration-worker` memory). So the whole point
+here is to make every derived thing (map counts, index counts, reverse
+connections) update consistently and to never push to production without a
+human seeing the diff first.
 
-The folder is now a git repo (pushed to github.com/omeryarko/positiveconstraint,
-see `project-git-version-control` memory). FTP is still the only deploy path —
-git is version-control + backup. Two consequences for this skill: there is now a
-real undo (revert the commit, re-deploy), and **every successful deploy must be
-committed and pushed** (step 7) so the backup tracks the live site.
+The folder is a git repo (pushed to github.com/omeryarko/positiveconstraint,
+see `project-git-version-control` memory), and `./site` — the same tree the
+Worker serves as static assets — is git-tracked. Git is both version control
+and the only source of truth `stage` reads from: nothing else can modify what's
+live, so there's no separate "pull the live site" step. **Every successful
+deploy must be committed and pushed** (step 7) so GitHub stays in step with
+production and `git revert` is always a working undo.
+
+**Transitional note:** until positiveconstraint.com's nameservers actually move
+to Cloudflare (a separate, not-yet-done migration step — see
+`cloudflare-migration-worker` memory), `wrangler deploy` publishes to the
+Worker's `*.workers.dev` URL, which is **not** yet what visitors to
+positiveconstraint.com see (that's still the old Namecheap host). Publishing an
+idea right now updates `./site` and the Worker correctly, but won't appear on
+the real domain until cutover completes.
 
 ## The one script does the mechanical work
 
@@ -45,7 +57,7 @@ card matching the site) plus the `og:*` / `twitter:*` meta tags in the page head
 This is one static image per URL — link previews can't be theme-aware — so the
 card is fixed light for every viewer.
 
-## Prerequisites — a fresh local mirror
+## Prerequisites
 
 **Headless Chrome** must be present to render the OG image (it uses the site's
 web fonts). The step is non-fatal: if Chrome isn't found, `stage` still succeeds
@@ -53,21 +65,15 @@ but prints `⚠ could not render OG image for <slug>` and that page ships withou
 preview card until re-staged where Chrome is available. On macOS the script finds
 Google Chrome automatically.
 
+The script edits a **copy** of `./site` and diffs against it. `git status` is
+the freshness check: a clean tree means `./site` matches what's actually
+deployed (there's nothing else that can have changed it — see the transitional
+note above for the one exception during migration). If it's dirty in a way you
+can't account for, resolve that first; there's no FTP mirror-pull step anymore.
 
-The script edits a **copy** of the live site and diffs against it, so it needs an
-up-to-date mirror at `./site`. Because `./site` is git-tracked, `git status` is a
-fast first check: a clean tree means the mirror matches the last publish. If
-`./site` is missing, dirty in a way you can't account for, or you suspect the
-live site changed since it was pulled, re-mirror first (FTP creds are in memory
-under `reference-ftp-credentials`):
-
-```
-export PC_FTP_USER='claude2@positiveconstraint.com'
-export PC_FTP_PASS='<from reference-ftp-credentials memory>'
-python3 scripts/pull_site.py --dest ./site
-```
-
-Skip this if `./site` was pulled moments ago.
+**Node/wrangler:** if `node`/`npm`/`wrangler` aren't on `PATH`, they're
+installed via nvm — run `export NVM_DIR="$HOME/.nvm"; . "$NVM_DIR/nvm.sh"`
+first (see `cloudflare-migration-worker` memory).
 
 ## Workflow
 
@@ -179,34 +185,35 @@ production.
 
 ### 5. Deploy
 
-Export the FTP credentials from memory, then deploy:
+Export the Cloudflare API token from its secrets file, then deploy:
 
 ```
-export PC_FTP_USER='claude2@positiveconstraint.com'
-export PC_FTP_PASS='<from reference-ftp-credentials memory>'
-python3 scripts/publish.py deploy --stage ./.publish-stage --site ./site
+set -a; source .claude/secrets/cloudflare.env; set +a
+python3 scripts/publish.py deploy --stage ./.publish-stage --site ./site --cf-worker ./cf-worker
 ```
 
-Deploy backs up every live file it overwrites into `./.publish-stage/backup-<ts>/`
-(with a `rollback.json` listing new vs overwritten files) **before** uploading,
-creates the `/ideas/<slug>/` directory as needed, uploads the manifest, and
-refreshes your local `./site` mirror to the new live state. To roll back, re-
-upload the backup copies and delete the newly created files.
+Deploy applies the staged files onto `./site` (the git-tracked source the
+Worker reads), then runs `wrangler deploy` from `./cf-worker`, which diffs and
+uploads only the new/changed assets itself. If `wrangler deploy` fails, `./site`
+has already been updated locally but nothing went live — fix the error and
+re-run, or `git checkout` the touched paths to revert before trying again.
 
 ### 6. Verify
 
-Fetch the new URL and a touched page to confirm they're live:
+Fetch the new URL and a touched page to confirm they're live. Use the
+`*.workers.dev` URL until DNS cutover is complete (see the transitional note
+above), then the real domain afterward:
 
 ```
-curl -s -o /dev/null -w "%{http_code}\n" https://positiveconstraint.com/ideas/<slug>/
+curl -s -o /dev/null -w "%{http_code}\n" https://positiveconstraint.omer-2c2.workers.dev/ideas/<slug>/
 ```
 
 Spot-check the map and ideas index in a browser if the user wants.
 
 ### 7. Snapshot to git
 
-Deploy refreshed `./site` to the new live state, so commit that and push — this
-keeps the GitHub backup in step with production and gives you a revertable point.
+`./site` now matches the new live state, so commit and push it — this keeps
+the GitHub backup in step with production and gives you a revertable point.
 
 ```
 git add -A
@@ -214,9 +221,10 @@ git commit -m "Publish idea: <slug>"
 git push
 ```
 
-Never commit `.claude/settings.local.json` (it holds the plaintext FTP creds and
-is gitignored — the repo is public). If a deploy later proves bad, this commit is
-your undo: `git revert` it, then re-run deploy from the reverted `./site`.
+Never commit `.claude/secrets/` (it holds the plaintext Cloudflare API token
+and is gitignored — the repo is public). If a deploy later proves bad, roll
+back with `git revert` on `./site` plus `wrangler rollback` on the Worker (or
+re-run deploy from the reverted `./site`).
 
 ## Design guarantees (why you can trust the output)
 

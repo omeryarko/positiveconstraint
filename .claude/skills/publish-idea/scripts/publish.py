@@ -7,9 +7,12 @@ Two subcommands:
   stage  --input piece.md --site ./site --stage ./.publish-stage
          Builds the new page + all edits into a *copy* of the site (the stage),
          writes manifest.json, and prints a diff summary. Nothing goes live.
-  deploy --stage ./.publish-stage --site ./site
-         Backs up every remote file it will overwrite, then FTP-uploads the
-         manifest. Reads FTP creds from env (PC_FTP_HOST/USER/PASS).
+  deploy --stage ./.publish-stage --site ./site --cf-worker ./cf-worker
+         Applies the staged manifest onto ./site (the git-tracked source of
+         truth), then runs `wrangler deploy` from ./cf-worker to publish it.
+         Reads CLOUDFLARE_API_TOKEN/CLOUDFLARE_ACCOUNT_ID from env. Rollback
+         is `git revert` on ./site plus `wrangler rollback` on the Worker —
+         no separate backup folder is kept.
 
 Design notes
 ------------
@@ -22,7 +25,7 @@ Design notes
 * Edits are surgical: we only rewrite the specific nodes/edges/cards that
   actually change, leaving the rest of each file byte-identical for a clean diff.
 """
-import argparse, json, os, re, shutil, sys, html, ftplib, datetime, difflib
+import argparse, json, os, re, shutil, sys, html, subprocess, datetime, difflib
 
 # ---------------------------------------------------------------- front matter
 
@@ -555,51 +558,34 @@ def print_summary(site, stage, manifest, missing, n_nodes, n_edges, new_body=Non
 
 def do_deploy(args):
     stage, site = os.path.abspath(args.stage), os.path.abspath(args.site)
+    worker_dir = os.path.abspath(args.cf_worker)
     manifest = json.loads(read(os.path.join(stage, "manifest.json")))
-    host = os.environ.get("PC_FTP_HOST", "198.177.120.17")
-    user = os.environ.get("PC_FTP_USER"); pw = os.environ.get("PC_FTP_PASS")
-    if not (user and pw):
-        sys.exit("Set PC_FTP_USER and PC_FTP_PASS in the environment before deploy.")
-    stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    backup = os.path.join(stage, "backup-" + stamp)
+    if not (os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ACCOUNT_ID")):
+        sys.exit("Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in the environment before deploy.")
 
-    ftp = ftplib.FTP(); ftp.connect(host, 21, timeout=60); ftp.login(user, pw); ftp.set_pasv(True)
-    rollback = {"new": [], "overwritten": []}
-    for m in manifest:
-        remote = "/" + m["path"]
-        ensure_dirs(ftp, remote)
-        if not m["new"]:                       # back up the live copy first
-            bpath = os.path.join(backup, m["path"])
-            os.makedirs(os.path.dirname(bpath), exist_ok=True)
-            try:
-                with open(bpath, "wb") as f:
-                    ftp.retrbinary("RETR " + remote, f.write)
-                rollback["overwritten"].append(m["path"])
-            except ftplib.error_perm:
-                pass
-        else:
-            rollback["new"].append(m["path"])
-        with open(os.path.join(stage, m["path"]), "rb") as f:
-            ftp.storbinary("STOR " + remote, f)
-        print("uploaded", remote)
-    ftp.quit()
-    write(os.path.join(backup, "rollback.json"), json.dumps(rollback, indent=2))
-    # refresh the local mirror so future runs diff against the new live state
+    # apply the staged edits onto ./site, the git-tracked source of truth that
+    # the Worker's assets binding serves directly -- no separate upload step.
     for m in manifest:
         dst = os.path.join(site, m["path"])
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copy2(os.path.join(stage, m["path"]), dst)
-    print(f"\nDone. Backup of overwritten files: {backup}")
+        print(("new  " if m["new"] else "edit "), "/" + m["path"])
 
-def ensure_dirs(ftp, remote):
-    parts = remote.strip("/").split("/")[:-1]
-    path = ""
-    for p in parts:
-        path += "/" + p
-        try:
-            ftp.mkd(path)
-        except ftplib.error_perm:
-            pass
+    # publish: wrangler diffs ./site against the last deployed version itself
+    # and uploads only what changed. Cloudflare's version history is the
+    # rollback net now (`wrangler rollback`) -- no hand-rolled backup folder.
+    result = subprocess.run(
+        'export NVM_DIR="$HOME/.nvm"; . "$NVM_DIR/nvm.sh"; node_modules/.bin/wrangler deploy',
+        shell=True, executable="/bin/bash", cwd=worker_dir,
+        capture_output=True, text=True,
+    )
+    print(result.stdout)
+    if result.returncode != 0:
+        print(result.stderr, file=sys.stderr)
+        sys.exit("wrangler deploy failed -- ./site was updated locally but is "
+                  "NOT live. Fix the error above and re-run deploy, or "
+                  "`git checkout` the touched paths in ./site to revert.")
+    print("Done.")
 
 # ---------------------------------------------------------------------- main
 
@@ -610,7 +596,8 @@ def main():
     s.add_argument("--site", default="./site"); s.add_argument("--stage", default="./.publish-stage")
     s.add_argument("--assets", default=None); s.set_defaults(func=do_stage)
     d = sub.add_parser("deploy"); d.add_argument("--stage", default="./.publish-stage")
-    d.add_argument("--site", default="./site"); d.set_defaults(func=do_deploy)
+    d.add_argument("--site", default="./site")
+    d.add_argument("--cf-worker", default="./cf-worker"); d.set_defaults(func=do_deploy)
     args = ap.parse_args(); args.func(args)
 
 if __name__ == "__main__":
