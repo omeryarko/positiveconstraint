@@ -949,13 +949,21 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
 var PIECE = { title: "Positive Constraint", slug: "positive-constraint" };
 var RELATED = [{"title": "The Process", "label": "applies to", "url": "/ideas/process/"}, {"title": "3 Reds in Haifa", "label": "illustrated by", "url": "/ideas/three-reds-in-haifa/"}, {"title": "Desired Reality", "label": "expressed through", "url": "/ideas/desired-reality/"}, {"title": "The Three Axes", "label": "operationalized by", "url": "/ideas/three-axes/"}, {"title": "Innovation", "label": "illustrated by", "url": "/ideas/innovation/"}, {"title": "Embrace the Unchanging", "label": "expanded in", "url": "/ideas/embrace-the-unchanging/"}, {"title": "Complex New World", "label": "responds to", "url": "/ideas/complex-new-world/"}, {"title": "Complex New World", "label": "responds to", "url": "/ideas/complex-new-world/"}, {"title": "Complex New World", "label": "responds to", "url": "/ideas/complex-new-world/"}, {"title": "The Constraint Behind Prince of Persia's Best Fight", "label": "illustrated by", "url": "/ideas/prince-of-persia-shadow-man/"}, {"title": "Superhuman 100ms Constraint", "label": "applied in", "url": "/ideas/superhuman-100ms-constraint/"}];
 
+function grabToken() {
+  var a = new Uint8Array(4);
+  crypto.getRandomValues(a);
+  return Array.from(a, function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
 function pieceMarkdown() {
   var body = document.querySelector('article').innerText.trim();
+  var g = grabToken();
+  window._lastGrabToken = g;
   var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
   if (RELATED.length) {
     md += 'Related:\n';
     RELATED.forEach(function (r) {
-      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '\n';
+      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '?g=' + PIECE.slug + '.' + g + '\n';
     });
   }
   return md;
@@ -991,8 +999,9 @@ function wireCopy(btn) {
   if (!btn) return;
   var original = btn.innerHTML;
   btn.addEventListener('click', function () {
-    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title });
-    copyText(pieceMarkdown()).then(function () {
+    var md = pieceMarkdown();
+    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title, grab_token: window._lastGrabToken });
+    copyText(md).then(function () {
       btn.textContent = 'Copied!';
       setTimeout(function () { btn.innerHTML = original; }, 2000);
     }, function () {

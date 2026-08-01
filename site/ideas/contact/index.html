@@ -827,13 +827,21 @@ Tel Aviv, Israel</p>
 var PIECE = { title: "Contact", slug: "contact" };
 var RELATED = [{"title": "FAQ", "label": "contextualizes", "url": "/ideas/faq/"}, {"title": "Work", "label": "illustrates", "url": "/ideas/work/"}];
 
+function grabToken() {
+  var a = new Uint8Array(4);
+  crypto.getRandomValues(a);
+  return Array.from(a, function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
 function pieceMarkdown() {
   var body = document.querySelector('article').innerText.trim();
+  var g = grabToken();
+  window._lastGrabToken = g;
   var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
   if (RELATED.length) {
     md += 'Related:\n';
     RELATED.forEach(function (r) {
-      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '\n';
+      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '?g=' + PIECE.slug + '.' + g + '\n';
     });
   }
   return md;
@@ -869,8 +877,9 @@ function wireCopy(btn) {
   if (!btn) return;
   var original = btn.innerHTML;
   btn.addEventListener('click', function () {
-    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title });
-    copyText(pieceMarkdown()).then(function () {
+    var md = pieceMarkdown();
+    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title, grab_token: window._lastGrabToken });
+    copyText(md).then(function () {
       btn.textContent = 'Copied!';
       setTimeout(function () { btn.innerHTML = original; }, 2000);
     }, function () {

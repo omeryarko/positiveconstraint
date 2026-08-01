@@ -41,10 +41,21 @@ GROUP BY day, class, idea_slug
 ORDER BY day DESC, hits DESC
 """.strip()
 
+CHAIN_QUERY = """
+SELECT
+  blob3 AS source_slug,
+  blob2 AS target_slug,
+  count() AS hits
+FROM {dataset}
+WHERE blob1 = 'chain'
+  AND timestamp > NOW() - INTERVAL '{days}' DAY
+GROUP BY source_slug, target_slug
+ORDER BY hits DESC
+""".strip()
 
-def run_query(account_id, token, days):
+
+def run_query_sql(account_id, token, sql):
     url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/analytics_engine/sql"
-    sql = QUERY.format(dataset=DATASET, days=days)
     req = urllib.request.Request(
         url,
         data=sql.encode("utf-8"),
@@ -56,6 +67,10 @@ def run_query(account_id, token, days):
     if "data" not in body:
         raise RuntimeError(f"Unexpected AE response: {body}")
     return body["data"]
+
+
+def run_query(account_id, token, days):
+    return run_query_sql(account_id, token, QUERY.format(dataset=DATASET, days=days))
 
 
 def main():
@@ -78,13 +93,23 @@ def main():
     by_idea = {}
     for r in rows:
         slug = r["idea_slug"] or "(no slug)"
-        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0})
-        by_idea[slug][r["class"]] = by_idea[slug].get(r["class"], 0) + int(r["hits"])
+        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0, "chain": 0})
+        cls = r["class"]
+        by_idea[slug][cls] = by_idea[slug].get(cls, 0) + int(r["hits"])
 
     print(f"Serve signal, last {args.days}d ({len(rows)} day/class/idea rows):\n")
-    print(f"{'idea':40s} {'Served (ai-assistant)':>22s} {'Crawled (ai-crawler)':>22s}")
-    for slug, counts in sorted(by_idea.items(), key=lambda kv: -kv[1]["ai-assistant"]):
-        print(f"{slug:40s} {counts['ai-assistant']:>22d} {counts['ai-crawler']:>22d}")
+    print(f"{'idea':40s} {'Served':>8s} {'Chained':>8s} {'Crawled':>8s}")
+    for slug, c in sorted(by_idea.items(), key=lambda kv: -kv[1]["ai-assistant"]):
+        print(f"{slug:40s} {c['ai-assistant']:>8d} {c['chain']:>8d} {c['ai-crawler']:>8d}")
+
+    chain_rows = run_query_sql(account_id, token, CHAIN_QUERY.format(dataset=DATASET, days=args.days))
+    if chain_rows:
+        print(f"\nChain detail (grabbed idea → fetched idea):\n")
+        print(f"{'source':40s} {'target':40s} {'hits':>6s}")
+        for r in chain_rows:
+            src = r["source_slug"] or "(unknown)"
+            tgt = r["target_slug"] or "(no slug)"
+            print(f"{src:40s} {tgt:40s} {int(r['hits']):>6d}")
 
     if args.export:
         seen = set()

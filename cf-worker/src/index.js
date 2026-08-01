@@ -64,17 +64,28 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
-    // Log the Serve/Crawl signal only for requests we actually serve (not the
-    // redirect hops above), so each AI fetch of a canonical /ideas/<slug>/ URL
-    // is counted once. An AI UA that hits a legacy/http URL and doesn't follow
-    // the 301 is intentionally not logged (accepted tradeoff — real fetchers follow).
     const ua = request.headers.get("User-Agent") || "";
     const uaClass = classifyUA(ua);
+    const grabToken = url.searchParams.get("g");
+
     if (uaClass !== "other" && env.AI_SERVE_SIGNAL) {
+      if (grabToken && uaClass === "ai-assistant") {
+        const dotIdx = grabToken.indexOf(".");
+        const sourceSlug = dotIdx > 0 ? grabToken.slice(0, dotIdx) : "";
+        env.AI_SERVE_SIGNAL.writeDataPoint({
+          blobs: ["chain", ideaSlug(url.pathname), sourceSlug, ua],
+          indexes: ["chain"],
+        });
+      }
       env.AI_SERVE_SIGNAL.writeDataPoint({
         blobs: [uaClass, ideaSlug(url.pathname), ua],
         indexes: [uaClass],
       });
+    }
+
+    if (grabToken) {
+      url.searchParams.delete("g");
+      request = new Request(url, request);
     }
 
     let response = await env.ASSETS.fetch(request);
