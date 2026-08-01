@@ -57,6 +57,32 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    // Grab beacon: first-party same-origin signal that a human chose to carry an
+    // idea (Copy as markdown / Download .md). Fires from the page JS via
+    // navigator.sendBeacon, so ad blockers (which kill gtag) don't touch it.
+    // Unlike Serve/Chain, grab is a *human* signal — write it regardless of UA
+    // class (uaClass is "other" for a normal browser). Log no IP/UA (human PII);
+    // drop known crawlers to keep scraper noise out.
+    if (url.pathname === "/grab" && request.method === "POST") {
+      const beaconUA = request.headers.get("User-Agent") || "";
+      if (env.AI_SERVE_SIGNAL && classifyUA(beaconUA) !== "ai-crawler") {
+        let slug = "";
+        let token = "";
+        let action = "";
+        try {
+          const body = await request.json();
+          slug = String(body.slug || "");
+          token = String(body.token || "");
+          action = String(body.action || "");
+        } catch (e) {}
+        env.AI_SERVE_SIGNAL.writeDataPoint({
+          blobs: ["grab", slug, token, action],
+          indexes: ["grab"],
+        });
+      }
+      return new Response(null, { status: 204 });
+    }
+
     const path = url.pathname.replace(/\/$/, "") || "/";
     const legacyTarget = LEGACY_REDIRECTS[path];
     if (legacyTarget) {
@@ -72,8 +98,11 @@ export default {
       if (grabToken && uaClass === "ai-assistant") {
         const dotIdx = grabToken.indexOf(".");
         const sourceSlug = dotIdx > 0 ? grabToken.slice(0, dotIdx) : "";
+        // Keep the token (after the dot) so a chain hit joins to its origin grab
+        // record on `token` — yields time-to-activation, not just slug attribution.
+        const token = dotIdx > 0 ? grabToken.slice(dotIdx + 1) : grabToken;
         env.AI_SERVE_SIGNAL.writeDataPoint({
-          blobs: ["chain", ideaSlug(url.pathname), sourceSlug, ua],
+          blobs: ["chain", ideaSlug(url.pathname), sourceSlug, token, ua],
           indexes: ["chain"],
         });
       }

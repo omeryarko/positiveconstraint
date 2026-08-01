@@ -93,14 +93,14 @@ def main():
     by_idea = {}
     for r in rows:
         slug = r["idea_slug"] or "(no slug)"
-        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0, "chain": 0})
+        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0, "chain": 0, "grab": 0})
         cls = r["class"]
         by_idea[slug][cls] = by_idea[slug].get(cls, 0) + int(r["hits"])
 
     print(f"Serve signal, last {args.days}d ({len(rows)} day/class/idea rows):\n")
-    print(f"{'idea':40s} {'Served':>8s} {'Chained':>8s} {'Crawled':>8s}")
-    for slug, c in sorted(by_idea.items(), key=lambda kv: -kv[1]["ai-assistant"]):
-        print(f"{slug:40s} {c['ai-assistant']:>8d} {c['chain']:>8d} {c['ai-crawler']:>8d}")
+    print(f"{'idea':40s} {'Grabbed':>8s} {'Served':>8s} {'Chained':>8s} {'Crawled':>8s}")
+    for slug, c in sorted(by_idea.items(), key=lambda kv: (-kv[1]["grab"], -kv[1]["ai-assistant"])):
+        print(f"{slug:40s} {c['grab']:>8d} {c['ai-assistant']:>8d} {c['chain']:>8d} {c['ai-crawler']:>8d}")
 
     chain_rows = run_query_sql(account_id, token, CHAIN_QUERY.format(dataset=DATASET, days=args.days))
     if chain_rows:
@@ -110,6 +110,25 @@ def main():
             src = r["source_slug"] or "(unknown)"
             tgt = r["target_slug"] or "(no slug)"
             print(f"{src:40s} {tgt:40s} {int(r['hits']):>6d}")
+
+    # Activation rate: of the ideas a human grabbed, how many led to an AI actually
+    # fetching a related link (a chain). chain hits (by source slug) ÷ grabs (by slug)
+    # — the one honest denominator. Only meaningful for slugs with at least one grab.
+    chains_by_source = {}
+    for r in chain_rows:
+        src = r["source_slug"] or "(unknown)"
+        chains_by_source[src] = chains_by_source.get(src, 0) + int(r["hits"])
+    activation = {
+        slug: (c["grab"], chains_by_source.get(slug, 0))
+        for slug, c in by_idea.items()
+        if c["grab"] > 0
+    }
+    if activation:
+        print(f"\nActivation (grabbed → reached an AI via a chain link):\n")
+        print(f"{'source':40s} {'Grabbed':>8s} {'Chains':>8s} {'Rate':>8s}")
+        for slug, (grabs, chains) in sorted(activation.items(), key=lambda kv: -kv[1][0]):
+            rate = f"{chains / grabs * 100:.0f}%" if grabs else "-"
+            print(f"{slug:40s} {grabs:>8d} {chains:>8d} {rate:>8s}")
 
     if args.export:
         seen = set()
