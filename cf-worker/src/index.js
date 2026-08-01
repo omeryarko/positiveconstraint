@@ -106,7 +106,9 @@ export default {
     } else if (
       contentType.includes("text/css") ||
       contentType.includes("javascript") ||
-      contentType.includes("image/svg+xml")
+      contentType.includes("image/svg+xml") ||
+      contentType.includes("image/") ||
+      contentType.includes("font/")
     ) {
       response.headers.set("Cache-Control", "public, max-age=2592000");
     }
