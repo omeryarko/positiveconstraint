@@ -921,6 +921,7 @@ function wireCopy(btn) {
   btn.addEventListener('click', function () {
     var md = pieceMarkdown();
     if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title, grab_token: window._lastGrabToken });
+    try { navigator.sendBeacon('/grab', new Blob([JSON.stringify({ slug: PIECE.slug, token: window._lastGrabToken, action: 'copy' })], { type: 'application/json' })); } catch (e) {}
     copyText(md).then(function () {
       btn.textContent = 'Copied!';
       setTimeout(function () { btn.innerHTML = original; }, 2000);
@@ -936,8 +937,10 @@ wireCopy(document.getElementById('copyBtnBottom'));
 function wireDownload(btn) {
   if (!btn) return;
   btn.addEventListener('click', function () {
+    var md = pieceMarkdown();
     if (window.gtag) gtag('event', 'idea_download', { idea_slug: PIECE.slug, idea_title: PIECE.title });
-    var blob = new Blob([pieceMarkdown()], { type: 'text/markdown;charset=utf-8' });
+    try { navigator.sendBeacon('/grab', new Blob([JSON.stringify({ slug: PIECE.slug, token: window._lastGrabToken, action: 'download' })], { type: 'application/json' })); } catch (e) {}
+    var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
