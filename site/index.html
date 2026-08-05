@@ -520,6 +520,116 @@ article {
   }
 }
 
+/* Context snippet pull-up */
+.site-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-background-primary);
+  border-top: 0.5px solid var(--color-border-secondary);
+  z-index: 50;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-bar.visible {
+  transform: translateY(0);
+}
+
+.site-bar-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.site-bar-mark {
+  width: 15px;
+  height: 15px;
+  color: var(--color-red);
+  flex-shrink: 0;
+}
+
+.site-bar-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.site-bar-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.site-bar-desc {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.site-bar-cta {
+  background: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.site-bar-cta:hover {
+  background: var(--color-red-hover);
+}
+
+.site-bar-dismiss {
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.site-bar-dismiss:hover {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .site-bar-inner {
+    flex-wrap: wrap;
+  }
+  .site-bar-text {
+    flex-basis: calc(100% - 35px);
+  }
+  .site-bar-cta {
+    flex: 1;
+    text-align: center;
+  }
+  .site-bar-dismiss {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+  }
+  .site-bar {
+    position: fixed;
+  }
+}
+
 /* Featured pieces section */
 .featured {
   max-width: 680px;
@@ -1035,6 +1145,38 @@ document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {
   });
 });
 </script>
+<div class="site-bar" id="siteBar">
+  <div class="site-bar-inner">
+    <svg class="site-bar-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/>
+      <circle cx="50" cy="50" r="8" fill="currentColor"/>
+    </svg>
+    <div class="site-bar-text">
+      <div class="site-bar-title">Add constraints reasoning to your AI</div>
+      <div class="site-bar-desc">One snippet in your custom instructions for non-obvious perspectives and hidden opportunities.</div>
+    </div>
+    <a href="/context-snippet/" class="site-bar-cta">Show me</a>
+    <button class="site-bar-dismiss" id="siteBarDismiss" aria-label="Dismiss">&#x2715;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'pc_snippet_bar';
+  if (localStorage.getItem(KEY)) return;
+  var bar = document.getElementById('siteBar');
+  var btn = document.getElementById('siteBarDismiss');
+  setTimeout(function () { bar.classList.add('visible'); }, 3000);
+  btn.addEventListener('click', function () {
+    bar.classList.remove('visible');
+    localStorage.setItem(KEY, '1');
+  });
+  bar.querySelector('.site-bar-cta').addEventListener('click', function () {
+    localStorage.setItem(KEY, '1');
+  });
+})();
+</script>
+
 <!-- LinkedIn Insight Tag -->
 <script type="text/javascript">
 _linkedin_partner_id = "3001121";
