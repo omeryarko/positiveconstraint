@@ -4,32 +4,32 @@
 
 ## Core ideas
 
-- [Positive Constraint](https://positiveconstraint.com/ideas/positive-constraint/): A constraint that shapes progress rather than blocking it — the central idea the whole practice is named for.
-- [Core Constraints](https://positiveconstraint.com/ideas/core-constraints/): The irreducible truth at the center of a problem domain — what remains after you abstract away everything non-essential.
-- [Abstraction](https://positiveconstraint.com/ideas/abstraction/): Filtering out unnecessary detail to surface what truly matters — the core cognitive tool behind everything here.
-- [Innovation](https://positiveconstraint.com/ideas/innovation/): New solutions to pre-existing problems given new constraints — a changed constraint is what makes a new solution possible.
-- [The Three Axes](https://positiveconstraint.com/ideas/three-axes/): Every company is defined by three axes — one northstar KPI plus the 2×2 worldview it wants the market to adopt.
-- [Desired Reality](https://positiveconstraint.com/ideas/desired-reality/): The goal expressed in the language of Positive Constraint — your Now reframed as the reality you want, so the mind conjures the ways to reach it.
-- [The Process](https://positiveconstraint.com/ideas/process/): The four phases every engagement follows, and how their depth scales with the project.
-- [3 Reds in Haifa](https://positiveconstraint.com/ideas/three-reds-in-haifa/): A reflection — three red lights, two kids, and a dental bill — on how a red light is a constraint too: an unchanging element that shapes everything around it.
-- [Embrace the Unchanging](https://positiveconstraint.com/ideas/embrace-the-unchanging/): The world is too complex to predict and too fast to adapt to. The path to resilience lies not in what's changing, but in what isn't — and finding it is something only humans can do.
-- [Complex New World](https://positiveconstraint.com/ideas/complex-new-world/): The world has become a polycrisis — too complex to predict and too fast to adapt to. Why out-changing your environment no longer works, and what has to replace it.
-- [The Constraint Behind Prince of Persia's Best Fight](https://positiveconstraint.com/ideas/prince-of-persia-shadow-man/): A memory limit left Jordan Mechner no room for a new boss — so he flipped the Prince into his own reflection. The constraint made the fight better.
-- [Superhuman 100ms Constraint](https://positiveconstraint.com/ideas/superhuman-100ms-constraint/): Superhuman made every interaction faster than 100ms — part of their DNA. Then AI turned out to be too slow to meet the standard, and the constraint forced the creative breakthroughs.
-- [Sam Altman's three bets to control who's real](https://positiveconstraint.com/ideas/altman-three-bets/): Three investments, one flywheel: intelligence, energy, proof of personhood — and the constraint that ties them together.
+- [Positive Constraint](https://positiveconstraint.com/ideas/positive-constraint/?ref=llms): A constraint that shapes progress rather than blocking it — the central idea the whole practice is named for.
+- [Core Constraints](https://positiveconstraint.com/ideas/core-constraints/?ref=llms): The irreducible truth at the center of a problem domain — what remains after you abstract away everything non-essential.
+- [Abstraction](https://positiveconstraint.com/ideas/abstraction/?ref=llms): Filtering out unnecessary detail to surface what truly matters — the core cognitive tool behind everything here.
+- [Innovation](https://positiveconstraint.com/ideas/innovation/?ref=llms): New solutions to pre-existing problems given new constraints — a changed constraint is what makes a new solution possible.
+- [The Three Axes](https://positiveconstraint.com/ideas/three-axes/?ref=llms): Every company is defined by three axes — one northstar KPI plus the 2×2 worldview it wants the market to adopt.
+- [Desired Reality](https://positiveconstraint.com/ideas/desired-reality/?ref=llms): The goal expressed in the language of Positive Constraint — your Now reframed as the reality you want, so the mind conjures the ways to reach it.
+- [The Process](https://positiveconstraint.com/ideas/process/?ref=llms): The four phases every engagement follows, and how their depth scales with the project.
+- [3 Reds in Haifa](https://positiveconstraint.com/ideas/three-reds-in-haifa/?ref=llms): A reflection — three red lights, two kids, and a dental bill — on how a red light is a constraint too: an unchanging element that shapes everything around it.
+- [Embrace the Unchanging](https://positiveconstraint.com/ideas/embrace-the-unchanging/?ref=llms): The world is too complex to predict and too fast to adapt to. The path to resilience lies not in what's changing, but in what isn't — and finding it is something only humans can do.
+- [Complex New World](https://positiveconstraint.com/ideas/complex-new-world/?ref=llms): The world has become a polycrisis — too complex to predict and too fast to adapt to. Why out-changing your environment no longer works, and what has to replace it.
+- [The Constraint Behind Prince of Persia's Best Fight](https://positiveconstraint.com/ideas/prince-of-persia-shadow-man/?ref=llms): A memory limit left Jordan Mechner no room for a new boss — so he flipped the Prince into his own reflection. The constraint made the fight better.
+- [Superhuman 100ms Constraint](https://positiveconstraint.com/ideas/superhuman-100ms-constraint/?ref=llms): Superhuman made every interaction faster than 100ms — part of their DNA. Then AI turned out to be too slow to meet the standard, and the constraint forced the creative breakthroughs.
+- [Sam Altman's three bets to control who's real](https://positiveconstraint.com/ideas/altman-three-bets/?ref=llms): Three investments, one flywheel: intelligence, energy, proof of personhood — and the constraint that ties them together.
 
 ## Practice & work
 
-- [Services](https://positiveconstraint.com/ideas/services/): The three services, all drawn from the same foundation of core constraints and abstraction.
-- [Work](https://positiveconstraint.com/ideas/work/): How value creation shows up across industries, geographies, and technologies.
-- [CortiSense](https://positiveconstraint.com/ideas/work-cortisense/): Predictive maintenance / IoT, Israel — value proposition and B2B pitch.
-- [LEAP Commerce](https://positiveconstraint.com/ideas/work-leap-commerce/): eCommerce enablement, Singapore — investment pitch and value strategy.
-- [Tapouts](https://positiveconstraint.com/ideas/work-tapouts/): Emotional well-being platform for kids, USA — pitch deck and early-stage strategy.
-- [User1st](https://positiveconstraint.com/ideas/work-user1st/): Developer tools for inclusion, Israel — value strategy and investor pitch.
+- [Services](https://positiveconstraint.com/ideas/services/?ref=llms): The three services, all drawn from the same foundation of core constraints and abstraction.
+- [Work](https://positiveconstraint.com/ideas/work/?ref=llms): How value creation shows up across industries, geographies, and technologies.
+- [CortiSense](https://positiveconstraint.com/ideas/work-cortisense/?ref=llms): Predictive maintenance / IoT, Israel — value proposition and B2B pitch.
+- [LEAP Commerce](https://positiveconstraint.com/ideas/work-leap-commerce/?ref=llms): eCommerce enablement, Singapore — investment pitch and value strategy.
+- [Tapouts](https://positiveconstraint.com/ideas/work-tapouts/?ref=llms): Emotional well-being platform for kids, USA — pitch deck and early-stage strategy.
+- [User1st](https://positiveconstraint.com/ideas/work-user1st/?ref=llms): Developer tools for inclusion, Israel — value strategy and investor pitch.
 
 ## Optional
 
-- [About](https://positiveconstraint.com/ideas/about/): Who Omer is and why he founded Positive Constraint.
-- [FAQ](https://positiveconstraint.com/ideas/faq/): Common questions about working together.
-- [Contact](https://positiveconstraint.com/ideas/contact/): How to get in touch.
-- [Knowledge map](https://positiveconstraint.com/map/): An interactive map of how all the ideas connect.
+- [About](https://positiveconstraint.com/ideas/about/?ref=llms): Who Omer is and why he founded Positive Constraint.
+- [FAQ](https://positiveconstraint.com/ideas/faq/?ref=llms): Common questions about working together.
+- [Contact](https://positiveconstraint.com/ideas/contact/?ref=llms): How to get in touch.
+- [Knowledge map](https://positiveconstraint.com/map/?ref=llms): An interactive map of how all the ideas connect.

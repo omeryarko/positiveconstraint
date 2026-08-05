@@ -7,7 +7,7 @@
 // Serve-signal classification: user-triggered AI fetchers ("ai-assistant") vs
 // training/indexing crawlers ("ai-crawler"). Lists mirror site/robots.txt.
 // Not using request.cf.botManagement — that's a paid Bot Management field, absent on Free.
-const AI_ASSISTANT_UAS = ["Claude-User", "ChatGPT-User", "Perplexity-User"];
+const AI_ASSISTANT_UAS = ["Claude-User", "ChatGPT-User", "Perplexity-User", "Google-Agent"];
 const AI_CRAWLER_UAS = [
   "ClaudeBot", "Claude-SearchBot", "anthropic-ai",
   "GPTBot", "OAI-SearchBot",
@@ -22,9 +22,11 @@ function classifyUA(ua) {
   return "other";
 }
 
-function ideaSlug(pathname) {
+function pathSlug(pathname) {
   const m = pathname.match(/^\/ideas\/([^/]+)/);
-  return m ? m[1] : "";
+  if (m) return m[1];
+  const clean = pathname.replace(/^\/|\/$/g, "");
+  return clean ? "_" + clean : "_home";
 }
 
 const LEGACY_REDIRECTS = {
@@ -93,27 +95,27 @@ export default {
     const ua = request.headers.get("User-Agent") || "";
     const uaClass = classifyUA(ua);
     const grabToken = url.searchParams.get("g");
+    const ref = url.searchParams.get("ref") || "";
 
     if (uaClass !== "other" && env.AI_SERVE_SIGNAL) {
       if (grabToken && uaClass === "ai-assistant") {
         const dotIdx = grabToken.indexOf(".");
         const sourceSlug = dotIdx > 0 ? grabToken.slice(0, dotIdx) : "";
-        // Keep the token (after the dot) so a chain hit joins to its origin grab
-        // record on `token` — yields time-to-activation, not just slug attribution.
         const token = dotIdx > 0 ? grabToken.slice(dotIdx + 1) : grabToken;
         env.AI_SERVE_SIGNAL.writeDataPoint({
-          blobs: ["chain", ideaSlug(url.pathname), sourceSlug, token, ua],
+          blobs: ["chain", pathSlug(url.pathname), sourceSlug, token, ua],
           indexes: ["chain"],
         });
       }
       env.AI_SERVE_SIGNAL.writeDataPoint({
-        blobs: [uaClass, ideaSlug(url.pathname), ua],
+        blobs: [uaClass, pathSlug(url.pathname), ua, ref],
         indexes: [uaClass],
       });
     }
 
-    if (grabToken) {
+    if (grabToken || ref) {
       url.searchParams.delete("g");
+      url.searchParams.delete("ref");
       request = new Request(url, request);
     }
 

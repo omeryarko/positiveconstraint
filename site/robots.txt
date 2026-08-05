@@ -39,8 +39,11 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-# Google (Gemini / AI training) & Apple
+# Google (Gemini / AI training & agentic browsing) & Apple
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Google-Agent
 Allow: /
 
 User-agent: Applebot-Extended

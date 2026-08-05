@@ -34,10 +34,11 @@ SELECT
   toDate(timestamp) AS day,
   blob1 AS class,
   blob2 AS idea_slug,
+  blob4 AS ref,
   count() AS hits
 FROM {dataset}
 WHERE timestamp > NOW() - INTERVAL '{days}' DAY
-GROUP BY day, class, idea_slug
+GROUP BY day, class, idea_slug, ref
 ORDER BY day DESC, hits DESC
 """.strip()
 
@@ -91,16 +92,23 @@ def main():
     rows = run_query(account_id, token, args.days)
 
     by_idea = {}
+    ref_hits = 0
     for r in rows:
         slug = r["idea_slug"] or "(no slug)"
-        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0, "chain": 0, "grab": 0})
+        by_idea.setdefault(slug, {"ai-assistant": 0, "ai-crawler": 0, "chain": 0, "grab": 0, "ref-llms": 0})
         cls = r["class"]
         by_idea[slug][cls] = by_idea[slug].get(cls, 0) + int(r["hits"])
+        if r.get("ref") == "llms":
+            by_idea[slug]["ref-llms"] += int(r["hits"])
+            ref_hits += int(r["hits"])
 
     print(f"Serve signal, last {args.days}d ({len(rows)} day/class/idea rows):\n")
-    print(f"{'idea':40s} {'Grabbed':>8s} {'Served':>8s} {'Chained':>8s} {'Crawled':>8s}")
+    print(f"{'idea':40s} {'Grabbed':>8s} {'Served':>8s} {'Chained':>8s} {'Crawled':>8s} {'via llms':>8s}")
     for slug, c in sorted(by_idea.items(), key=lambda kv: (-kv[1]["grab"], -kv[1]["ai-assistant"])):
-        print(f"{slug:40s} {c['grab']:>8d} {c['ai-assistant']:>8d} {c['chain']:>8d} {c['ai-crawler']:>8d}")
+        print(f"{slug:40s} {c['grab']:>8d} {c['ai-assistant']:>8d} {c['chain']:>8d} {c['ai-crawler']:>8d} {c['ref-llms']:>8d}")
+
+    if ref_hits:
+        print(f"\nSnippet-driven (via llms.txt): {ref_hits} total idea serves")
 
     chain_rows = run_query_sql(account_id, token, CHAIN_QUERY.format(dataset=DATASET, days=args.days))
     if chain_rows:
@@ -136,8 +144,8 @@ def main():
             with open(args.export) as f:
                 for line in f:
                     r = json.loads(line)
-                    seen.add((r["day"], r["class"], r["idea_slug"]))
-        new_rows = [r for r in rows if (r["day"], r["class"], r["idea_slug"]) not in seen]
+                    seen.add((r["day"], r["class"], r["idea_slug"], r.get("ref", "")))
+        new_rows = [r for r in rows if (r["day"], r["class"], r["idea_slug"], r.get("ref", "")) not in seen]
         with open(args.export, "a") as f:
             for r in new_rows:
                 f.write(json.dumps(r) + "\n")
