@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "positiveconstraint-dashboard",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-29",
+  "observability": {
+    "enabled": true
+  }
+}

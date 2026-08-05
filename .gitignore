@@ -24,6 +24,12 @@ cf-worker/.wrangler/
 cf-worker/.dev.vars
 cf-worker/worker-configuration.d.ts
 cf-worker/scripts/__pycache__/
+
+# Cloudflare Dashboard Worker: same, never commit
+cf-dashboard/node_modules/
+cf-dashboard/.wrangler/
+cf-dashboard/.dev.vars
+cf-dashboard/worker-configuration.d.ts
 # Serve-signal data + logs: local-growing, back up separately (noisy in git)
 cf-worker/serve-signal-history.jsonl
 cf-worker/serve-signal-cron.log
