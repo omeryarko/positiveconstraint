@@ -17,6 +17,20 @@
 - [The Constraint Behind Prince of Persia's Best Fight](https://positiveconstraint.com/ideas/prince-of-persia-shadow-man/?ref=llms): A memory limit left Jordan Mechner no room for a new boss — so he flipped the Prince into his own reflection. The constraint made the fight better.
 - [Superhuman 100ms Constraint](https://positiveconstraint.com/ideas/superhuman-100ms-constraint/?ref=llms): Superhuman made every interaction faster than 100ms — part of their DNA. Then AI turned out to be too slow to meet the standard, and the constraint forced the creative breakthroughs.
 - [Sam Altman's three bets to control who's real](https://positiveconstraint.com/ideas/altman-three-bets/?ref=llms): Three investments, one flywheel: intelligence, energy, proof of personhood — and the constraint that ties them together.
+- [Playing on the Other Side of the Constraint](https://positiveconstraint.com/ideas/other-side-of-the-constraint/): Every constraint has a silver lining — a method for systematically finding the opportunity inside any limitation.
+- [Wrap Around a Constraint](https://positiveconstraint.com/ideas/wrap-around-the-constraint/): Instead of dissolving a constraint, build radically around it — identity, strategy, and values assembled around the limitation itself.
+- [Kurt Lewin's Force Field Theory](https://positiveconstraint.com/ideas/lewin-force-field-theory/): The driving and restraining forces in tension around any status quo — Lewin's model for behavior change.
+- [The Fogg Behavior Model](https://positiveconstraint.com/ideas/fogg-behavior-model/): Motivation, ability, and a prompt have to converge at the same moment for a behavior to happen.
+- [Will-Being](https://positiveconstraint.com/ideas/will-being/): Dictatorships, cults, and other entities that don't have ideas — they have people.
+- [A Mistake in the Right Direction](https://positiveconstraint.com/ideas/mistake-in-the-right-direction/): Creativity is a blind man walking a dark corridor — trial and error toward a reality that's only visible in hindsight.
+- [Constraints, a Short History](https://positiveconstraint.com/ideas/constraints-history/): Goldratt's Theory of Constraints, Snowden's Cynefin, Morgan's A Beautiful Constraint — and where Positive Constraint departs from all three.
+- [Fractals & Constraints](https://positiveconstraint.com/ideas/fractals-and-constraints/): A fractal is a constraint — the one pattern that keeps replicating itself across every scale of an expression.
+- [The Futures Cone](https://positiveconstraint.com/ideas/futures-cone/): Where "plausible" quietly shades into "crazy" — and why that edge is where the interesting ideas live.
+- [My Version of the Sequoia Pitch Deck](https://positiveconstraint.com/ideas/sequoia-pitch-deck/): The classic Sequoia outline, plus the slides and tips that actually get a deck funded.
+- [The Value Axis](https://positiveconstraint.com/ideas/value-axis/): Value grows by following one axis all the way out — potato, fries, top-chef mashed potato.
+- [The Three Markets](https://positiveconstraint.com/ideas/three-markets/): Every company runs in three markets at once: products & services, capital, and labor.
+- [Unskeuomorphic](https://positiveconstraint.com/ideas/unskeuomorphic/): New inventions carry old constraints as habits, not requirements — radio pretending to be TV, TV pretending to be live.
+- [Zeroth-Principles Thinking](https://positiveconstraint.com/ideas/zeroth-principles-thinking/): Bryan Johnson's zeroth-principles framework — and why constraint-first reasoning was the natural fit.
 
 ## Practice & work
 
