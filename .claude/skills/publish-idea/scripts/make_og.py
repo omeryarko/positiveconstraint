@@ -36,7 +36,7 @@ def render_og(title, category_upper, summary, out_path, template=None):
             "--force-device-scale-factor=1", "--window-size=1200,630",
             "--virtual-time-budget=6000",
             "--screenshot=" + out_path, "file://" + html_path,
-        ], check=True, capture_output=True)
+        ], check=True, capture_output=True, timeout=30)
     finally:
         os.unlink(html_path)
     return out_path

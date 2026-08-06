@@ -195,6 +195,10 @@ h3 {
 p { margin: var(--space-lg) 0; }
 p:first-child { margin-top: 0; }
 
+article ul { margin: var(--space-lg) 0; padding-left: var(--space-lg); }
+article li { margin: var(--space-xs) 0; }
+article li::marker { color: var(--color-red); }
+
 .breadcrumb {
   font-family: var(--font-display);
   font-size: 13px;
@@ -317,6 +321,31 @@ blockquote {
 
 blockquote p { margin: 0; }
 blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; font-style: normal; color: var(--color-text-tertiary); font-family: var(--font-display); }
+
+.callout {
+  background: #FFF0F0;
+  border-radius: 8px;
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.callout-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-red-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.callout p { margin: 0; font-family: var(--font-body); font-size: 17px; font-style: italic; line-height: 1.5; color: var(--color-text-primary); }
+
+@media (prefers-color-scheme: dark) {
+  .callout { background: rgba(255, 64, 64, 0.1); }
+  .callout-label { color: #FF8080; }
+}
 
 .media-video {
   position: relative;

@@ -14,10 +14,10 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>My Version of the Sequoia Pitch Deck — Positive Constraint</title>
-<meta name="description" content="The classic Sequoia outline, plus the slides and tips that actually get a deck funded.">
-<meta property="og:title" content="My Version of the Sequoia Pitch Deck — Positive Constraint">
-<meta property="og:description" content="The classic Sequoia outline, plus the slides and tips that actually get a deck funded.">
+<title>Up Your Pitch — Positive Constraint</title>
+<meta name="description" content="An investor spends under two and a half minutes on your deck. Sequoia&#x27;s outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.">
+<meta property="og:title" content="Up Your Pitch — Positive Constraint">
+<meta property="og:description" content="An investor spends under two and a half minutes on your deck. Sequoia&#x27;s outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://positiveconstraint.com/ideas/sequoia-pitch-deck/">
 <link rel="canonical" href="https://positiveconstraint.com/ideas/sequoia-pitch-deck/">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://positiveconstraint.com/media/og/sequoia-pitch-deck.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="My Version of the Sequoia Pitch Deck — Positive Constraint">
+<meta property="og:image:alt" content="Up Your Pitch — Positive Constraint">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My Version of the Sequoia Pitch Deck — Positive Constraint">
-<meta name="twitter:description" content="The classic Sequoia outline, plus the slides and tips that actually get a deck funded.">
+<meta name="twitter:title" content="Up Your Pitch — Positive Constraint">
+<meta name="twitter:description" content="An investor spends under two and a half minutes on your deck. Sequoia&#x27;s outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.">
 <meta name="twitter:image" content="https://positiveconstraint.com/media/og/sequoia-pitch-deck.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,6 +195,10 @@ h3 {
 p { margin: var(--space-lg) 0; }
 p:first-child { margin-top: 0; }
 
+article ul { margin: var(--space-lg) 0; padding-left: var(--space-lg); }
+article li { margin: var(--space-xs) 0; }
+article li::marker { color: var(--color-red); }
+
 .breadcrumb {
   font-family: var(--font-display);
   font-size: 13px;
@@ -317,6 +321,31 @@ blockquote {
 
 blockquote p { margin: 0; }
 blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; font-style: normal; color: var(--color-text-tertiary); font-family: var(--font-display); }
+
+.callout {
+  background: #FFF0F0;
+  border-radius: 8px;
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.callout-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-red-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.callout p { margin: 0; font-family: var(--font-body); font-size: 17px; font-style: italic; line-height: 1.5; color: var(--color-text-primary); }
+
+@media (prefers-color-scheme: dark) {
+  .callout { background: rgba(255, 64, 64, 0.1); }
+  .callout-label { color: #FF8080; }
+}
 
 .media-video {
   position: relative;
@@ -685,12 +714,13 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
 
   <header>
     <div class="tag-category">FRAMEWORKS</div>
-    <h1>My Version of the Sequoia Pitch Deck</h1>
-    <p class="piece-summary">The classic Sequoia outline, plus the slides and tips that actually get a deck funded.</p>
+    <h1>Up Your Pitch</h1>
+    <p class="piece-summary">An investor spends under two and a half minutes on your deck. Sequoia's outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.</p>
     <div class="piece-meta">
       <span class="tag-label">pitching</span>
       <span class="tag-label">fundraising</span>
       <span class="tag-label">method</span>
+      <span class="meta-item">33 min read</span>
     </div>
 
     <div class="action-bar">
@@ -710,15 +740,568 @@ blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; 
   </header>
 
   <article>
-    <h2>The outline, plus what's missing</h2>
+    <p>An investor spends less than two and a half minutes on your deck before deciding whether you are worth a meeting.</p>
 
-    <p>Sequoia's pitch deck template is a good skeleton. It's still missing the
-slides that make investors lean in rather than nod politely — this is the
-extended version with those added, and notes on why each one earns its
-place.</p>
+    <p>You've spent months, maybe years, building something you believe in. You walk into the room, or send the deck, and nothing happens. No meeting. No follow-up. No second look.</p>
 
-    <p>The full piece is queued. If this is exactly the thing you were looking for,
-<a href="/ideas/contact/">say so</a> — it moves it up the list.</p>
+    <p>The problem, more often than not, is a mismatch.</p>
+
+    <p>Pitching your venture to investors is a financial sale. Where you see your life's work, investors see an investment opportunity. Investment opportunities aren’t measured in how hard you’ve worked or how passionate you are. They are measured in how big the upside is, what the risk profile is and how it’s managed, and whether the team can take it from A to Z. Once you realize it, creating a convincing deck gets easier.</p>
+
+    <p>Investors are people too. Their attention is as flawed as yours. You have to land the size of your promise without friction, in a convincing way, and it has to survive being retold when you are not in the room.</p>
+
+    <p>Most decks fail for a handful of reasons.</p>
+
+    <ul>
+      <li><strong>Overloaded slides.</strong> Too many ideas on a single slide. Each slide should make one point. The rest is supporting evidence.</li>
+      <li><strong>Missing information.</strong> The deck fails to cover something investors expect to find. All the right boxes need to be ticked.</li>
+      <li><strong>Broken flow.</strong> The slides don't build on each other in a logical order. Each one should add a building block to the picture forming in the investor's mind.</li>
+      <li><strong>Too many slides on the same idea.</strong> Once you've made your point, move on. As Saint-Exupéry put it, perfection is reached when there is nothing left to take away.</li>
+      <li><strong>Slides that don't earn their place.</strong> If it doesn't serve the upside, the risk, or the team, it doesn't belong.</li>
+    </ul>
+
+    <p>Below is Sequoia's famous framework with a few additions from Positive Constraint. A dozen or so slides, each carrying one idea. The order builds the upside, covers the risks, shows how you win, and shows who is behind it.</p>
+
+    <p>Two slides, the 2x2 and the hockey stick, are the upgrade most decks miss. They set how you're positioned to win, plot your path through the inflection points, and hand you your purpose. Done right, the deck doesn't just pitch. It sets you up to win.</p>
+
+    <h3>How to use this guide</h3>
+
+    <p>Take your existing deck and drop each slide under the matching section below. See what's missing and where you have excess.</p>
+
+    <p>AI tools can help you collect your information and put it in order, but you'll need to steer them and make conscious strategic choices at each slide. The tool organizes. You decide.</p>
+
+    <p>If you have questions or need help, <a href="/ideas/contact/">reach out</a>.</p>
+
+    <h2>Company Purpose</h2>
+
+    <p><em>What you stand for, and how people remember you</em></p>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Start here: define your company in a single declarative sentence. This is harder than it looks. It’s easy to get caught up listing features instead of communicating your mission.</p>
+    </div>
+
+    <p>Sequoia says to "start here," and they mean in the deck. This slide comes first. Your audience needs context before anything else. What kind of company is this? What world does it live in?</p>
+
+    <p>Your purpose is your identity in a sentence. Who you are. What you do. What sets you apart. It's the line that sticks after the deck closes. If investors remember one thing from the meeting, it should be your purpose and how you made them feel by the end.</p>
+
+    <h3>Don't start here</h3>
+
+    <p>Purpose is the first slide in the deck but one of the last you should write. Work through the rest of the slides first. Purpose is the outcome of that process, not the starting point.</p>
+
+    <h3>How to extract purpose</h3>
+
+    <p>Some founders know their purpose right away. Others need to dig. We will revisit the purpose slide after we cover the positioning in the “Competition / Alternatives” slide.</p>
+
+    <h2>Problem</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Describe the pain of your customer. How is this addressed today and what are the shortcomings to current solutions.</p>
+    </div>
+
+    <h3>Villainize the Problem</h3>
+
+    <p>The second slide in the Sequoia template is the Problem slide. Its purpose is to make the Solution slide, one of the most important slides in the deck, shine. To do that, we should take a lesson from Hollywood.</p>
+
+    <p><em>A hero is only as good as the villain.</em></p>
+
+    <p>Would Clarice be so brave if Hannibal hadn't given us the chills? What made Batman so formidable if not the Joker? Who would Luke Skywalker be without Darth Vader? A solution is only as good as its problem.</p>
+
+    <p>If our goal is to make the solution the hero, what better way than to villainize the problem? The problem slide is the backdrop to your solution.</p>
+
+    <h3>Painful problem</h3>
+
+    <p>To be a serious villain, the problem needs to be meaningful. Customers struggle to reach their goals because of it. It stands in their way. They've not only acknowledged the problem but dedicated real time, resources, energy, and manpower to address it. That's about as strong a signal as you can get that something is a serious pain.</p>
+
+    <h3>Mark the Wallet</h3>
+
+    <p>It's easy to get carried away and tie your solution to a big narrative. Big narratives are about huge, common pain. The climate crisis. The mental health of kids today. Who wouldn't want to help make our economy greener or help the next generation face the challenges we're leaving behind?</p>
+
+    <p>But while solving for a big narrative opens hearts, it doesn't necessarily open wallets. It's not enough to identify the pain. You must figure out who's going to pay for a solution. You have to mark the wallet.</p>
+
+    <p>Who has the incentive to make the world greener? Who suffers now and is looking hard for a solution? Who might lose their job if this problem isn't solved?</p>
+
+    <p>The problem needs to be framed from the perspective of the paying customer who has the pain.</p>
+
+    <h3>Naming the demon</h3>
+
+    <p><em>Intimate knowledge of the problem, or a unique view of it, can lead to breakthroughs.</em></p>
+
+    <p>According to folklore, humans can control a demon by learning its name. Before you propose any solution, you must first outline, define, and name the problem. That's not an easy task.</p>
+
+    <p>People rarely define their problems before rushing to solve them. And more often than not, they pick the wrong ones. G. K. Chesterton framed it well:</p>
+
+    <blockquote>
+      <p>"It isn't that they cannot find the solution. It is that they cannot see the problem."</p>
+    </blockquote>
+
+    <p>If you want to see the problem, take a lesson from Einstein:</p>
+
+    <blockquote>
+      <p>"If I had an hour to solve a problem, I'd spend 55 minutes thinking about the problem and five minutes thinking about solutions."</p>
+    </blockquote>
+
+    <p>Einstein knew that if you tame the problem, study its angles, sit with it long enough, the solution will nearly reveal itself. You won't need more than those five minutes.</p>
+
+    <p>Different problems call for different solutions. Once something shifts in how you define the problem, your solution shifts too. Nuances matter.</p>
+
+    <p>This discovery process isn't called "Naming the demon" for nothing. <a href="/ideas/core-constraints/">Defining the problem well</a> can make or break your startup. Build a solution to the wrong problem and you'll burn precious runway and hurt your chances of survival. That demon can kill.</p>
+
+    <h3>Elements of Value</h3>
+
+    <p>A value proposition describes an outcome the customer can expect. Your solution describes how that outcome is achieved. Both must speak in the customer's language.</p>
+
+    <p>For the problem to serve as a proper villain to the solution's hero, it needs to speak that same language. If the pain is slow execution, the solution speeds it up. If the pain is a risky business environment, the solution removes the risk. Problem and solution must mirror each other. Frame the problem in the customer's terms and the solution slide will answer it naturally.</p>
+
+    <p>A problem cannot be that something is "complex." Complex is not a pain. For business decision-makers, making something less complex isn't necessarily valuable. Dealing with complexity is what they pay their engineers for.</p>
+
+    <p>But translate that complexity into business terms and the pain becomes clear. Complexity drives up costs. It slows a company's ability to create, innovate, and compete. It adds risk. And it can make for a horrible customer experience. Now you're describing the pain in terms the business already cares about.</p>
+
+    <p>It's easier to communicate a problem and agree on its impact when it's expressed in terms your customer already uses. Your solution will need to speak in these terms to show the value it creates. Your problem slide needs to use the same terms to show where it hurts.</p>
+
+    <p>For businesses, those terms tend to fall into a handful of categories:</p>
+
+    <ul>
+      <li>Revenue: growth, new income streams, monetization</li>
+      <li>Costs: operational spend, inefficiency, waste</li>
+      <li>Velocity: speed of execution, time to market, adaptability</li>
+      <li>Risk: exposure, uncertainty, downside</li>
+      <li>Customer Experience: satisfaction, retention, loyalty</li>
+      <li>Regulation: compliance burden, legal exposure</li>
+    </ul>
+
+    <p>For consumers, it gets trickier. People tend to decide with their gut first and rationalize later. But you can still frame value in terms that resonate:</p>
+
+    <ul>
+      <li><strong>Time</strong>: daily routines, waiting, wasted effort</li>
+      <li><strong>Comfort</strong>: ease of use, convenience, friction</li>
+      <li><strong>Control</strong>: choice, autonomy, transparency</li>
+      <li><strong>Safety</strong>: security, privacy, peace of mind</li>
+      <li><strong>Freedom</strong>: access, independence, mobility</li>
+      <li><strong>Empowerment</strong>: confidence, capability, self-expression</li>
+      <li><strong>Experience</strong>: enjoyment, delight, memorability</li>
+    </ul>
+
+    <p>These are the most common <a href="/ideas/value-axis/">value dimensions</a>. Start here if you're not sure. It doesn't mean you can't highlight something else, as long as it's simple for your customer to understand how it affects their business or their life.</p>
+
+    <h3>Final Word</h3>
+
+    <p>The Problem slide is one of the most difficult slides to crack. The good news is that getting the Problem slide right isn't just the perfect backdrop for the solution. It's the key to everything else.</p>
+
+    <h2>Solution</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Explain your eureka moment. Why is your value prop unique and compelling? Why will it endure? And where does it go from here?</p>
+    </div>
+
+    <h3>Like a glove</h3>
+
+    <p>Now that you have your villain, it’s time to unveil your hero. The ideal solution is a reflection of the most painful aspects of the customer’s problem. It’s described in a way that highlights its value to the customer. It solves a real pain for which the customer is willing to pay.</p>
+
+    <p>By addressing the exact pain points from the Problem slide, you're fitting the solution to the problem like a glove. And with a tight fit, you spend less time, money, and effort getting customers to buy.</p>
+
+    <h3>Compelling value</h3>
+
+    <p>So you have a fitting solution. Why should customers care?</p>
+
+    <p>That's the thing with startups. When you're the new kid on the block, the latest player in the market, there are plenty of reasons not to buy your product. Maybe you won't be around next year, so why start a relationship? You have no track record and no proof of success. Why should customers take the risk? Your product still struggles with scale or quality, they will be at risk of losing money, or worse.</p>
+
+    <p>The answer must be that they simply cannot ignore you. That your solution is so much better than their existing way of doing things, it's not a matter of preference. It's an order of magnitude better. A 10x move.</p>
+
+    <p>If they want to achieve whatever they're after, they must not ignore you. Your solution is compelling. That's why.</p>
+
+    <h3>Unfair Advantage</h3>
+
+    <p>Almost every business needs a way to maintain its edge, to protect against the competition. At some point, someone will ask what you’re going to do to defend it. What moats protect you from potential competitors? How will you make it nearly impossible for them to copy?</p>
+
+    <blockquote>
+      <p>“In capitalism, people are going to try to take that castle from you so you want a moat around it and you want a knight in that castle who is pretty darn good at warding off marauders.”</p>
+      <cite>— Warren Buffett</cite>
+    </blockquote>
+
+    <p>Are you going to win with a brand like Louis Vuitton? With cost efficiency and low price like Walmart? High switching cost like Apple? Unique patents or secrets like TikTok’s algorithm? Network effects like WhatsApp, Airbnb, and so many others?</p>
+
+    <h3>Crazy Factor</h3>
+
+    <blockquote>
+      <p>"For an idea that does not first seem insane, there is no hope."</p>
+      <cite>— Albert Einstein</cite>
+    </blockquote>
+
+    <p>Not all solutions are created equal. Some are natural next steps, others are leaps into the unknown. <a href="/ideas/futures-cone/">The Futures Cone</a> is a useful way to think about where yours falls. It maps outcomes from the expected to the unthinkable:</p>
+
+    <ul>
+      <li><strong>Plausible</strong>: solutions that are expected given the natural dynamics of the market. From the moment cryptocurrencies were invented, it was a matter of time before exchanges and other financial entities formed around them. Tesla is a plausible solution.</li>
+      <li><strong>Possible</strong>: solutions that are possible, though no one would have conceived them beforehand. People don't imagine such ideas when they think of the future, but they don't think they're crazy once they hear them. Uber and the iPhone are good examples.</li>
+      <li><strong>Preposterous</strong>: solutions so crazy that even if you thought of them, you wouldn't believe they were possible. Airbnb wasn't a natural evolution of the accommodation market. Inviting strangers to sleep in your house was unthinkable at the time. Airbnb made the preposterous a reality.</li>
+    </ul>
+
+    <p>My goal here isn't to make you all chase crazy ideas. My goal is to convince you not to be afraid of them, and not to worry if your idea isn't crazy enough. Great businesses can be built regardless of how "crazy" they are.</p>
+
+    <p>That said, know that your solution's crazy factor will be a lens through which investors profile the opportunity you're pitching. Some like it bold and crazy. Others seek the relatively safe and simple. Making sure your ideal investor fits your needs is vital.</p>
+
+    <h2>Why now?</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>The best companies almost always have a clear why now? Nature hates a vacuum—so why hasn’t your solution been built before now?</p>
+    </div>
+
+    <p>Airbnb, Slack, Dropbox were forged during a recession. Shopify and Teladoc bloomed during the pandemic<em>.</em> Anthropic and OpenAI thrive thanks to the AI age.</p>
+
+    <p>External forces such as recessions, pandemics, technological breakthroughs, or shifts in how people behave can improve your chances and sharpen your promise. For some of the best companies, timing was a great part of their success.</p>
+
+    <blockquote>
+      <p>"Never let a good crisis go to waste."</p>
+      <cite>— Churchill</cite>
+    </blockquote>
+
+    <p>Great timing gives investors another reason to believe you can succeed. If you're too late, others have already taken a position in the market or found a good reason not to be there. If you're too soon, you won't have a market.</p>
+
+    <p>So timing is key. But timing of what? In some cases, a new problem appears, like a global pandemic. In others, new technology makes new solutions possible, like recent breakthroughs in AI. Your "Why Now" can be tied to the problem, the solution, or both. AI, for example, both poses a problem and offers an opportunity.</p>
+
+    <p>It doesn't take a global event to start a company. Even small shifts will do. But the more <a href="/ideas/complex-new-world/">powerful the external force</a>, the more opportunities it creates.</p>
+
+    <p>Figure out how to harness the latest forces in your market to benefit your value proposition.</p>
+
+    <h2>Market Potential</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Identify your customer and your market. Some of the best companies invent their own markets.</p>
+    </div>
+
+    <p>Your pitch deck sells an investment opportunity to people who think in financial terms. The very first thing they consider is how big this can get. For VCs, for example, unless the upside is huge, they won't touch it. That's how their model works. Other investors may have different thresholds, but the question is the same: is the opportunity big enough?</p>
+
+    <p>This slide has one job. To make the case that your company is pursuing a massive potential upside. That the reward is sizable. The investment lucrative.</p>
+
+    <p>Andy Rachleff, a veteran venture investor, put it plainly:</p>
+
+    <blockquote>
+      <p>"The #1 company-killer is lack of market. When a great team meets a lousy market, market wins. When a lousy team meets a great market, market wins. When a great team meets a great market, something special happens."</p>
+    </blockquote>
+
+    <p>A great market is a market with lots of real potential customers. More precisely, the size of a market is the total volume of potential sales within a given market over a specific time frame (usually one year). It defines the maximum revenue available to all businesses operating in that space.</p>
+
+    <p>Two things to note. First, market size is about how many potential buyers are out there with their wallets open, willing to make a purchase. It's not about valuation or how much things are worth.</p>
+
+    <p>Second, it's about your specific category, not a general market. If you're selling a mental health solution for kids, your market size does not include health services for adults.</p>
+
+    <h3>TAM, SAM, SOM</h3>
+
+    <p>The most common format for this slide uses three nested circles: TAM, SAM, SOM.</p>
+
+    <img class="media-img" src="/media/tam-sam-som.png" alt="TAM, SAM, and SOM shown as three nested circles" />
+
+    <ul>
+      <li><strong>Total Addressable Market (TAM)</strong>: the total market demand for a product or service.</li>
+      <li><strong>Serviceable Addressable Market (SAM)</strong>: the segment of the TAM targeted by your products and services, within your geographical reach.</li>
+      <li><strong>Serviceable Obtainable Market (SOM)</strong>: the portion of SAM you can realistically capture.</li>
+    </ul>
+
+    <p>Here's a simple example to explain the differences. Say you sell napkins to fast food restaurants. The TAM is every fast food restaurant in the world. But if you only operate in New York City, your SAM is the fast food restaurants in NYC. And your SOM is the share of those restaurants you can actually win as customers, depending on how aggressively you can win market share.</p>
+
+    <p>Ideally, the SOM needs to reflect very high revenue (say, $50m or $100m) in a very short time. Cybersecurity startup Wiz reached $100M ARR in 18 months. Lovable did it in 8. It's not a competition, but investors have learned to expect a huge upside fast.</p>
+
+    <h3>Prove the Upside</h3>
+
+    <p>A common mistake is thinking that the Market Potential slide must deliver a TAM, SAM, SOM answer. It doesn't. While it's the right format in many cases, it's not always.</p>
+
+    <p>Investors want to see a huge potential upside. Market size is just one way to do it. Find a more convincing way to prove the upside, and no one will care about market size. How to give potential investors a palpable feeling of a huge potential upside? It depends on the opportunity.</p>
+
+    <p>Some of the best companies never used TAM, SAM, SOM. Uber didn't quote a global transit market figure. They anchored in San Francisco's existing taxi and limo spend, then argued that removing friction wouldn't just capture that market, it would expand it. Facebook didn't size the ad market. They showed that 70% of students on targeted campuses signed up within weeks and over 60% logged in every day. The ad dollars would follow the attention.</p>
+
+    <p>The pattern is the same. Start with a number your audience already believes, then show what happens when your solution hits it. If you can do that convincingly, no one will ask for nested circles.</p>
+
+    <h2>Competition / Alternatives</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Who are your direct and indirect competitors. Show that you have a plan to win.</p>
+    </div>
+
+    <p>Before we get into how to structure this slide, let's zoom out to understand its purpose.</p>
+
+    <p>The deck started with a painful problem and continued with the ideal solution to address it. Remember, one sign that a problem is truly painful is when customers invest real time, energy, and resources trying to solve it. All those different ways customers have tried to solve the problem over the months and years are exactly the alternatives you want to include in this slide.</p>
+
+    <p>The question is what makes your solution distinct and not just another also-ran. What makes it stand out in a landscape of existing solutions?</p>
+
+    <p>There is an adage in the startup world that a solution needs to be 10x better than its alternatives. That no matter how strong a company is, without a significant advantage over competitors, it will be very hard to convince customers to ditch whatever they're using and move, with all the friction involved.</p>
+
+    <p>Microsoft, with all its resources, talent, and distribution, lost the mobile race. Windows Phone never offered 10x value over Android and iOS that would make it worthwhile for users and developers to switch. Meta launched Threads with 100 million signups in five days, riding Instagram's massive distribution. But it couldn't hold them. It didn't offer enough over X to make the switch worth it. Distribution alone wasn't enough without a 10x difference.</p>
+
+    <p>So when Sequoia says "show you have a plan to win," it doesn't mean a roadmap. It means show how you're 10x better than every other solution the customer sees when they look for a way to address their pain. What are the strengths that will differentiate your solution and help you win the market?</p>
+
+    <h3>The 2x2 Matrix</h3>
+
+    <p>One of the best and most common ways to present the competitive landscape is the 2x2 matrix. It breaks the solution space into four quadrants, each defined by two axes. By convention, your solution goes in the top-right quadrant.</p>
+
+    <p>Here's a common joke about how it looks.</p>
+
+    <img class="media-img" src="/media/pitch-deck-2x2-joke.png" alt="A joke 2x2 chart with axes from “really shit” to “super awesome,” with an arrow pointing to “us” in the top-right corner" />
+
+    <p>If that were all there was to it, the 2x2 would be a useless exercise. Luckily, it holds real promise once we understand each of its elements.</p>
+
+    <p>The matrix takes just two traits or characteristics of all the solutions and alternatives in the market and organizes them across four quadrants. Each quadrant represents a section of the competitive landscape that has or lacks those traits.</p>
+
+    <p>Adding recently funded competitors to the matrix gives VCs something they actively look for: validation. The fact that other investors are interested in the space is a positive signal. You win because you're selling a better narrative than they are.</p>
+
+    <p>Your solution goes in the top-right quadrant. Why? Convention. People expect it there, the same way they expect dates in a certain format, oil priced in dollars, and names capitalized. Remember, your deck needs to convey the greatest impact with the least friction. Investors expect to find you in the top-right corner. Don't make them look for you.</p>
+
+    <p>So if we know where our solution goes, what's the big deal about the 2x2?</p>
+
+    <p>The answer is the choice of axes.</p>
+
+    <p>The joke uses "awesome" and "sucks," and maybe that's funny and true in a way, but what makes the 2x2 so powerful is that it lets you state a new narrative about how the market should be broken down. The 2x2 doesn't just sell a solution. It sells a worldview.</p>
+
+    <p>To make the most impact, you have to convince investors there is a new way to see the market, and your choice of axes is how you do it. The wisdom to find the right axes lies in your value proposition and the nature of the solution you're proposing.</p>
+
+    <p>Remember the Elements of Value from the Problem slide? Those are a good place to start. Your axes should be the two most distinguishing qualities of your value proposition, the ones where you have a 10x advantage over every other solution and alternative in the market. You don't pick them at random. You pick them because they're where you win.</p>
+
+    <h3>Example</h3>
+
+    <p>A predictive maintenance startup placed IoT sensors on rotating machines, fed the readings into an AI model, and produced insights on machine status along with instructions on what needs to be fixed or replaced.</p>
+
+    <p>During value discovery, we interviewed key stakeholders and potential customers and found that two things mattered to them above all else. First, the solution didn't require a heavy investment in time, resources, or training to get up and running on the production floor. Second, the insights it produced were so accurate and simple that machine operators and technicians could act on them directly, without going through layers of analysts and managers. It removed a lot of friction from the process.</p>
+
+    <p>Those two findings gave us the axes for the 2x2. One axis was Lean versus Operationally Heavy, measuring how much overhead it takes to install and use the solution. The other was Actionable versus Low Impact, measuring how directly the output leads to action on the floor.</p>
+
+    <p>Note how by choosing these specific axes, we've created a new narrative for how the market should be segmented. This isn't "we're cooler and super awesome." This is a new way to look at the problem. Maintenance leaders are seeking lean overhead and actionable insights delivered straight to technicians on the production floor. That reframes the entire competitive landscape.</p>
+
+    <p>Refining this message leads to another profound insight. If you look carefully, you'll notice that the 2x2 reveals your company's purpose. In our example, the purpose is to "provide accurate, actionable predictions in the leanest possible way." Whenever the company faces a tough decision on what to do next, it can count on that statement to guide it.</p>
+
+    <p>The other quadrants tell the story of why existing alternatives fall short. Solutions that are easy to deploy but lack impact, like vibration analysis conducted by human experts, land in the top-left. Simple plug-and-play, but not enough value. Solutions that deliver strong insights but require heavy investment in infrastructure, manpower, and training land in the bottom-right. And legacy solutions that demand both heavy investment and deliver poor results sit in the bottom-left.</p>
+
+    <p>In rare cases, two dimensions won't feel like enough. What if you have three strong differentiators? While some believe a Venn diagram can help, I'd strongly advise against it. The 2x2 isn't just a visual tool. It defines your positioning, how you want the market to see you, with deep implications for your company's identity and strategy. Trying to maintain a 10x edge across too many fronts and basing your purpose on too many factors is a recipe for losing focus.</p>
+
+    <p>And while Venn diagrams can work in rare cases, comparison tables are definitely the wrong approach for this slide. They manipulate feature lists and fail to craft the narrative you need to convince investors you're going to win.</p>
+
+    <img class="media-img" src="/media/rolex-vs-frog-watch.png" alt="A comparison-table joke: a frog watch beats a Rolex because it tells time, is affordable, and is a frog" />
+
+    <p>The 2x2 is a powerful tool. It communicates how you understand the market's problem, how you carve a new narrative for it, why there's a gap, and how you intend to fill it. Get this slide right and you'll walk away with more than a competitive edge. You'll have your positioning, and from it, your purpose.</p>
+
+    <h2>Growth Strategy</h2>
+
+    <p><em>This slide is not part of the original Sequoia template.</em></p>
+
+    <p>The original template has a Business Model slide, which we'll cover next. But the Business Model slide is about how to make money from the value you create. Growth Strategy is about how to grow that value fast. These are two different things, and the growth story is too important to squeeze into a slide about revenue.</p>
+
+    <blockquote>
+      <p>"A startup is a company designed to grow fast."</p>
+      <cite>— Paul Graham</cite>
+    </blockquote>
+
+    <p>If the purpose of a startup is to grow fast, the purpose of this slide is to show investors you know how. The Growth Strategy slide, together with the 2x2, is considered by some investors to be the most important in the deck.</p>
+
+    <h3>What this slide needs to prove</h3>
+
+    <p>First, that you understand the rules of the game. Growth isn't a bonus. It's the entire point. For bootstrapped teams, a detailed growth strategy might be a luxury. For venture-backed ones, it's a necessity. Capital is an ingredient of growth, and you can't get it unless you convince an outsider your venture can grow fast and big.</p>
+
+    <p>Second, that you've invested real time thinking about what fast growth requires. Plotting your growth helps reduce risk. At each stage, you become more informed about the obstacles, the goals, and the potential keys to success. These focus points are growth-driven, not post-failure afterthoughts.</p>
+
+    <p>Third, that your efforts compound. You create, act, and build with compounding effects in mind. Customer acquisition, supply, talent, capital, and the value you create for customers. If your judgment is right, these compound over time.</p>
+
+    <p>Fourth, that your actions today are optimized for growth. Your limited resources, time, and energy are focused on growth-driven goals. You understand that your bold mission and tight constraints mean you can't afford to invest anywhere else.</p>
+
+    <p>Predicting and plotting how you intend to grow lets you take smarter actions today. By looking beyond the immediate challenges, you can discover insights that help you better focus your efforts now.</p>
+
+    <h3>The Hockey Stick</h3>
+
+    <p>The most common way to make the case for a strong growth strategy is the hockey stick chart. It's popular in startups, but different people see and build it differently. Here's how I think about it.</p>
+
+    <h3>North Star KPI</h3>
+
+    <p>The Y-axis of your hockey stick has to be your north star KPI, and it has to represent real customer value. United Airlines measures Revenue per Seat Mile. Airbnb measures Nights and Experiences Booked. Netflix measures Total Hours Watched per Subscriber.</p>
+
+    <p>Your choice of north star tells a lot about how well you understand the customer's problem, what solution they need, and what value you create for them. For a deliveries startup, measuring "Number of Deliveries" is not the same as "Total Delivery Miles" or "On-Time Deliveries." Each tracks different customer value, created by different solutions, solving different problems. This is why nailing the problem, naming your demon, is so important.</p>
+
+    <p>A common mistake is setting revenue as your Y-axis. Don't. Revenue is a derivative of customer value, not the value itself. Build the chart around your north star first. Plot your growth plan on it. Then, if investors want to see money, convert it. If your north star is Nights and Experiences Booked, multiply by the average booking price. If it's On-Time Deliveries, multiply by the average delivery fee. You can replace the Y-axis with monetary value or add a second Y-axis alongside the north star. Either way, the growth plan should be built on customer value. The business model, which we'll cover in the next slide, shows how you intend to turn that value into revenue.</p>
+
+    <h3>Inflection Points</h3>
+
+    <blockquote>
+      <p>"An inflection point is an event that changes the way we think and act."</p>
+      <cite>— Andy Grove</cite>
+    </blockquote>
+
+    <p>As a company grows, it changes. How you grew in the first phase is not how you'll grow in the second. To build the hockey stick, draw 3-4 points on the chart, each 10x the previous one. Using the deliveries example again, that might be 100 deliveries per month, then 1,000, then 10,000, then 100,000. Each is an inflection point after which the company changes how it operates to reach the next milestone.</p>
+
+    <p>Getting to 100 deliveries per month might mean working with 1-2 restaurants and 5 drivers. Scaling to 1,000 means more restaurants, more drivers, and probably a technology layer to track them all. Scaling to 10,000 requires a salesforce across multiple cities to onboard restaurants and drivers, and the capital to fund it. As the company grows, it changes how it creates value and grows towards the next milestone.</p>
+
+    <h3>Key Events and Assets</h3>
+
+    <p>In each phase, indicate how the following come into play:</p>
+
+    <ul>
+      <li><strong>Customer Acquisition</strong>. Creating demand, distribution, partnerships, channels, geographic expansion, and everything else that brings customers to your door.</li>
+      <li><strong>Supply</strong>. The ability to meet that demand. Production, scale, logistics, distribution of goods or services.</li>
+      <li><strong>Talent</strong>. Sales, marketing, engineering, support, finance. Who you need and when.</li>
+      <li><strong>Capital</strong>. Debt, venture capital, and other funding needed to fuel each phase.</li>
+      <li><strong>Value Created</strong>. New products, services, growth engines, upsells. How the value you offer customers grows alongside the business.</li>
+    </ul>
+
+    <p>This is a lot of information for a single slide, so don't overdo it. Only the high-level, strategic points belong here. The rest should be readily available elsewhere, in the appendix, narrated, or documented separately.</p>
+
+    <h3>Systematic De-risking</h3>
+
+    <p>Your growth strategy needs to show how you intend to remove risk as you grow. The first phase represents proof of value. The second is about repeatability. Then the ability to recruit talent, raise funds, and scale operations. Each milestone, when reached, removes a layer of risk from the investment.</p>
+
+    <h3>Backcasting</h3>
+
+    <p>Once you've plotted how you intend to grow big and fast, you can backcast your actions. You know how to deploy capital, when to hire, what technology you need, and when. The hockey stick isn't just a chart you show investors. It's a tool that tells you what to do now. It’s your strategy.</p>
+
+    <h3>Limitations</h3>
+
+    <p>Don't treat this as a strict plan. Treat it as a thought exercise in what's needed to scale and unlock growth. This strategy highlights what is necessary, not precisely when, and it will change over time. But going through this exercise shows investors you've given deep thought to how you systematically remove risk from the table.</p>
+
+    <p>The X-axis is time, but how you're going to reach each milestone, and a general sense of timeline, matter more than the precise dates.</p>
+
+    <h2>Business Model</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>How do you intend to thrive?</p>
+    </div>
+
+    <p>If you've done the work on the 2x2 and the hockey stick, this slide should be simple. You've already defined the customer value you create. Now show how that value converts into money.</p>
+
+    <p>But customer value doesn't always convert neatly into money. Netflix charges a fixed subscription across three tiers, no matter how many hours you watch. Ten hours or a thousand, same price. A delivery might cost the same regardless of distance. The ratio between value created and revenue captured is rarely 1-to-1.</p>
+
+    <p>This is why nailing the problem matters here too. "On-Time Deliveries" may call for a different business model and allow better value capture than "Number of Deliveries." The north star you chose shapes the business model that fits it.</p>
+
+    <p>This slide needs to show how you capture revenue from the value you create, what the pricing model is, and whether you're considering alternatives to test along the way.</p>
+
+    <p>The tricky part isn't explaining the model. It's defending your choice. You need to show that it's sound, healthy, easy to understand, and that it supports growth.</p>
+
+    <p>Customers and investors both like simple business models. If yours is innovative, that's fine, but you'll need to convince them of its validity and promise. If it's conventional, don't overthink it. A proven model applied to a new kind of value is a strong combination.</p>
+
+    <h2>Team</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>Tell the story of your founders and key team members.</p>
+    </div>
+
+    <p>In the previous slides, we've established the promise and the challenges along the way. The upside and the risks. The more calculated the risks and the bigger the upside, the better the chances investors will favor the opportunity.</p>
+
+    <p>But a crucial question remains. Can this team take it from A to Z?</p>
+
+    <p>A great team that executes well and overcomes challenges together is the first product a startup creates. Investors know this. Your market potential sells them the upside, your growth strategy shows how you manage risk, and the team slide proves you're the ones who can pull it off.</p>
+
+    <h3>Who belongs on this slide</h3>
+
+    <p>This slide is about the strategic executive members who have a crucial stake in making it successful. Not the ten engineers and team members who can be replaced tomorrow. The key founders. The leaders whose skills and experience map directly to the company's ability to win.</p>
+
+    <p>If you're claiming an unfair technological advantage, how is it reflected in your team? Do you have a strong technical leader? If you're entering a regulated market, do you have someone who knows the regulatory landscape from the inside? Every claim you've made in the deck should have a person behind it on this slide.</p>
+
+    <h3>What investors look for</h3>
+
+    <p>Investors want to learn that this team has done great things in the past, worked together, shipped together, and overcome problems together. As YC's admissions philosophy puts it, the best indicator of someone doing exceptional things in the future is whether they've done exceptional things in the past. Everyone has unique experiences. Highlight them.</p>
+
+    <p>They also want to know that this team is in it for the mission. Are these founders missionaries or mercenaries? What compels them to push forward?</p>
+
+    <h3>Solidify your story</h3>
+
+    <p>The team slide is another opportunity to reduce risk and solidify your positioning. Remember the 2x2 axes and how they help you deliver 10x value to the customer? Each of your key members should have experience that maps to one of those axes.</p>
+
+    <p>For example, a FoodTech startup making plant-based eggs. The CEO has built large-scale food manufacturing companies for major corporations. The Chief Science Officer is a renowned chef who specializes in creating culinary experiences. The COO is a savvy food business veteran who knows the customers deeply. The COO and CSO are a married couple who worked together for a decade before starting this company. Together, their stories and backgrounds prove they can deliver a scalable and superior experience to customers they know well.</p>
+
+    <p>Don't romanticize your founders and don't bore investors with backstories and dreams. Use the team slide to solidify your story, your positioning, and your chances of making it big.</p>
+
+    <h3>Placement</h3>
+
+    <p>This is the 9th slide in our order. But investors care about the team so much that it's worth placing a lighter version right after the Purpose slide and before the Problem. That early appearance quiets one of the biggest concerns investors have and frees their attention to take in the rest of the pitch.</p>
+
+    <p>The full version stays here, where it compounds the effect of everything that came before it. By this point in the deck, investors have seen the problem, the solution, the market, the competition, and the growth strategy. Now the team slide drives the point home. This is the best team to deliver on this particular promise.</p>
+
+    <h2>Financials</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>If you have any, please include.</p>
+    </div>
+
+    <p>Sequoia's description sounds harmless. "If you have any, please include." Don't be fooled. This slide can be a trap if you don't think it through.</p>
+
+    <p>In the AI age, getting a product off the ground, reaching customers, and generating revenue can happen faster than ever before. If you could have numbers and don't, investors will notice. You need a very good reason not to have them.</p>
+
+    <p>Remember, investors think in numbers. They understand where you want to go, but they'll want to see the hard numbers that show how you've been doing to date. Revenue, burn rate, headcount. These give investors a snapshot of where the business stands and how responsibly you're running it.</p>
+
+    <p>The more your numbers support your earlier claims about market potential, risks, and a team that can deliver, the stronger this slide becomes. And the reverse is true. Numbers that contradict your story will unravel everything you've built up to this point.</p>
+
+    <p>Be honest and conservative. Investors will hold you to every number on this slide. Overpromise here and you'll be penalized for it later, either in due diligence or in the next round when you've missed your own targets. Better to say you're running proof-of-concept engagements now and surprise them with revenue later than to promise revenue and come up short.</p>
+
+    <p>And be careful about the revenue you do show. Charging a small fee from design partners might seem like smart validation, but investors will extrapolate it. How many customers like that exist, times the low fee, equals a cap on your upside. You've just put a ceiling on the dream. Instead, take on design partners for free or at cost. Go after the biggest names for validation, not for revenue. Keep the upside uncapped.</p>
+
+    <p>If the numbers support it, this is also a good place to show frugality and sound judgment. Show that you know how to do more with less. That your spending is deliberate and growth-driven.</p>
+
+    <p>If there are meaningful constraints that shape your financials, mention them. High wages in your market, the need to be near demand areas, regulatory costs. These aren't weaknesses. They show investors you understand the realities of your business and have factored them into the plan.</p>
+
+    <h2>Vision</h2>
+
+    <div class="callout">
+      <span class="callout-label">SEQUOIA’S DESCRIPTION</span>
+      <p>If all goes well, what will you have built in five years?</p>
+    </div>
+
+    <p>Investors have causes they want to back and a worldview they wish to see come to life. They aren't just crunching numbers. As human beings, they want to be part of something big, to disrupt an industry, to push the world forward. They have an agenda.</p>
+
+    <p>What are you building towards? Why should people care? What would make you get out of bed in the morning?</p>
+
+    <p>"Creating a better world" isn't good enough. You have to be authentic in your vision and show why the world is going to be better and how.</p>
+
+    <p>How do you intend to push the world forward? How would the world be better off with what you've built in a few years?</p>
+
+    <h3>What makes a strong vision</h3>
+
+    <p>A strong vision can only represent you and no one else. It's specific enough that a stranger could guess the company behind it.</p>
+
+    <p>SpaceX - "Making humanity multi-planetary." No one else on earth could say this.</p>
+
+    <p>Patagonia - "We're in business to save our home planet." A clothing company defining itself by environmentalism, not apparel.</p>
+
+    <p>Wikipedia - "Imagine a world in which every single person is given free access to the sum of all human knowledge." Grand, but unmistakably Wikipedia.</p>
+
+    <h3>What makes a weak vision</h3>
+
+    <p>A weak vision could belong to any company in your category. It sounds grand but says nothing distinctive.</p>
+
+    <p>"To make the best products on earth and to leave the world better than we found it." That's Apple, but it could be any product company.</p>
+
+    <p>"To become the world's most loved, most flown, and most profitable airline." Southwest Airlines. How is that different from any other airline's ambition?</p>
+
+    <p>"Becoming the best global entertainment distribution service." Netflix. Swap "entertainment" for another word and it fits a dozen companies.</p>
+
+    <p>The test is simple. If your competitor could put their name on your vision and it would still make sense, it's not yours yet.</p>
+
+    <h2>Ask</h2>
+
+    <p><em>This slide is not part of the original Sequoia template.</em></p>
+
+    <p>How much you're raising, why, and what you intend to do with the money. Investors like to fund companies that are on the verge of success and need fuel to get there. The more your ask leans towards that, the better.</p>
+
+    <p>In some cases, funding goes to removing risk or long-term investments. Training AI models, building large-scale carbon recycling plants, researching and getting FDA approval for a new cancer treatment. That's fine. Remember the three questions investors are always asking. How big is the upside? What are the risks? Can this team take it from A to Z? Given the right answers, investors might be open to anything. Just be smart about how you frame it.</p>
+
+    <h2>Summary (optional)</h2>
+
+    <p><em>This slide is not part of the original Sequoia template.</em></p>
+
+    <p>Some founders and investors have found a summary slide useful. It answers four questions briefly:</p>
+
+    <ul>
+      <li><strong>Why this problem.</strong> What's the pain and how much is it worth solving. "Organizations overspend $300 billion a year on AI tokens."</li>
+      <li><strong>Why this solution.</strong> If you got your villain and hero right, one line should be enough to show why the solution is perfect for the problem.</li>
+      <li><strong>Why now.</strong> What's compelling about the timing. A new problem, a new technology, a shift in the market.</li>
+      <li><strong>Why you.</strong> How your team has the best chance of making it.</li>
+    </ul>
+
+    <h2>Contact</h2>
+
+    <p><em>This slide is not part of the original Sequoia template.</em></p>
+
+    <p>Your deck will circulate, so give potential investors a way to reach you. You can merge this with the summary slide and turn them into a one-pager. Include your purpose again here. It helps investors remember you and anchor everything they've seen to a single line.</p>
   </article>
 
   <div class="grab-bar">
@@ -746,6 +1329,14 @@ place.</p>
       <a href="/ideas/services/" class="conn-item">
         <span class="conn-title">Services</span>
         <span class="conn-summary">All three services draw from the same foundation: core constraints and abstraction. The difference is how far we go together. See The…</span>
+      </a>
+      <a href="/ideas/futures-cone/" class="conn-item">
+        <span class="conn-title">The Futures Cone</span>
+        <span class="conn-summary">Where "plausible" quietly shades into "crazy" — and why that edge is where the interesting ideas live.</span>
+      </a>
+      <a href="/ideas/core-constraints/" class="conn-item">
+        <span class="conn-title">Core Constraints</span>
+        <span class="conn-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve abstracted away everything…</span>
       </a>
     </div>
   </section>
@@ -787,8 +1378,8 @@ place.</p>
         Positive Constraint
       </div>
       <div class="share-card-cat">FRAMEWORKS</div>
-      <div class="share-card-title">My Version of the Sequoia Pitch Deck</div>
-      <p class="share-card-summary">The classic Sequoia outline, plus the slides and tips that actually get a deck funded.</p>
+      <div class="share-card-title">Up Your Pitch</div>
+      <p class="share-card-summary">An investor spends under two and a half minutes on your deck. Sequoia's outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.</p>
       <div class="share-card-url" id="shareCardUrl">positiveconstraint.com</div>
     </div>
 
@@ -818,8 +1409,8 @@ place.</p>
 </div>
 
 <script>
-var PIECE = {"title": "My Version of the Sequoia Pitch Deck", "slug": "sequoia-pitch-deck"};
-var RELATED = [{"title": "The Three Axes", "label": "draws on", "url": "/ideas/three-axes/"}, {"title": "Services", "label": "used in", "url": "/ideas/services/"}];
+var PIECE = {"title": "Up Your Pitch", "slug": "sequoia-pitch-deck"};
+var RELATED = [{"title": "The Three Axes", "label": "draws on", "url": "/ideas/three-axes/"}, {"title": "Services", "label": "used in", "url": "/ideas/services/"}, {"title": "The Futures Cone", "label": "applies", "url": "/ideas/futures-cone/"}, {"title": "Core Constraints", "label": "illustrates", "url": "/ideas/core-constraints/"}, {"title": "The Value Axis", "label": "draws on", "url": "/ideas/value-axis/"}, {"title": "Complex New World", "label": "references", "url": "/ideas/complex-new-world/"}];
 
 function grabToken() {
   var a = new Uint8Array(4);

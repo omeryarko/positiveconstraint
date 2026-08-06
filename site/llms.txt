@@ -26,7 +26,7 @@
 - [Constraints, a Short History](https://positiveconstraint.com/ideas/constraints-history/): Goldratt's Theory of Constraints, Snowden's Cynefin, Morgan's A Beautiful Constraint — and where Positive Constraint departs from all three.
 - [Fractals & Constraints](https://positiveconstraint.com/ideas/fractals-and-constraints/): A fractal is a constraint — the one pattern that keeps replicating itself across every scale of an expression.
 - [The Futures Cone](https://positiveconstraint.com/ideas/futures-cone/): Where "plausible" quietly shades into "crazy" — and why that edge is where the interesting ideas live.
-- [My Version of the Sequoia Pitch Deck](https://positiveconstraint.com/ideas/sequoia-pitch-deck/): The classic Sequoia outline, plus the slides and tips that actually get a deck funded.
+- [Up Your Pitch](https://positiveconstraint.com/ideas/sequoia-pitch-deck/): An investor spends under two and a half minutes on your deck. Sequoia's outline, plus the slides, structure, and thinking most decks miss — from the 2x2 to the hockey stick to naming your purpose.
 - [The Value Axis](https://positiveconstraint.com/ideas/value-axis/): Value grows by following one axis all the way out — potato, fries, top-chef mashed potato.
 - [The Three Markets](https://positiveconstraint.com/ideas/three-markets/): Every company runs in three markets at once: products & services, capital, and labor.
 - [Unskeuomorphic](https://positiveconstraint.com/ideas/unskeuomorphic/): New inventions carry old constraints as habits, not requirements — radio pretending to be TV, TV pretending to be live.

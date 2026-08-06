@@ -117,6 +117,19 @@ def render_body(md):
                 f'      <iframe src="{src}" title="{title}" '
                 f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
                 f'gyroscope; picture-in-picture" allowfullscreen></iframe>\n    </div>')
+        elif re.match(r'^[*\-]\s+', b):
+            items = [re.sub(r'^[*\-]\s+', '', ln.strip())
+                     for ln in b.splitlines() if ln.strip()]
+            lis = "\n".join(f"      <li>{inline(it)}</li>" for it in items)
+            out.append(f"    <ul>\n{lis}\n    </ul>")
+        elif b.startswith("@callout"):
+            m = re.match(r'@callout\[([^\]]+)\]', b)
+            parts = [p.strip() for p in m.group(1).split("|")]
+            label = parts[0]; ctext = parts[1] if len(parts) > 1 else ""
+            out.append(
+                f'    <div class="callout">\n'
+                f'      <span class="callout-label">{label}</span>\n'
+                f'      <p>{inline(ctext)}</p>\n    </div>')
         elif b.startswith("@image"):
             m = re.match(r'@image\[([^\]]+)\]', b)
             parts = [p.strip() for p in m.group(1).split("|")]
