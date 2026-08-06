@@ -85,7 +85,9 @@ def render_body(md):
         b = b.strip()
         if not b:
             continue
-        if b.startswith("### "):
+        if b.strip() == "ⵙ":
+            out.append('    <p style="text-align:center">ⵙ</p>')
+        elif b.startswith("### "):
             out.append(f"    <h3>{inline(b[4:].strip())}</h3>")
         elif b.startswith("## "):
             out.append(f"    <h2>{inline(b[3:].strip())}</h2>")
@@ -97,7 +99,8 @@ def render_body(md):
                     cite = ln.replace("--", "—")
                 elif ln:
                     quote.append(ln)
-            blk = ["    <blockquote>", f"      <p>{inline(' '.join(quote))}</p>"]
+            qtext = "<br>\n      ".join(inline(q) for q in quote)
+            blk = ["    <blockquote>", f"      <p>{qtext}</p>"]
             if cite:
                 blk.append(f"      <cite>{inline(cite)}</cite>")
             blk.append("    </blockquote>")

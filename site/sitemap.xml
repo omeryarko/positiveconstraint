@@ -176,11 +176,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://positiveconstraint.com/ideas/sequoia-pitch-deck/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://positiveconstraint.com/ideas/value-axis/</loc>
     <lastmod>2026-08-05</lastmod>
     <priority>0.7</priority>
@@ -198,6 +193,11 @@
   <url>
     <loc>https://positiveconstraint.com/ideas/zeroth-principles-thinking/</loc>
     <lastmod>2026-08-05</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://positiveconstraint.com/ideas/up-your-pitch/</loc>
+    <lastmod>2026-08-06</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
