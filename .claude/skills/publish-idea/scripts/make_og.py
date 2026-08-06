@@ -3,6 +3,7 @@
 the card matches the site's actual web fonts. Used by publish.py (new ideas)
 and the one-time migration (existing ideas)."""
 import os, subprocess, tempfile, html as _html, shutil
+from PIL import Image
 
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
 
@@ -31,14 +32,20 @@ def render_og(title, category_upper, summary, out_path, template=None):
         f.write(filled)
         html_path = f.name
     try:
+        # Chrome headless reserves ~80px for virtual UI chrome on Linux;
+        # render taller then crop to the target 1200x630.
         subprocess.run([
             chrome_bin(), "--headless=new", "--disable-gpu", "--hide-scrollbars",
-            "--force-device-scale-factor=1", "--window-size=1200,630",
+            "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage",
+            "--force-device-scale-factor=1", "--window-size=1200,730",
             "--virtual-time-budget=6000",
             "--screenshot=" + out_path, "file://" + html_path,
         ], check=True, capture_output=True, timeout=30)
     finally:
         os.unlink(html_path)
+    img = Image.open(out_path)
+    if img.size != (1200, 630):
+        img.crop((0, 0, 1200, 630)).save(out_path)
     return out_path
 
 
