@@ -97,7 +97,17 @@ export default {
     const grabToken = url.searchParams.get("g");
     const ref = url.searchParams.get("ref") || "";
 
-    if (uaClass !== "other" && env.AI_SERVE_SIGNAL) {
+    if (grabToken || ref) {
+      url.searchParams.delete("g");
+      url.searchParams.delete("ref");
+      request = new Request(url, request);
+    }
+
+    let response = await env.ASSETS.fetch(request);
+
+    // Only log AI hits for paths that resolve to real content — skip 404s,
+    // which are overwhelmingly vulnerability scanners spoofing AI UA strings.
+    if (uaClass !== "other" && env.AI_SERVE_SIGNAL && response.status !== 404) {
       if (grabToken && uaClass === "ai-assistant") {
         const dotIdx = grabToken.indexOf(".");
         const sourceSlug = dotIdx > 0 ? grabToken.slice(0, dotIdx) : "";
@@ -112,14 +122,6 @@ export default {
         indexes: [uaClass],
       });
     }
-
-    if (grabToken || ref) {
-      url.searchParams.delete("g");
-      url.searchParams.delete("ref");
-      request = new Request(url, request);
-    }
-
-    let response = await env.ASSETS.fetch(request);
 
     if (response.status === 404) {
       const indexRequest = new Request(new URL("/", url), request);
