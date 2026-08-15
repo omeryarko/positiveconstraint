@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9DEMEQG7C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N9DEMEQG7C');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>CoinsPaid's Double Edge — Positive Constraint</title>
+<meta name="description" content="An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the ">
+<meta property="og:title" content="CoinsPaid's Double Edge — Positive Constraint">
+<meta property="og:description" content="An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://positiveconstraint.com/braintail/coinspaid-double-edge/">
+<link rel="canonical" href="https://positiveconstraint.com/braintail/coinspaid-double-edge/">
+<meta property="og:site_name" content="Positive Constraint">
+<meta property="og:image" content="https://positiveconstraint.com/media/og/coinspaid-double-edge.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CoinsPaid's Double Edge — Positive Constraint">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CoinsPaid's Double Edge — Positive Constraint">
+<meta name="twitter:description" content="An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the ">
+<meta name="twitter:image" content="https://positiveconstraint.com/media/og/coinspaid-double-edge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-text-primary: #171717;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #A3A3A3;
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #F5F5F5;
+  --color-border-primary: #E5E5E5;
+  --color-border-secondary: #E5E5E5;
+  --color-border-tertiary: #E5E5E5;
+  --color-red: #FF4040;
+  --color-red-hover: #E63636;
+  --color-red-dark: #CC2020;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: #FAFAFA;
+    --color-text-secondary: #A3A3A3;
+    --color-text-tertiary: #737373;
+    --color-background-primary: #171717;
+    --color-background-secondary: #262626;
+    --color-border-primary: #404040;
+    --color-border-secondary: #525252;
+    --color-border-tertiary: #262626;
+  }
+}
+
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3xl);
+  height: 64px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  position: sticky;
+  top: 0;
+  background: var(--color-background-primary);
+  z-index: 40;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-mark { width: 24px; height: 24px; color: currentColor; }
+
+.nav-links {
+  display: flex;
+  gap: var(--space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover, .nav-links a.active { color: var(--color-red); }
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+@media (max-width: 640px) { .page { padding: var(--space-lg); } }
+
+.btn {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-accent { background: var(--color-red); color: var(--color-white); }
+.btn-accent:hover { background: var(--color-red-hover); }
+.btn-ghost { background: transparent; color: var(--color-text-primary); border: 0.5px solid var(--color-border-secondary); }
+.btn-ghost:hover { background: var(--color-background-secondary); }
+
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+a:hover { border-bottom-color: var(--color-red); }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: var(--space-2xl) 0 var(--space-md) 0;
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: var(--space-xl) 0 var(--space-sm) 0;
+  color: var(--color-text-primary);
+}
+
+p { margin: var(--space-lg) 0; }
+p:first-child { margin-top: 0; }
+
+article ul { margin: var(--space-lg) 0; padding-left: var(--space-lg); }
+article li { margin: var(--space-xs) 0; }
+article li::marker { color: var(--color-red); }
+
+.breadcrumb {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xl);
+}
+.breadcrumb a { color: var(--color-text-secondary); }
+.breadcrumb-sep { margin: 0 var(--space-sm); }
+
+.piece-summary {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.piece-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.meta-item { font-family: var(--font-display); font-size: 12px; color: var(--color-text-tertiary); }
+
+article { margin-top: var(--space-2xl); max-width: 600px; }
+
+.tag-category {
+  display: inline-block;
+  background: #FFF0F0;
+  color: var(--color-red-dark);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag-category { background: rgba(255, 64, 64, 0.1); color: #FF8080; }
+}
+
+.tag-label {
+  display: inline-block;
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: var(--space-sm);
+}
+
+.grab-bar {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+  margin: var(--space-2xl) 0;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+@media (max-width: 640px) {
+  .grab-bar { flex-direction: column; }
+  .grab-bar .btn { width: 100%; text-align: center; }
+}
+
+.connections { margin-top: var(--space-2xl); padding-top: var(--space-xl); }
+.connections h4 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.conn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 640px) { .conn-grid { grid-template-columns: 1fr; } }
+
+.conn-item {
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: var(--space-md);
+  background: var(--color-background-primary);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.conn-item:hover { border-color: var(--color-border-secondary); background: var(--color-background-secondary); }
+.conn-type { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-tertiary); display: block; margin-bottom: var(--space-sm); }
+.conn-title { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--color-red); display: block; margin-bottom: var(--space-xs); }
+.conn-summary { font-family: var(--font-body); font-size: 13px; font-style: italic; color: var(--color-text-secondary); line-height: 1.55; display: block; }
+.conn-label { font-size: 11px; font-style: italic; color: var(--color-text-tertiary); display: block; margin-top: var(--space-xs); }
+
+blockquote {
+  border-left: 3px solid var(--color-red);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+  margin: var(--space-2xl) 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+blockquote p { margin: 0; }
+blockquote cite { display: block; margin-top: var(--space-sm); font-size: 14px; font-style: normal; color: var(--color-text-tertiary); font-family: var(--font-display); }
+
+.callout {
+  background: #FFF0F0;
+  border-radius: 8px;
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.callout-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-red-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.callout p { margin: 0; font-family: var(--font-body); font-size: 17px; font-style: italic; line-height: 1.5; color: var(--color-text-primary); }
+
+@media (prefers-color-scheme: dark) {
+  .callout { background: rgba(255, 64, 64, 0.1); }
+  .callout-label { color: #FF8080; }
+}
+
+.media-video {
+  position: relative;
+  width: 100%;
+  margin: var(--space-xl) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.media-16-9 { padding-bottom: 56.25%; }
+.media-1-1 { padding-bottom: 100%; }
+
+.media-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.media-img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin: var(--space-xl) auto;
+}
+
+.media-figure {
+  margin: var(--space-xl) 0;
+}
+
+.media-figure .media-img {
+  margin: 0;
+}
+
+.media-figure figcaption {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.video-link-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: var(--space-xl) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border-bottom: none;
+}
+
+.video-link-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.video-link-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  padding-left: 4px;
+  transition: background 0.15s;
+}
+
+.video-link-card:hover .video-link-play {
+  background: var(--color-red);
+}
+
+.video-link-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  text-align: right;
+}
+
+.footer {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  border-top: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) { .footer { flex-direction: column; text-align: center; gap: var(--space-lg); } }
+
+/* Subscribe block */
+.pc-subscribe { max-width: 680px; margin: 0 auto; padding: 0 var(--space-lg); }
+.pc-subscribe-inner {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  padding: var(--space-lg) var(--space-xl);
+  display: flex; align-items: center; gap: var(--space-xl); flex-wrap: wrap;
+}
+.pc-subscribe-text { flex: 1; min-width: 220px; }
+.pc-subscribe-title {
+  font-family: var(--font-display); font-size: 15px; font-weight: 600;
+  color: var(--color-text-primary); margin-bottom: 2px;
+}
+.pc-subscribe-desc {
+  font-family: var(--font-body); font-size: 13px; font-style: italic;
+  color: var(--color-text-secondary); line-height: 1.5;
+}
+.pc-subscribe-form { display: flex; gap: var(--space-sm); flex: 1; min-width: 240px; }
+.pc-subscribe-form input {
+  flex: 1; min-width: 0; height: 40px; padding: 0 14px;
+  font-family: var(--font-display); font-size: 14px;
+  color: var(--color-text-primary); background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary); border-radius: 6px;
+}
+.pc-subscribe-form input:focus { outline: none; border-color: var(--color-red); }
+.pc-subscribe-form button {
+  height: 40px; padding: 0 18px;
+  font-family: var(--font-display); font-size: 13px; font-weight: 500;
+  color: var(--color-white); background: var(--color-black);
+  border: none; border-radius: 6px; cursor: pointer; white-space: nowrap;
+  transition: background 0.15s;
+}
+.pc-subscribe-form button:hover { background: var(--color-text-secondary); }
+.pc-subscribe-note {
+  font-family: var(--font-display); font-size: 12px;
+  color: var(--color-text-tertiary); margin-top: var(--space-sm);
+}
+.pc-subscribe--hero .pc-subscribe-inner {
+  flex-direction: column; text-align: center; padding: var(--space-2xl) var(--space-xl);
+}
+.pc-subscribe--hero .pc-subscribe-eyebrow {
+  font-family: var(--font-display); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-text-tertiary); margin-bottom: var(--space-sm);
+}
+.pc-subscribe--hero .pc-subscribe-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.pc-subscribe--hero .pc-subscribe-desc {
+  font-style: normal; font-size: 16px; max-width: 420px; margin: var(--space-sm) auto var(--space-lg);
+}
+.pc-subscribe--hero .pc-subscribe-form { flex: none; width: 100%; max-width: 440px; }
+.pc-subscribe--hero .pc-subscribe-form button { background: var(--color-red); }
+.pc-subscribe--hero .pc-subscribe-form button:hover { background: var(--color-red-hover); }
+@media (max-width: 640px) {
+  .pc-subscribe-inner { flex-direction: column; align-items: stretch; }
+  .pc-subscribe-form { flex-direction: column; }
+  .pc-subscribe-form button { width: 100%; }
+}
+
+/* ============ Top action bar (prominent CTAs under header) ============ */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin: var(--space-xl) 0 0 0;
+  padding-top: var(--space-lg);
+  border-top: 0.5px solid var(--color-border-tertiary);
+}
+.action-bar .btn, .grab-bar .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.action-bar .btn svg, .grab-bar .btn svg { width: 15px; height: 15px; }
+@media (max-width: 640px) {
+  .action-bar .btn { flex: 1; justify-content: center; }
+}
+
+/* ============ Share modal ============ */
+.share-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.share-overlay.open { opacity: 1; pointer-events: auto; }
+
+.share-modal {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  padding: var(--space-xl);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.2s;
+}
+.share-overlay.open .share-modal { transform: translateY(0) scale(1); }
+
+.share-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+.share-head h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+.share-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  padding: 4px;
+  line-height: 0;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.share-close:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+.share-close svg { width: 20px; height: 20px; }
+
+/* Share "art" — the social preview card (follows page theme) */
+.share-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 0.5px solid var(--color-border-secondary);
+  background: linear-gradient(150deg, var(--color-background-secondary) 0%, var(--color-background-primary) 100%);
+  color: var(--color-text-primary);
+  padding: var(--space-xl);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.share-card::after {
+  content: "";
+  position: absolute;
+  right: -60px; bottom: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,64,64,0.28) 0%, rgba(255,64,64,0) 70%);
+}
+.share-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+.share-card-brand svg { width: 20px; height: 20px; color: var(--color-text-primary); }
+.share-card-cat {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: var(--space-sm);
+}
+.share-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm) 0;
+  position: relative;
+  z-index: 1;
+}
+.share-card-summary {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+.share-card-url {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+/* Share targets */
+.share-targets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+.share-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 4px;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  transition: all 0.15s;
+}
+.share-target:hover { border-color: var(--color-red); color: var(--color-text-primary); background: var(--color-background-primary); }
+.share-target svg { width: 22px; height: 22px; }
+.share-target-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+@media (max-width: 640px) {
+  .share-targets { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">
+    <svg class="nav-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/>
+      <circle cx="50" cy="50" r="8" fill="currentColor"/>
+    </svg>
+    Positive Constraint
+  </a>
+  <ul class="nav-links">
+    <li><a href="/ideas/" class="active">Ideas</a></li>
+    <li><a href="/map/">Map</a></li>
+    <li><a href="/ideas/about/">About</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="breadcrumb"><a href="/ideas/">Ideas</a><span class="breadcrumb-sep">/</span>Brand Reviews</div>
+
+  <header>
+    <div class="tag-category">BRAND REVIEWS</div>
+    <h1>CoinsPaid's Double Edge</h1>
+    <p class="piece-summary">An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the company could become its double edge.</p>
+    <div class="piece-meta">
+      <span class="tag-label">braintail</span>
+      <span class="tag-label">branding</span>
+      <span class="tag-label">positioning</span>
+      <span class="tag-label">strategy</span>
+      <span class="meta-item">9 min read</span>
+    </div>
+
+    <div class="action-bar">
+      <button id="copyBtn" class="btn btn-accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy as markdown
+      </button>
+      <button id="downloadBtn" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download .md
+      </button>
+      <button id="shareBtn" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+  </header>
+
+  <article>
+    <img class="media-img" src="/media/braintail/coinspaid-double-edge-hero.jpeg" alt="CoinsPaid's Double Edge" />
+
+    <p><strong>An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the business may not be enough to protect it.</strong></p>
+
+    <h2>Match Made in Heaven</h2>
+
+    <p>The crypto gambling market hit $81 billion in gross gaming revenue in 2025, a fivefold increase in just three years. Crypto now accounts for roughly one in six iGaming bets worldwide, and that share is climbing fast.</p>
+
+    <p>On the player side, the demand is obvious. More than half a billion people own crypto today. Hundreds of thousands of them are millionaires, and that number grew 40% in a single year. Crypto is no longer fringe. Serious wealth sits there, and it’s growing fast.</p>
+
+    <p>Early crypto investors rode Bitcoin from pennies to six figures. Airdrops, early bets on tokens, and years of holding turned modest stakes into serious wealth. Much of it feels like found money, and found money is easy to spend.</p>
+
+    <p>Crypto gamblers are a large, wealthy, and growing pool of players that operators can’t afford to ignore. Whales are drawn to it for obvious reasons. Keeping their wagering money in crypto means clean bank statements, privacy from prying eyes, and control over how they spend.</p>
+
+    <p>For operators, crypto answers pains that have plagued the industry since it began. Chargebacks don’t exist on the blockchain. Transactions are final. No disputes, no reversals, no players losing a bet and claiming fraud to get their money back. Rolling reserves, a form of chargeback insurance, disappear with them, freeing up working capital.</p>
+
+    <p>iGaming operators live at the edge of the financial system. Traditional banks won’t touch these high-risk businesses. The EMIs and processors that charge a premium, add intermediaries, and can still cut you off if their risk appetite changes. Crypto removes that dependency. With no intermediaries that can shut you off, risk goes down, and costs with it.</p>
+
+    <p>Transactions are instant, so players deposit and play without waiting, and withdraw the moment they want out. It works across borders, reaching players in emerging markets where millions have a smartphone but no bank account. And it runs around the clock, because players don’t stop on weekends.</p>
+
+    <p>If crypto and iGaming are a match made in heaven, why does crypto account for only one in six iGaming bets? What’s holding it back?</p>
+
+    <p>Stigma and friction. On the operator side, decision makers who grew up viewing crypto as rebellious or corruption money are hesitant. Giving someone access to your payments is a <a href="/braintail/brand-plays/">trust play</a>, and many C-suite executives aren’t sure they trust it yet. On the player side, crypto still demands too much: secret keys, wallets, knowing which blockchain serves which token. ERC-20 or TRC-20? Custodial or non-custodial? For most players, that’s a foreign language. The friction is real on both sides.</p>
+
+    <p>But B2B crossed the barrier first, because the operator pain is sharper and the numbers are harder to ignore. Stablecoins now move $10.2 trillion a year in adjusted volume, according to Visa’s own analytics, putting them in the same league as Visa and Mastercard. But where card networks reach their numbers through billions of small purchases, stablecoins get there through large B2B transfers. Businesses are choosing them because they settle faster, cross borders without friction, and cost a fraction of traditional rails.</p>
+
+    <p>The question for iGaming operators is no longer “should we accept crypto?” It’s “with whom?”</p>
+
+    <p>That’s where CoinsPaid comes in.</p>
+
+    <figure class="media-figure">
+      <img class="media-img" src="/media/braintail/coinspaid-double-edge-1.png" alt="CoinsPaid’s brand architecture" />
+      <figcaption>The brand architecture doesn’t help either. CoinsPaid, the main brand behind CryptoProcessing</figcaption>
+    </figure>
+
+    <h2>The Lead</h2>
+
+    <p>CoinsPaid was founded in 2014, licensed in Estonia, and EU-regulated. Its flagship sub-brand, CryptoProcessing, has grown into the largest crypto payment processor in iGaming, having processed over €25 billion to date and handling roughly a billion euros in monthly volume.</p>
+
+    <p>The core offering is what iGaming businesses buy. A payment gateway to accept crypto, a business wallet to hold it, and an OTC desk for large conversions. The stack handles acceptance, storage, conversion, and settlement under one roof.</p>
+
+    <p>The company also has an advantage most competitors don’t. Co-founded by the founder of SOFTSWISS, one of the largest iGaming platform providers, CryptoProcessing is the default crypto payment option for SOFTSWISS operators. That unfair distribution advantage means operators arrive without CoinsPaid having to fight for them.</p>
+
+    <p>In turn, that free distribution helped scale the company fast. By 2022, the company was already processing 8% of all on-chain Bitcoin transactions. As volume grew, so did the offering. Compliance, fraud detection, reconciliation, all built in over time. The kind of expertise in iGaming money flows that takes years to learn became part of the product. With maturity came trust, and with trust came deeper relationships with operators who stayed and grew with them.</p>
+
+    <p>That growth also drew attention. In 2023, a state-sponsored hacking group stole $37.3 million from CoinsPaid. The company absorbed the loss from its own funds, kept customer money intact, and was back to processing within days. Then it used the breach to harden the operation, giving rise to what CEO Max Krupyshev calls the “slider” philosophy: a constant balancing act between moving fast and staying secure.</p>
+
+    <p>Combined, the scale, the expertise, and the resilience translate into what iGaming operators care about most: reduced risk. As Krupyshev puts it, “serious organizations with no margin for error need to go with a reliable provider.” That’s how it wins deals.</p>
+
+    <p>But its ambitions stretch beyond iGaming. The company targets real estate, e-commerce, luxury goods, and travel. It runs Points of Sale (PoS) pilots at jewelry stores in Estonia, sells its white-label SaaS to companies building their own crypto processing operations, and publishes a media outlet under its own brand. Each targets a different audience. We’ll come back to why that matters.</p>
+
+    <h2>Winter is Coming</h2>
+
+    <p>Instant, irreversible, borderless, and always on. The qualities that make stablecoins work for businesses worldwide are the same ones turning them into global financial plumbing. Industry leaders are calling it a generational upgrade of the financial stack. And the financial behemoths aren’t sitting idle.</p>
+
+    <p>Visa, Mastercard, and PayPal are moving to claim large pieces of the pie. Visa now settles in USDC across multiple blockchains. Mastercard acquired BVNK, a B2B stablecoin payments platform, for $1.8 billion. PayPal launched its own stablecoin, PYUSD, and expanded it to 70 markets for merchant settlement. They started with consumer wallets and cards. Now they’re moving upstream into B2B, positioning to own both ends of the money flow.</p>
+
+    <p>For CoinsPaid’s ambitions beyond iGaming, the implications are brutal. Real estate, e-commerce, luxury goods, and travel will be served by Visa and Mastercard before it can build a brand or scale there. A POS pilot at a jewelry store in Estonia won’t survive Visa offering stablecoin-linked cards at 175 million merchant locations worldwide. A clothing chain can get native crypto support through its existing Mastercard terminals. An online travel agency already trusts its payments to PayPal. The generalist crypto processing market is about to be swallowed, and it isn’t big enough to compete in that field.</p>
+
+    <p>But will the giants enter iGaming?</p>
+
+    <p>What keeps Visa and Mastercard away from iGaming is anti-money laundering exposure, source of funds scrutiny, regulatory complexity, and reputational damage. Stablecoins don’t remove those risks. They shift them. The giants will own the general crypto processing market, but not the high-risk edge cases. The messy, complex, intimate work of processing crypto for iGaming is left for the specialists.</p>
+
+    <p>That’s the defensible territory. The edge the giants won’t touch. The crypto payments partner Visa will never be.</p>
+
+    <p>But only if they own it.</p>
+
+    <h2>Future-Positioning</h2>
+
+    <p>CoinsPaid has the position. It doesn’t have the brand to protect it. Not yet. The company wins deals today thanks to scale and expertise, but as bigger players move into the generalist crypto payments market, winning today isn’t enough.</p>
+
+    <p>iGaming has been the ideal market for the company from the start. Its relationship with SOFTSWISS gave it a built-in pipeline no competitor could match. But that edge won’t last forever. SOFTSWISS’s own market share is being contested by <a href="/braintail/elantil-blue-moon/">competing</a> <a href="/braintail/vegangster-beans-of-greatness/">platforms</a>. As other providers grow, CoinsPaid’s free pipeline shrinks. Operators arriving through competing platforms won’t default to its crypto processing solution. They’ll choose whoever gives them the clearest reason to.</p>
+
+    <figure class="media-figure">
+      <img class="media-img" src="/media/braintail/coinspaid-double-edge-2.png" alt="CoinsPaid’s website" />
+      <figcaption>Says nothing about scale, trust, reduced risk, or iGaming expertise.</figcaption>
+    </figure>
+
+    <p>And right now, the company isn’t giving them one. That free distribution is a blessing and a curse. It feeds the business but starves the brand. Without the pressure to stand out and bring in deals on its own merits, the narrative has drifted. The hero section on its website says nothing about scale, trust, reduced risk, or iGaming expertise. It says “Crypto Payment Processor” and “Open your business to millions of crypto users worldwide.” That could be anyone.</p>
+
+    <p>The brand architecture doesn’t help either. CryptoProcessing may be the flagship product, but the name is generic and always attached to “by CoinsPaid.” The OTC desk and wallets sit under the main brand, not CryptoProcessing, despite serving the same audience. The POS offering, even before the threat of Visa and Mastercard, targets an entirely different buyer. The SaaS white-label serves yet another audience. CoinsPaid Media may help sales close, but it evangelizes crypto broadly rather than reinforcing its iGaming expertise. And the company’s website lists real estate, e-commerce, luxury goods, and travel as target markets, spreading the message across industries where the giants will crush them.</p>
+
+    <p>Brand is what people say about you when you’re not in the room, and too many conversations about the company are shaped by others. The breach coverage. The SOFTSWISS affiliation. The reputation that precedes them. Ask an industry insider what CoinsPaid is about, and scale, iGaming expertise, and reduced risk won’t be the answer. The perception is shaped by what others are saying, not by a story it owns.</p>
+
+    <p>The company can change that. The breach? Own it. The company was targeted by a state-sponsored group, absorbed the loss, protected every merchant’s funds, and came back harder to break. That’s not a liability. That’s proof. The SOFTSWISS connection? Own it. Don’t downplay it. It’s what built the scale and maturity that competitors can’t replicate, and SOFTSWISS’s premium reputation in the industry can only reflect well on CoinsPaid. The slider philosophy? Make it visible. It captures something real about how the company operates: fast without being reckless, secure without being slow. These are brand assets. They belong in the narrative, on the website, in every interview, at every conference, and in every sales conversation.</p>
+
+    <p>Visa and Mastercard won’t leave CoinsPaid much outside high-risk industries. The operational complexity, the regulatory intimacy, the deep understanding of money flows that iGaming demands is where the company’s future lives. Build on scale, reduced risk, and expertise. Win market share today. Win hearts and minds before the window closes.</p>
+
+    <p><strong>Become the iGaming crypto payments partner Visa will never be.</strong></p>
+  </article>
+
+  <div class="grab-bar">
+    <button id="copyBtnBottom" class="btn btn-accent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy as markdown
+    </button>
+    <button id="downloadBtnBottom" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download .md
+    </button>
+    <button id="shareBtnBottom" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Share
+    </button>
+  </div>
+
+</main>
+
+<section class="pc-subscribe" style="margin-bottom: var(--space-2xl);">
+  <div class="pc-subscribe-inner">
+    <div class="pc-subscribe-text">
+      <div class="pc-subscribe-title">Get new ideas weekly</div>
+      <div class="pc-subscribe-desc">One email a week when new ideas enter the vault.</div>
+    </div>
+    <form class="pc-subscribe-form" method="post"
+          action="https://buttondown.com/api/emails/embed-subscribe/positiveconstraint">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>← <a href="/ideas/">Back to all ideas</a></div>
+  <div><a href="/map/">View on map</a> →</div>
+</footer>
+
+<!-- Share modal -->
+<div class="share-overlay" id="shareOverlay" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="share-modal">
+    <div class="share-head">
+      <h3 id="shareTitle">Share this idea</h3>
+      <button class="share-close" id="shareClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="share-card">
+      <div class="share-card-brand">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="50" cy="50" r="8" fill="currentColor"/></svg>
+        Positive Constraint
+      </div>
+      <div class="share-card-cat">BRAND REVIEWS</div>
+      <div class="share-card-title">CoinsPaid's Double Edge</div>
+      <p class="share-card-summary">An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But as stablecoins become the world’s financial plumbing and the giants move in, the same advantage that built the company could become its double edge.</p>
+      <div class="share-card-url" id="shareCardUrl">positiveconstraint.com</div>
+    </div>
+
+    <div class="share-targets">
+      <a class="share-target" id="shareCopyLink" href="#" role="button">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span id="shareCopyLinkLabel">Copy link</span>
+      </a>
+      <a class="share-target" id="shareEmail" href="#">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+        <span>Email</span>
+      </a>
+      <a class="share-target" id="shareLinkedIn" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>
+        <span>LinkedIn</span>
+      </a>
+      <a class="share-target" id="shareX" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg></span>
+        <span>X</span>
+      </a>
+      <a class="share-target" id="shareReddit" href="#" target="_blank" rel="noopener">
+        <span class="share-target-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.01 13.47c.06.24.09.49.09.75 0 2.55-2.97 4.62-6.63 4.62s-6.63-2.07-6.63-4.62c0-.26.03-.52.09-.76a1.38 1.38 0 1 1 1.5-2.24 6.77 6.77 0 0 1 3.66-1.16l.7-3.28a.29.29 0 0 1 .34-.22l2.3.49a.96.96 0 1 1-.12.55l-2.03-.43-.62 2.92a6.75 6.75 0 0 1 3.6 1.16 1.38 1.38 0 1 1 1.58 2.23zm-6.9.32a.96.96 0 1 0 0-1.92.96.96 0 0 0 0 1.92zm4.8-.96a.96.96 0 1 0-1.92 0 .96.96 0 0 0 1.92 0zm-1.03 2.68a.29.29 0 0 0-.4.01c-.5.5-1.53.54-1.83.54s-1.33-.04-1.83-.54a.29.29 0 1 0-.4.4c.63.63 1.83.68 2.23.68s1.6-.05 2.23-.68a.29.29 0 0 0 0-.41z"/></svg></span>
+        <span>Reddit</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+var PIECE = {"title": "CoinsPaid's Double Edge", "slug": "coinspaid-double-edge"};
+var RELATED = [];
+
+function grabToken() {
+  var a = new Uint8Array(4);
+  crypto.getRandomValues(a);
+  return Array.from(a, function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function pieceMarkdown() {
+  var body = document.querySelector('article').innerText.trim();
+  var g = grabToken();
+  window._lastGrabToken = g;
+  var md = '# ' + PIECE.title + '\n\n' + body + '\n\n---\nSource: ' + window.location.href + '\n';
+  if (RELATED.length) {
+    md += 'Related:\n';
+    RELATED.forEach(function (r) {
+      md += '- ' + r.title + ' — ' + r.label + ' → ' + window.location.origin + r.url + '?g=' + PIECE.slug + '.' + g + '\n';
+    });
+  }
+  return md;
+}
+
+// Robust copy: Clipboard API where allowed, textarea + execCommand fallback otherwise.
+function copyText(text) {
+  return new Promise(function (resolve, reject) {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(resolve, function () { fallback(); });
+    } else {
+      fallback();
+    }
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('copy failed'));
+      } catch (e) { reject(e); }
+    }
+  });
+}
+
+function wireCopy(btn) {
+  if (!btn) return;
+  var original = btn.innerHTML;
+  btn.addEventListener('click', function () {
+    var md = pieceMarkdown();
+    if (window.gtag) gtag('event', 'idea_copy', { idea_slug: PIECE.slug, idea_title: PIECE.title, grab_token: window._lastGrabToken });
+    try { navigator.sendBeacon('/grab', new Blob([JSON.stringify({ slug: PIECE.slug, token: window._lastGrabToken, action: 'copy' })], { type: 'application/json' })); } catch (e) {}
+    copyText(md).then(function () {
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.innerHTML = original; }, 2000);
+    }, function () {
+      btn.textContent = 'Press Ctrl+C';
+      setTimeout(function () { btn.innerHTML = original; }, 2000);
+    });
+  });
+}
+wireCopy(document.getElementById('copyBtn'));
+wireCopy(document.getElementById('copyBtnBottom'));
+
+function wireDownload(btn) {
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var md = pieceMarkdown();
+    if (window.gtag) gtag('event', 'idea_download', { idea_slug: PIECE.slug, idea_title: PIECE.title });
+    try { navigator.sendBeacon('/grab', new Blob([JSON.stringify({ slug: PIECE.slug, token: window._lastGrabToken, action: 'download' })], { type: 'application/json' })); } catch (e) {}
+    var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = PIECE.slug + '.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+}
+wireDownload(document.getElementById('downloadBtn'));
+wireDownload(document.getElementById('downloadBtnBottom'));
+
+/* ---------- Share modal ---------- */
+(function () {
+  var overlay = document.getElementById('shareOverlay');
+  if (!overlay) return;
+  var shareUrl = window.location.href;
+  var shareTitle = PIECE.title + ' — Positive Constraint';
+
+  document.getElementById('shareCardUrl').textContent =
+    window.location.host + window.location.pathname;
+
+  function buildLinks() {
+    var u = encodeURIComponent(shareUrl);
+    var t = encodeURIComponent(shareTitle);
+    document.getElementById('shareEmail').href =
+      'mailto:?subject=' + t + '&body=' + encodeURIComponent(shareTitle + '\n\n' + shareUrl);
+    document.getElementById('shareLinkedIn').href =
+      'https://www.linkedin.com/sharing/share-offsite/?url=' + u;
+    document.getElementById('shareX').href =
+      'https://twitter.com/intent/tweet?url=' + u + '&text=' + t;
+    document.getElementById('shareReddit').href =
+      'https://www.reddit.com/submit?url=' + u + '&title=' + t;
+  }
+
+  function openShare() {
+    buildLinks();
+    overlay.classList.add('open');
+    if (window.gtag) gtag('event', 'idea_share_open', { idea_slug: PIECE.slug, idea_title: PIECE.title });
+  }
+  function closeShare() { overlay.classList.remove('open'); }
+
+  var top = document.getElementById('shareBtn');
+  var bottom = document.getElementById('shareBtnBottom');
+  if (top) top.addEventListener('click', openShare);
+  if (bottom) bottom.addEventListener('click', openShare);
+  document.getElementById('shareClose').addEventListener('click', closeShare);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeShare(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeShare(); });
+
+  function trackTarget(network) {
+    if (window.gtag) gtag('event', 'idea_share', { idea_slug: PIECE.slug, idea_title: PIECE.title, share_network: network });
+  }
+  document.getElementById('shareEmail').addEventListener('click', function () { trackTarget('email'); });
+  document.getElementById('shareLinkedIn').addEventListener('click', function () { trackTarget('linkedin'); });
+  document.getElementById('shareX').addEventListener('click', function () { trackTarget('x'); });
+  document.getElementById('shareReddit').addEventListener('click', function () { trackTarget('reddit'); });
+
+  var copyLink = document.getElementById('shareCopyLink');
+  var copyLabel = document.getElementById('shareCopyLinkLabel');
+  copyLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    copyText(shareUrl).then(function () {
+      copyLabel.textContent = 'Copied!';
+      trackTarget('copy_link');
+      setTimeout(function () { copyLabel.textContent = 'Copy link'; }, 2000);
+    }, function () {
+      copyLabel.textContent = 'Press Ctrl+C';
+      setTimeout(function () { copyLabel.textContent = 'Copy link'; }, 2000);
+    });
+  });
+})();
+</script>
+
+<script>
+document.querySelectorAll('.pc-subscribe-form').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    fetch(form.action, { method: 'POST', body: data, mode: 'no-cors' });
+    var inner = form.closest('.pc-subscribe-inner');
+    inner.innerHTML = '<div class="pc-subscribe-text" style="text-align:center;width:100%">'
+      + '<div class="pc-subscribe-title">Thanks — check your inbox</div>'
+      + '<div class="pc-subscribe-desc">Confirm your email to start getting weekly ideas.</div></div>';
+  });
+});
+</script>
+
+<!-- LinkedIn Insight Tag -->
+<script type="text/javascript">
+_linkedin_partner_id = "3001121";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=3001121&amp;fmt=gif" />
+</noscript>
+</body>
+</html>

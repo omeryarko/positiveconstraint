@@ -104,6 +104,12 @@ the URL `/ideas/<slug>/`), write a tight italic `summary`, choose a `category`,
 draft `tags`, estimate `read_time`, and translate the body into the shorthand.
 Show them the front-matter you inferred before continuing.
 
+By default a piece publishes under `/ideas/<slug>/`. Add `section: braintail`
+to the front matter to publish it under `/braintail/<slug>/` instead (used for
+the Braintail brand-review series) — it still appears in the `/ideas/` index
+and its `llms.txt` entry lands in the "Braintail — Brand Reviews" section. See
+`references/input-format.md` for the full field.
+
 **Content fidelity — the author's words are the author's.** This is a hard rule,
 not a preference. The body of the idea is theirs; reproduce it *verbatim*. When
 you build the input file you may only:

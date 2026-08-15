@@ -16,6 +16,7 @@ the article body in a lightweight markdown dialect.
 | `category_label` | no       | Display label if it differs from `category.capitalize()`. |
 | `category_color` | no       | Only for a brand-new category. Hex or `var(--color-...)`. |
 | `connections`    | no       | List of `{target, label, reverse_label}` — usually filled after the approval step. |
+| `section`        | no       | `"ideas"` (default) or `"braintail"`. Determines the URL prefix `/<section>/<slug>/`. |
 
 ### connections
 

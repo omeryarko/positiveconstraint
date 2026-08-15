@@ -202,8 +202,9 @@ def render_connections(related, stage, self_slug=None):
         return ""
     cards = []
     for r in related[:MAX_CARDS]:
-        slug = r["url"].strip("/").split("/")[-1]
-        summ = strip_summary(read(os.path.join(stage, "ideas", slug, "index.html")))
+        parts = r["url"].strip("/").split("/")
+        sec, slug = (parts[0], parts[1]) if len(parts) > 1 else ("ideas", parts[-1])
+        summ = strip_summary(read(os.path.join(stage, sec, slug, "index.html")))
         cards.append(
             f'      <a href="{r["url"]}" class="conn-item">\n'
             f'        <span class="conn-title">{r["title"]}</span>\n'
@@ -233,28 +234,29 @@ def rebuild_connections(page, related, stage):
 
 # --------------------------------------------------------------------- stage
 
-def add_llms_entry(stage, slug, title, cat, summary):
+def add_llms_entry(stage, slug, title, cat, summary, section="ideas"):
     """Insert one bullet into /llms.txt under the section matching the category.
     Surgical, like the ideas-index card insert: leaves the rest of the file
     untouched. No-op if the site has no llms.txt or the slug is already listed."""
     path = os.path.join(stage, "llms.txt")
     if not os.path.exists(path):
         return
-    section = {
+    section_header = {
         "concepts": "## Core ideas",
         "frameworks": "## Core ideas",
         "reflections": "## Core ideas",
         "services": "## Practice & work",
         "work": "## Practice & work",
+        "brand-reviews": "## Braintail — Brand Reviews",
     }.get(cat, "## Optional")
     txt = read(path)
-    if f"/ideas/{slug}/)" in txt:
+    if f"/{section}/{slug}/)" in txt:
         return
     desc = " ".join(summary.split())
-    line = f"- [{title}](https://positiveconstraint.com/ideas/{slug}/): {desc}\n"
+    line = f"- [{title}](https://positiveconstraint.com/{section}/{slug}/): {desc}\n"
     lines = txt.splitlines(keepends=True)
     try:
-        start = next(i for i, l in enumerate(lines) if l.strip() == section)
+        start = next(i for i, l in enumerate(lines) if l.strip() == section_header)
     except StopIteration:
         return
     end = len(lines)
@@ -269,7 +271,7 @@ def add_llms_entry(stage, slug, title, cat, summary):
     write(path, "".join(lines))
 
 
-def update_sitemap(stage, slug, cat):
+def update_sitemap(stage, slug, cat, section="ideas"):
     """Keep /sitemap.xml in step with a publish: append a <url> for the new page
     and refresh <lastmod> on the surfaces every publish rewrites (home, ideas
     index, map). Surgical string edits in the same spirit as add_llms_entry;
@@ -281,15 +283,18 @@ def update_sitemap(stage, slug, cat):
     txt = read(path)
 
     # bump lastmod on the always-touched surfaces
-    for surface in ("https://positiveconstraint.com/",
-                    "https://positiveconstraint.com/ideas/",
-                    "https://positiveconstraint.com/map/"):
+    surfaces = ["https://positiveconstraint.com/",
+                "https://positiveconstraint.com/ideas/",
+                "https://positiveconstraint.com/map/"]
+    if section == "braintail":
+        surfaces.append("https://positiveconstraint.com/braintail/")
+    for surface in surfaces:
         txt = re.sub(
             r'(<loc>%s</loc>\s*<lastmod>)[^<]*(</lastmod>)' % re.escape(surface),
             r'\g<1>%s\g<2>' % today, txt, count=1)
 
     # add the new page's <url> once, just before </urlset>
-    loc = f"https://positiveconstraint.com/ideas/{slug}/"
+    loc = f"https://positiveconstraint.com/{section}/{slug}/"
     if f"<loc>{loc}</loc>" not in txt:
         priority = "0.6" if cat == "work" else "0.7"
         entry = (f"  <url>\n"
@@ -302,6 +307,14 @@ def update_sitemap(stage, slug, cat):
     write(path, txt)
 
 
+def target_section(stage, slug):
+    """Determine which section a target slug lives in."""
+    for sec in ("ideas", "braintail"):
+        if os.path.exists(os.path.join(stage, sec, slug, "index.html")):
+            return sec
+    return "ideas"
+
+
 def do_stage(args):
     site, stage = os.path.abspath(args.site), os.path.abspath(args.stage)
     assets = args.assets or os.path.join(os.path.dirname(__file__), "..", "assets")
@@ -312,6 +325,7 @@ def do_stage(args):
         if not data.get(req):
             sys.exit(f"Missing required front-matter field: {req}")
     slug, title, cat = data["slug"], data["title"], data["category"]
+    section = data.get("section", "ideas")
     conns = data.get("connections", [])
     for c in conns:
         c.setdefault("label", "related to")
@@ -331,7 +345,7 @@ def do_stage(args):
     if read_time:
         meta += f'      <span class="meta-item">{read_time}</span>'
     related = [{"title": byid_title(stage, c["target"]), "label": c["label"],
-                "url": f'/ideas/{c["target"]}/'} for c in conns]
+                "url": f'/{target_section(stage, c["target"])}/{c["target"]}/'} for c in conns]
 
     # --- build the new page ------------------------------------------------
     page = template
@@ -341,14 +355,21 @@ def do_stage(args):
     page = page.replace("{{CATEGORY_UPPER}}", cat_label.upper())
     page = page.replace("{{SUMMARY}}", data["summary"])
     page = page.replace("{{SLUG}}", slug)
+    page = page.replace("{{SECTION}}", section)
+    if section == "braintail":
+        page = page.replace("{{SECTION_LINK}}", "/ideas/")
+        page = page.replace("{{SECTION_LABEL}}", "Ideas")
+    else:
+        page = page.replace("{{SECTION_LINK}}", "/ideas/")
+        page = page.replace("{{SECTION_LABEL}}", "Ideas")
     page = page.replace("{{META}}", meta.rstrip("\n"))
     page = page.replace("{{ARTICLE}}", render_body(body))
     page = page.replace("{{PIECE_JSON}}", json.dumps({"title": title, "slug": slug}))
     page = page.replace("{{RELATED_JSON}}", json.dumps(related))
     page = page.replace("{{CONNECTIONS}}", "")                       # clear placeholder
-    write(os.path.join(stage, "ideas", slug, "index.html"), page)   # summary now readable
+    write(os.path.join(stage, section, slug, "index.html"), page)   # summary now readable
     page = set_connections(page, render_connections(related, stage, slug))
-    write(os.path.join(stage, "ideas", slug, "index.html"), page)
+    write(os.path.join(stage, section, slug, "index.html"), page)
 
     # --- Open Graph share image (link-unfurl preview) ---------------------
     # Rendered with headless Chrome so the card matches the site's web fonts.
@@ -366,13 +387,14 @@ def do_stage(args):
     # re-render the whole connections section rather than splice one card in.
     target_related_len = {}
     for c in conns:
-        tpath = os.path.join(stage, "ideas", c["target"], "index.html")
+        tsec = target_section(stage, c["target"])
+        tpath = os.path.join(stage, tsec, c["target"], "index.html")
         tp = read(tpath)
         trel = js_array(tp, "RELATED")
         # idempotent: only add the reverse link if this slug isn't already linked,
         # so a re-run (re-stage/re-deploy) doesn't duplicate it.
-        if not any(r.get("url") == f"/ideas/{slug}/" for r in trel):
-            trel.append({"title": title, "label": c["reverse_label"], "url": f"/ideas/{slug}/"})
+        if not any(r.get("url") == f"/{section}/{slug}/" for r in trel):
+            trel.append({"title": title, "label": c["reverse_label"], "url": f"/{section}/{slug}/"})
             tp = set_js(tp, "RELATED", trel)
             tp = rebuild_connections(tp, trel, stage)
             write(tpath, tp)
@@ -385,10 +407,12 @@ def do_stage(args):
     edges = js_array(mp, "EDGES")
     colors = js_array(mp, "COLORS")
     clabels = js_array(mp, "COLORS_LABEL")
+    for n in nodes:
+        n.setdefault("section", "ideas")
 
     if not any(n.get("id") == slug for n in nodes):
         nodes.append({"id": slug, "title": title, "category": cat,
-                      "summary": strip_summary(page)})
+                      "summary": strip_summary(page), "section": section})
     existing = {tuple(sorted(e)) for e in edges}
     for c in conns:
         key = tuple(sorted([slug, c["target"]]))
@@ -427,9 +451,11 @@ def do_stage(args):
             hedges = js_array(hp, "MAP_EDGES")
             hcolors = js_array(hp, "MAP_COLORS")
             hlabels = js_array(hp, "MAP_LABELS")
+            for n in hnodes:
+                n.setdefault("section", "ideas")
             if not any(n.get("id") == slug for n in hnodes):
                 hnodes.append({"id": slug, "title": title, "category": cat,
-                               "summary": strip_summary(page)})
+                               "summary": strip_summary(page), "section": section})
             hexisting = {tuple(sorted(e)) for e in hedges}
             for c in conns:
                 key = tuple(sorted([slug, c["target"]]))
@@ -454,14 +480,14 @@ def do_stage(args):
     col = cat_color(cat, colors)
     # a card's "N connections" mirrors that page's RELATED length (outbound cards),
     # which is how the live site counts them — not graph degree.
-    card = (f'<a href="/ideas/{slug}/" class="piece-card" data-category="{cat}">'
+    card = (f'<a href="/{section}/{slug}/" class="piece-card" data-category="{cat}">'
             f'<span class="piece-card-tag" style="color:{col}">{cat_label}</span>'
             f'<div class="piece-card-title">{title}</div>'
             f'<div class="piece-card-summary">{strip_summary(page)}</div>'
             f'<div class="piece-card-meta"><span class="piece-card-dot" '
             f'style="background:{col}"></span>{len(related)} connections</div></a>')
     # idempotent: don't insert a second card for this slug on a re-run
-    if f'href="/ideas/{slug}/" class="piece-card"' not in idx:
+    if f'href="/{section}/{slug}/" class="piece-card"' not in idx:
         idx = idx.replace("</a>\n  </div>\n</section>", "</a>" + card + "\n  </div>\n</section>", 1)
     idx = re.sub(r'(<div class="pieces-meta">)[^<]*(</div>)',
                  rf'\g<1>{n_nodes} ideas · {n_edges} connections\2', idx, count=1)
@@ -485,10 +511,10 @@ def do_stage(args):
     write(idx_path, idx)
 
     # --- llms.txt: AI-oriented index of ideas -----------------------------
-    add_llms_entry(stage, slug, title, cat, data["summary"])
+    add_llms_entry(stage, slug, title, cat, data["summary"], section)
 
     # --- sitemap.xml: add the new page, refresh touched surfaces -----------
-    update_sitemap(stage, slug, cat)
+    update_sitemap(stage, slug, cat, section)
 
     # --- media presence check ---------------------------------------------
     missing = []
@@ -511,9 +537,14 @@ def article_text(page_html):
     return html.unescape(re.sub(r'\n{3,}', '\n\n', txt)).strip()
 
 def byid_title(stage, slug):
-    p = os.path.join(stage, "ideas", slug, "index.html")
-    if not os.path.exists(p):
-        sys.exit(f"Connection target '{slug}' has no page at /ideas/{slug}/.")
+    p = None
+    for sec in ("ideas", "braintail"):
+        candidate = os.path.join(stage, sec, slug, "index.html")
+        if os.path.exists(candidate):
+            p = candidate
+            break
+    if p is None:
+        sys.exit(f"Connection target '{slug}' has no page at /ideas/{slug}/ or /braintail/{slug}/.")
     m = re.search(r'<h1>(.*?)</h1>', read(p), re.S)
     return re.sub(r'<[^>]+>', '', m.group(1)).strip() if m else slug
 
@@ -521,7 +552,7 @@ def bump_card_count(idx, slug, count):
     def repl(m):
         card = m.group(0)
         return re.sub(r'\d+ connections', f'{count} connections', card)
-    return re.sub(r'<a href="/ideas/%s/".*?</a>' % re.escape(slug), repl, idx, count=1, flags=re.S)
+    return re.sub(r'<a href="/(?:ideas|braintail)/%s/".*?</a>' % re.escape(slug), repl, idx, count=1, flags=re.S)
 
 def build_manifest(site, stage):
     changed = []
