@@ -48,6 +48,7 @@
   --color-red-dark: #CC2020;
   --color-blue: #5B8DEF;
   --color-blue-hover: #4A7ADB;
+  --color-braintail: #1C3144;
   --color-black: #000000;
   --color-white: #FFFFFF;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
@@ -72,6 +73,7 @@
     --color-border-primary: #404040;
     --color-border-secondary: #525252;
     --color-border-tertiary: #262626;
+    --color-braintail: #5B8DEF;
   }
 }
 
@@ -166,12 +168,12 @@ a:hover { border-bottom-color: var(--color-blue); }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  margin: 0 0 var(--space-lg) 0;
-  color: var(--color-blue);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-braintail);
 }
 
 .hero-hook {
@@ -230,91 +232,13 @@ a:hover { border-bottom-color: var(--color-blue); }
   color: var(--color-text-primary);
 }
 
-/* ============ Reviews grid ============ */
-.reviews-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg) var(--space-3xl);
-}
-
-.reviews-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-md);
-  border-bottom: 0.5px solid var(--color-border-tertiary);
-}
-
-.reviews-header h2 {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: 0;
-  color: var(--color-text-primary);
-}
-
-.reviews-count {
-  font-family: var(--font-display);
-  font-size: 13px;
-  color: var(--color-text-tertiary);
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: var(--space-md);
-}
-
-.review-card {
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: 10px;
-  padding: var(--space-lg);
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.15s;
-  display: flex;
-  flex-direction: column;
-}
-
-.review-card:hover {
-  border-color: var(--color-blue);
-  background: var(--color-background-secondary);
-}
-
-.review-card-tag {
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-blue);
-  margin-bottom: var(--space-sm);
-}
-
-.review-card-title {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-sm);
-}
-
-.review-card-summary {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--color-text-secondary);
-  flex: 1;
-}
-
 @media (max-width: 640px) {
   .nav { padding: 0 var(--space-lg); }
   .hero h1 { font-size: 36px; }
-  .reviews-grid { grid-template-columns: 1fr; }
+  .braintail-mark { width: 34px; }
+  .mini-graph-area { height: 320px; }
+  .map-live-foot { flex-direction: column; }
+  .map-live-foot .btn { width: 100%; text-align: center; }
 }
 
 /* ============ Subscribe block ============ */
@@ -373,6 +297,172 @@ a:hover { border-bottom-color: var(--color-blue); }
 .footer a:hover { color: var(--color-blue); }
 
 @media (max-width: 640px) { .footer { flex-direction: column; text-align: center; gap: var(--space-lg); } }
+
+/* ============ Hero brand group ============ */
+.hero-brand-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.braintail-mark {
+  width: 48px;
+  height: auto;
+  color: var(--color-braintail);
+  flex-shrink: 0;
+}
+
+/* ============ Knowledge map ============ */
+.map-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+}
+.map-live {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 12px;
+  padding: var(--space-xl);
+}
+.map-live-head { text-align: center; margin-bottom: var(--space-lg); }
+.map-live-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: var(--space-sm);
+}
+.map-live-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.mini-graph-area {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 10px;
+  width: 100%;
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+}
+svg.mini-graph { width: 100%; height: 100%; display: block; }
+.node-circle { cursor: pointer; transition: opacity 0.15s; }
+.node-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  pointer-events: none;
+  text-anchor: middle;
+  fill: var(--color-text-secondary);
+  transition: opacity 0.15s;
+}
+.edge {
+  stroke: var(--color-border-secondary);
+  stroke-width: 0.5;
+  transition: opacity 0.15s;
+}
+.edge.highlight { stroke: var(--color-blue); stroke-width: 1.5; }
+.dimmed { opacity: 0.12; }
+.node-tooltip {
+  position: absolute;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 260px;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+.tooltip-category {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.tooltip-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.tooltip-summary {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.tooltip-link {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-blue);
+}
+.map-live-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.map-legend {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+.legend-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.legend-pill:hover { color: var(--color-text-secondary); border-color: var(--color-border-secondary); }
+.legend-pill.active {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  background: rgba(91,141,239,0.08);
+}
+.legend-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.btn-accent {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+.btn-accent:hover {
+  background: var(--color-blue-hover);
+  border-bottom-color: transparent;
+}
 </style>
 </head>
 <body>
@@ -401,7 +491,17 @@ a:hover { border-bottom-color: var(--color-blue); }
     </svg>
     Positive Constraint
   </div>
-  <h1>Braintail</h1>
+  <div class="hero-brand-group">
+    <svg class="braintail-mark" viewBox="0 0 58 62" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M42 16c6 8 14 24 14 38 0 2 0 4 0 8-4-14-12-30-20-38z" fill="currentColor"/>
+      <path d="M44 22L56 60" fill="none" stroke="var(--color-background-primary)" stroke-width="1"/>
+      <path d="M28 4C16 2 4 12 4 28c0 14 10 24 22 28 2 1 4 1 6 0 12-4 22-14 22-28C54 12 40 2 28 4z" fill="currentColor"/>
+      <path d="M28 6v48" fill="none" stroke="var(--color-background-primary)" stroke-width="1.5"/>
+      <path d="M14 18q6 5 4 10M12 32q7-3 5 5M16 42q5-3 3 5" fill="none" stroke="var(--color-background-primary)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M36 20q3 4 1 8" fill="none" stroke="var(--color-background-primary)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h1>Braintail</h1>
+  </div>
   <p class="hero-hook">Brand strategy for iGaming B2B. In a sea of same, your story is the only thing that gets there first.</p>
 </header>
 
@@ -437,165 +537,214 @@ a:hover { border-bottom-color: var(--color-blue); }
 
 </section>
 
-<section class="reviews-section">
-  <div class="reviews-header">
-    <h2>Brand Reviews</h2>
-    <span class="reviews-count">25 reviews</span>
-  </div>
-  <div class="reviews-grid">
-
-    <a href="/braintail/the-braintail-method/" class="review-card">
-      <div class="review-card-tag">Method</div>
-      <div class="review-card-title">The Braintail Method</div>
-      <div class="review-card-summary">Your story's ability to travel far and fast is its strongest advantage over sales-driven, in-person growth.</div>
-    </a>
-
-    <a href="/braintail/brand-plays/" class="review-card">
-      <div class="review-card-tag">Strategy</div>
-      <div class="review-card-title">Brand Plays</div>
-      <div class="review-card-summary">Different categories in iGaming B2B have different brand plays. After nearly 20 brand reviews, the patterns are clear.</div>
-    </a>
-
-    <a href="/braintail/into-the-void/" class="review-card">
-      <div class="review-card-tag">Strategy</div>
-      <div class="review-card-title">Into the Void</div>
-      <div class="review-card-summary">How many iGaming B2C operators are there? The distinct business entities that buy your software are out there, deciding whether to notice you at all.</div>
-    </a>
-
-    <a href="/braintail/heroes-of-missed-opportunities/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Heroes of Missed Opportunities</div>
-      <div class="review-card-summary">There's a very short time window when operators are open to buying a new CRM. A look at the missed opportunities that keep brands invisible.</div>
-    </a>
-
-    <a href="/braintail/coinspaid-double-edge/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">CoinsPaid's Double Edge</div>
-      <div class="review-card-summary">An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming. But the same advantage that built the company could become its double edge.</div>
-    </a>
-
-    <a href="/braintail/myaffiliates-guardian-of-truth/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">MyAffiliates Guardian of Truth</div>
-      <div class="review-card-summary">MyAffiliates' trust made it the category leader in affiliate tracking. But change is coming, and trust alone is no longer enough.</div>
-    </a>
-
-    <a href="/braintail/isx-is-lost-in-translation/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">ISX is Lost in Translation</div>
-      <div class="review-card-summary">ISX's financial stack offers top-tier iGaming operators certainty through depth, but the company doesn't translate that depth into messaging that moves.</div>
-    </a>
-
-    <a href="/braintail/elantil-blue-moon/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Elantil's Blue Moon</div>
-      <div class="review-card-summary">An A-team of iGaming veterans rethought how platforms should be built &mdash; and created a new category. But instead of leveraging this blue moon, Elantil keeps it quiet.</div>
-    </a>
-
-    <a href="/braintail/valentina-bagniya-interview/" class="review-card">
-      <div class="review-card-tag">Interview</div>
-      <div class="review-card-title">Standing Out in a Saturated Market</div>
-      <div class="review-card-summary">Technology is no longer a differentiator. SOFTSWISS CMO Valentina Bagniya on why brand is now the competitive advantage.</div>
-    </a>
-
-    <a href="/braintail/vegangster-beans-of-greatness/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Vegangster Beans of Greatness</div>
-      <div class="review-card-summary">An iGaming platform built for the Uber generation &mdash; a feed, not a grid. They have the beans of greatness; they just need to plant them.</div>
-    </a>
-
-    <a href="/braintail/endorphina-empty-stage/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Endorphina's Empty Stage</div>
-      <div class="review-card-summary">Endorphina is hard to miss &mdash; viral booth stunts, Baywatch lifeguards. But when the audience quiets down and the spotlight hits, who's there?</div>
-    </a>
-
-    <a href="/braintail/platipus-50-shades-of-white/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Platipus 50 Shades of White</div>
-      <div class="review-card-summary">Like missionaries of old, Platipus could promote fair play with passion and conviction. But unless they start preaching, they risk fading into a field of white.</div>
-    </a>
-
-    <a href="/braintail/neosurf-careful-wagers-apm/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Neosurf the APM for Careful Wagers</div>
-      <div class="review-card-summary">Neosurf's story remains elusive despite real effort to capture it. The solution might lie in rethinking what a payment method can be.</div>
-    </a>
-
-    <a href="/braintail/nla-makeshift-story/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">NLA's Makeshift Story</div>
-      <div class="review-card-summary">A tragedy of wasted potential &mdash; a strong product with a crippling story. Getting a license is one step; telling the story that makes it matter is another.</div>
-    </a>
-
-    <a href="/braintail/maincard-open-invitation/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Maincard's Open Invitation</div>
-      <div class="review-card-summary">Maincard is the 'Shopify for iGaming.' By positioning around speed instead of ease, it leaves the position open for competitors to claim.</div>
-    </a>
-
-    <a href="/braintail/blask-identity-crisis/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Blask's identity crisis</div>
-      <div class="review-card-summary">What do you do when you can't or won't focus on a single target audience? Blask's identity crisis shows the cost of refusing to pick.</div>
-    </a>
-
-    <a href="/braintail/finera-buried-message/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">finera.'s buried message</div>
-      <div class="review-card-summary">finera. spent millions building a premium brand, then played down its strongest message. The emotional promise gets buried, so the story doesn't spread.</div>
-    </a>
-
-    <a href="/braintail/finnplay-missing-ingredient/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Finnplay's Missing Ingredient</div>
-      <div class="review-card-summary">Finnplay's story is true, valuable, and differentiated &mdash; but it's not compelling. The compliance story is missing the ingredient that makes it spread.</div>
-    </a>
-
-    <a href="/braintail/inpay-blind-spot/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Inpay's ironic blind spot</div>
-      <div class="review-card-summary">iGaming Payouts can send players' withdrawals to almost any bank account in less than 5 minutes &mdash; no one else comes close. So why isn't it growing?</div>
-    </a>
-
-    <a href="/braintail/bazoom-cognitive-gap/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Bazoom's cognitive gap</div>
-      <div class="review-card-summary">Being recognized isn't the same as standing out. Bazoom is the well-known name in iGaming SEO, yet its differentiators stay untranslated.</div>
-    </a>
-
-    <a href="/braintail/bettorify-two-story-problem/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Bettorify Two-Story Problem</div>
-      <div class="review-card-summary">Bettorify wants to be different &mdash; but it splits its chips between two stories and two audiences, giving everything it has to neither.</div>
-    </a>
-
-    <a href="/braintail/yaspa-product-outshines-its-story/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">Yaspa's product outshines its story</div>
-      <div class="review-card-summary">It's hard enough to get noticed &mdash; so if you've got a strong differentiator, flaunt it. Yaspa's product is smarter than its story.</div>
-    </a>
-
-    <a href="/braintail/155-milking-machines/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">155's Milking Machines</div>
-      <div class="review-card-summary">155.io streams live chaos games 24/7 &mdash; ducks racing, marbles rolling, coins dropping. A distinct company, but a stronger narrative could make it a sensation.</div>
-    </a>
-
-    <a href="/braintail/youre-not-alea/" class="review-card">
-      <div class="review-card-tag">Brand Review</div>
-      <div class="review-card-title">You're not Alea</div>
-      <div class="review-card-summary">You don't have the budget to be as flashy and loud. But Alea's strategy has a flaw you can use to your advantage.</div>
-    </a>
-
-    <a href="/braintail/passover-kabbalistic-brand-ritual/" class="review-card">
-      <div class="review-card-tag">Reflection</div>
-      <div class="review-card-title">Passover's Kabbalistic Brand Ritual</div>
-      <div class="review-card-summary">Passover isn't about change &mdash; it's about identity. The holiday's rituals hold a lesson about building brands that last through generations.</div>
-    </a>
-
+<section class="map-section">
+  <div class="map-live">
+    <div class="map-live-head">
+      <div class="map-live-title">Explore the knowledge map</div>
+      <div class="map-live-desc">Brand reviews connected to strategy frameworks, concepts, and case studies. Hover a node to explore &mdash; click to read.</div>
+    </div>
+    <div class="mini-graph-area" id="miniGraphArea">
+      <svg class="mini-graph" id="miniGraph"></svg>
+      <div class="node-tooltip" id="miniTooltip"></div>
+    </div>
+    <div class="map-live-foot">
+      <div class="map-legend" id="mapLegend"></div>
+      <a href="/map/" class="btn btn-accent">Open the full map &rarr;</a>
+    </div>
   </div>
 </section>
+
+<script>
+var MAP_NODES = [{"id": "about", "title": "About", "category": "about", "summary": "I founded Positive Constraint thanks to two things I learned from my dad.", "section": "ideas"}, {"id": "abstraction", "title": "Abstraction", "category": "concepts", "summary": "Abstraction is the act of filtering out unnecessary detail to surface what truly matters.", "section": "ideas"}, {"id": "contact", "title": "Contact", "category": "about", "summary": "Have an interesting value puzzle? Looking for better answers? Let’s chat.", "section": "ideas"}, {"id": "core-constraints", "title": "Core Constraints", "category": "concepts", "summary": "A core constraint is the irreducible truth at the center of a problem domain.", "section": "ideas"}, {"id": "faq", "title": "FAQ", "category": "about", "summary": "How are you better than other consultants? Well, I have no idea.", "section": "ideas"}, {"id": "positive-constraint", "title": "Positive Constraint", "category": "frameworks", "summary": "The world is too complex to predict and too fast to adapt to. Resilience can no longer be found in predictions.", "section": "ideas"}, {"id": "process", "title": "The Process", "category": "concepts", "summary": "Every engagement follows four phases.", "section": "ideas"}, {"id": "services", "title": "Services", "category": "services", "summary": "All three services draw from the same foundation: core constraints and abstraction.", "section": "ideas"}, {"id": "work-cortisense", "title": "CortiSense", "category": "work", "summary": "Domain: Predictive Maintenance, IoT. Engagement type: Value proposition.", "section": "ideas"}, {"id": "work", "title": "Work", "category": "work", "summary": "Value creation comes in many forms.", "section": "ideas"}, {"id": "work-leap-commerce", "title": "LEAP Commerce", "category": "work", "summary": "Domain: eCommerce Enablement. Engagement type: Investment pitch.", "section": "ideas"}, {"id": "work-tapouts", "title": "Tapouts", "category": "work", "summary": "Domain: Emotional well-being platform for kids. Engagement type: Pitch deck.", "section": "ideas"}, {"id": "work-user1st", "title": "User1st", "category": "work", "summary": "Domain: Developer Tools. Engagement type: Value strategy.", "section": "ideas"}, {"id": "three-reds-in-haifa", "title": "3 Reds in Haifa", "category": "reflections", "summary": "Three red lights, two kids, and a dental bill — a red light is a constraint too.", "section": "ideas"}, {"id": "desired-reality", "title": "Desired Reality", "category": "frameworks", "summary": "Desired Reality is the goal in the language of Positive Constraint.", "section": "ideas"}, {"id": "three-axes", "title": "The Three Axes", "category": "concepts", "summary": "Every company is defined by three axes: one northstar KPI for the value it creates.", "section": "ideas"}, {"id": "innovation", "title": "Innovation", "category": "concepts", "summary": "Innovation is finding new solutions to pre-existing problems given new constraints.", "section": "ideas"}, {"id": "embrace-the-unchanging", "title": "Embrace the Unchanging", "category": "concepts", "summary": "The world is too complex to predict and too fast to adapt to.", "section": "ideas"}, {"id": "complex-new-world", "title": "Complex New World", "category": "concepts", "summary": "The world has become a polycrisis — too complex to predict and too fast to adapt to.", "section": "ideas"}, {"id": "prince-of-persia-shadow-man", "title": "The Constraint Behind Prince of Persia's Best Fight", "category": "reflections", "summary": "A memory limit left Jordan Mechner no room for a new boss — so he flipped the Prince into his own reflection.", "section": "ideas"}, {"id": "superhuman-100ms-constraint", "title": "Superhuman 100ms Constraint", "category": "reflections", "summary": "Superhuman made every interaction faster than 100ms — part of their DNA.", "section": "ideas"}, {"id": "altman-three-bets", "title": "Sam Altman's three bets to control who's real", "category": "reflections", "summary": "Three investments, one flywheel: intelligence, energy, proof of personhood.", "section": "ideas"}, {"id": "other-side-of-the-constraint", "title": "Playing on the Other Side of the Constraint", "category": "frameworks", "summary": "Every constraint has a silver lining — a method for finding the opportunity inside any limitation.", "section": "ideas"}, {"id": "wrap-around-the-constraint", "title": "Wrap Around a Constraint", "category": "frameworks", "summary": "Instead of dissolving a constraint, build radically around it.", "section": "ideas"}, {"id": "lewin-force-field-theory", "title": "Kurt Lewin's Force Field Theory", "category": "concepts", "summary": "The driving and restraining forces in tension around any status quo.", "section": "ideas"}, {"id": "fogg-behavior-model", "title": "The Fogg Behavior Model", "category": "concepts", "summary": "Motivation, ability, and a prompt have to converge at the same moment.", "section": "ideas"}, {"id": "will-being", "title": "Will-Being", "category": "concepts", "summary": "Dictatorships, cults, and other entities that don't have ideas — they have people.", "section": "ideas"}, {"id": "mistake-in-the-right-direction", "title": "A Mistake in the Right Direction", "category": "concepts", "summary": "Creativity is a blind man walking a dark corridor.", "section": "ideas"}, {"id": "constraints-history", "title": "Constraints, a Short History", "category": "concepts", "summary": "Goldratt's Theory of Constraints, Snowden's Cynefin, Morgan's A Beautiful Constraint.", "section": "ideas"}, {"id": "fractals-and-constraints", "title": "Fractals & Constraints", "category": "concepts", "summary": "A fractal is a constraint — the one pattern that keeps replicating itself across every scale.", "section": "ideas"}, {"id": "futures-cone", "title": "The Futures Cone", "category": "frameworks", "summary": "Where plausible quietly shades into crazy — and why that edge is where the interesting ideas live.", "section": "ideas"}, {"id": "value-axis", "title": "The Value Axis", "category": "concepts", "summary": "Value grows by following one axis all the way out — potato, fries, top-chef mashed potato.", "section": "ideas"}, {"id": "three-markets", "title": "The Three Markets", "category": "concepts", "summary": "Every company runs in three markets at once: products & services, capital, and labor.", "section": "ideas"}, {"id": "unskeuomorphic", "title": "Unskeuomorphic", "category": "concepts", "summary": "New inventions carry old constraints as habits, not requirements.", "section": "ideas"}, {"id": "zeroth-principles-thinking", "title": "Zeroth-Principles Thinking", "category": "concepts", "summary": "Bryan Johnson's zeroth-principles framework — and why constraint-first reasoning was the natural fit.", "section": "ideas"}, {"id": "up-your-pitch", "title": "Up Your Pitch", "category": "frameworks", "summary": "An investor spends under two and a half minutes on your deck.", "section": "ideas"}, {"id": "the-braintail-method", "title": "The Braintail Method", "category": "brand-reviews", "summary": "Your story’s ability to travel far and fast is its strongest advantage over sales-driven, in-person growth.", "section": "braintail"}, {"id": "155-milking-machines", "title": "155’s Milking Machines", "category": "brand-reviews", "summary": "155.io streams live chaos games 24/7 — ducks racing, marbles rolling, coins dropping.", "section": "braintail"}, {"id": "bazoom-cognitive-gap", "title": "Bazoom's cognitive gap is keeping it from winning", "category": "brand-reviews", "summary": "Being recognized isn’t the same as standing out.", "section": "braintail"}, {"id": "bettorify-two-story-problem", "title": "Bettorify Two-Story Problem", "category": "brand-reviews", "summary": "Bettorify wants to be different — but it splits its chips between two stories.", "section": "braintail"}, {"id": "blask-identity-crisis", "title": "Blask's identity crisis", "category": "brand-reviews", "summary": "What do you do when you can’t or won’t focus on a single target audience?", "section": "braintail"}, {"id": "brand-plays", "title": "Brand Plays", "category": "brand-reviews", "summary": "Different categories in iGaming B2B have different brand plays.", "section": "braintail"}, {"id": "coinspaid-double-edge", "title": "CoinsPaid's Double Edge", "category": "brand-reviews", "summary": "An unfair advantage made CoinsPaid the leading crypto payments processor in iGaming.", "section": "braintail"}, {"id": "elantil-blue-moon", "title": "Elantil’s Blue Moon", "category": "brand-reviews", "summary": "An A-team of iGaming veterans set out to rethink how platforms should be built.", "section": "braintail"}, {"id": "endorphina-empty-stage", "title": "Endorphina's Empty Stage", "category": "brand-reviews", "summary": "Endorphina is hard to miss — viral booth stunts, Baywatch lifeguards.", "section": "braintail"}, {"id": "finera-buried-message", "title": "finera.’s buried message", "category": "brand-reviews", "summary": "finera. spent millions building a premium brand, then played down its strongest message.", "section": "braintail"}, {"id": "finnplay-missing-ingredient", "title": "Finnplay's Missing Ingredient", "category": "brand-reviews", "summary": "Finnplay’s story is true, valuable, and differentiated — but it’s not compelling.", "section": "braintail"}, {"id": "heroes-of-missed-opportunities", "title": "Heroes of Missed Opportunities", "category": "brand-reviews", "summary": "There’s a very short time window when operators are open to buying a new CRM.", "section": "braintail"}, {"id": "inpay-blind-spot", "title": "Inpay’s ironic blind spot is crippling its growth", "category": "brand-reviews", "summary": "iGaming Payouts can send withdrawals to almost any bank account in less than 5 minutes.", "section": "braintail"}, {"id": "into-the-void", "title": "Into the Void", "category": "brand-reviews", "summary": "How many iGaming B2C operators are there? They’re out there, deciding whether to notice you.", "section": "braintail"}, {"id": "isx-is-lost-in-translation", "title": "ISX is Lost in Translation", "category": "brand-reviews", "summary": "ISX’s financial stack offers top-tier iGaming operators certainty through depth.", "section": "braintail"}, {"id": "maincard-open-invitation", "title": "Maincard's Open Invitation", "category": "brand-reviews", "summary": "Maincard is the ‘Shopify for iGaming’ — a no-code platform launching casinos in record time.", "section": "braintail"}, {"id": "myaffiliates-guardian-of-truth", "title": "MyAffiliates Guardian of Truth", "category": "brand-reviews", "summary": "MyAffiliates’ trust made it the category leader in affiliate tracking.", "section": "braintail"}, {"id": "neosurf-careful-wagers-apm", "title": "Neosurf the APM for Careful Wagers", "category": "brand-reviews", "summary": "Neosurf’s story remains elusive despite real effort to capture it.", "section": "braintail"}, {"id": "nla-makeshift-story", "title": "NLA's Makeshift Story", "category": "brand-reviews", "summary": "A tragedy of wasted potential — a strong product with a crippling story.", "section": "braintail"}, {"id": "passover-kabbalistic-brand-ritual", "title": "Passover's Kabbalistic Brand Ritual", "category": "brand-reviews", "summary": "Passover isn’t about change — it’s about identity.", "section": "braintail"}, {"id": "platipus-50-shades-of-white", "title": "Platipus 50 Shades of White", "category": "brand-reviews", "summary": "Like missionaries of old, Platipus could promote fair play with passion and conviction.", "section": "braintail"}, {"id": "valentina-bagniya-interview", "title": "Standing Out in a Saturated Market", "category": "brand-reviews", "summary": "Technology is no longer a differentiator. SOFTSWISS CMO Valentina Bagniya on why brand is now the advantage.", "section": "braintail"}, {"id": "vegangster-beans-of-greatness", "title": "Vegangster Beans of Greatness", "category": "brand-reviews", "summary": "An iGaming platform built for the Uber generation — a feed, not a grid.", "section": "braintail"}, {"id": "yaspa-product-outshines-its-story", "title": "Yaspa's product outshines its story", "category": "brand-reviews", "summary": "If you’ve got a strong differentiator, flaunt it. Yaspa’s product is smarter than its story.", "section": "braintail"}, {"id": "youre-not-alea", "title": "You're not Alea", "category": "brand-reviews", "summary": "You don’t have the budget to be as flashy and loud. But Alea’s strategy has a flaw.", "section": "braintail"}];
+var MAP_EDGES = [["about", "abstraction"], ["about", "core-constraints"], ["about", "positive-constraint"], ["abstraction", "core-constraints"], ["abstraction", "positive-constraint"], ["abstraction", "process"], ["core-constraints", "positive-constraint"], ["core-constraints", "process"], ["core-constraints", "work-tapouts"], ["core-constraints", "work-cortisense"], ["core-constraints", "work-user1st"], ["core-constraints", "work-leap-commerce"], ["positive-constraint", "process"], ["process", "work-tapouts"], ["process", "work-cortisense"], ["process", "work-user1st"], ["process", "work-leap-commerce"], ["services", "abstraction"], ["services", "core-constraints"], ["services", "process"], ["services", "work"], ["faq", "abstraction"], ["faq", "positive-constraint"], ["faq", "contact"], ["contact", "faq"], ["contact", "work"], ["work", "work-tapouts"], ["work", "work-cortisense"], ["work", "work-user1st"], ["work", "work-leap-commerce"], ["three-reds-in-haifa", "positive-constraint"], ["three-reds-in-haifa", "core-constraints"], ["three-reds-in-haifa", "abstraction"], ["three-reds-in-haifa", "process"], ["desired-reality", "positive-constraint"], ["desired-reality", "core-constraints"], ["three-axes", "core-constraints"], ["three-axes", "abstraction"], ["three-axes", "positive-constraint"], ["three-axes", "services"], ["innovation", "positive-constraint"], ["innovation", "core-constraints"], ["innovation", "abstraction"], ["embrace-the-unchanging", "positive-constraint"], ["embrace-the-unchanging", "core-constraints"], ["complex-new-world", "embrace-the-unchanging"], ["complex-new-world", "positive-constraint"], ["prince-of-persia-shadow-man", "positive-constraint"], ["prince-of-persia-shadow-man", "innovation"], ["prince-of-persia-shadow-man", "embrace-the-unchanging"], ["prince-of-persia-shadow-man", "three-reds-in-haifa"], ["superhuman-100ms-constraint", "prince-of-persia-shadow-man"], ["superhuman-100ms-constraint", "core-constraints"], ["superhuman-100ms-constraint", "positive-constraint"], ["altman-three-bets", "core-constraints"], ["altman-three-bets", "complex-new-world"], ["altman-three-bets", "innovation"], ["other-side-of-the-constraint", "core-constraints"], ["wrap-around-the-constraint", "positive-constraint"], ["wrap-around-the-constraint", "other-side-of-the-constraint"], ["lewin-force-field-theory", "desired-reality"], ["fogg-behavior-model", "lewin-force-field-theory"], ["fogg-behavior-model", "desired-reality"], ["will-being", "core-constraints"], ["will-being", "embrace-the-unchanging"], ["mistake-in-the-right-direction", "prince-of-persia-shadow-man"], ["mistake-in-the-right-direction", "innovation"], ["constraints-history", "core-constraints"], ["constraints-history", "positive-constraint"], ["fractals-and-constraints", "core-constraints"], ["fractals-and-constraints", "abstraction"], ["futures-cone", "desired-reality"], ["futures-cone", "complex-new-world"], ["value-axis", "three-axes"], ["three-markets", "three-axes"], ["three-markets", "work"], ["unskeuomorphic", "embrace-the-unchanging"], ["unskeuomorphic", "innovation"], ["zeroth-principles-thinking", "core-constraints"], ["zeroth-principles-thinking", "abstraction"], ["up-your-pitch", "three-axes"], ["up-your-pitch", "services"], ["up-your-pitch", "futures-cone"], ["up-your-pitch", "core-constraints"], ["up-your-pitch", "value-axis"], ["up-your-pitch", "complex-new-world"]];
+var MAP_COLORS = {"concepts": "#FF4040", "frameworks": "#FF4040", "services": "var(--color-text-primary)", "work": "var(--color-text-secondary)", "about": "var(--color-text-tertiary)", "reflections": "#E0A458", "brand-reviews": "#5B8DEF"};
+var MAP_LABELS = {"concepts": "Concepts", "services": "Services", "work": "Work", "about": "About", "reflections": "Reflections", "frameworks": "Frameworks", "brand-reviews": "Brand Reviews"};
+
+(function () {
+  var svg = document.getElementById('miniGraph');
+  var area = document.getElementById('miniGraphArea');
+  var tooltip = document.getElementById('miniTooltip');
+  var legendEl = document.getElementById('mapLegend');
+  if (!svg || !area) return;
+  var W = area.clientWidth, H = area.clientHeight;
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+  var byId = {};
+  MAP_NODES.forEach(function (n, i) {
+    var a = (i / MAP_NODES.length) * Math.PI * 2;
+    n.x = W / 2 + Math.cos(a) * Math.min(W, H) * 0.3;
+    n.y = H / 2 + Math.sin(a) * Math.min(W, H) * 0.3;
+    n.vx = 0; n.vy = 0;
+    byId[n.id] = n;
+  });
+  var edges = MAP_EDGES.filter(function (e) { return byId[e[0]] && byId[e[1]]; });
+
+  var SPRING = 100;
+  for (var it = 0; it < 300; it++) {
+    var cool = 1 - it / 300;
+    for (var i = 0; i < MAP_NODES.length; i++) {
+      var a = MAP_NODES[i];
+      a.vx = (W / 2 - a.x) * 0.002;
+      a.vy = (H / 2 - a.y) * 0.002;
+      for (var j = 0; j < MAP_NODES.length; j++) {
+        if (i === j) continue;
+        var b = MAP_NODES[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d2 = dx * dx + dy * dy + 0.01;
+        var f = 2600 / d2;
+        var d = Math.sqrt(d2);
+        a.vx += (dx / d) * f;
+        a.vy += (dy / d) * f;
+      }
+    }
+    edges.forEach(function (e) {
+      var a = byId[e[0]], b = byId[e[1]];
+      var dx = b.x - a.x, dy = b.y - a.y;
+      var d = Math.sqrt(dx * dx + dy * dy) + 0.01;
+      var f = (d - SPRING) * 0.02;
+      a.vx += (dx / d) * f; a.vy += (dy / d) * f;
+      b.vx -= (dx / d) * f; b.vy -= (dy / d) * f;
+    });
+    MAP_NODES.forEach(function (n) {
+      n.x += n.vx * cool;
+      n.y += n.vy * cool;
+      n.x = Math.max(40, Math.min(W - 40, n.x));
+      n.y = Math.max(26, Math.min(H - 26, n.y));
+    });
+  }
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var edgeEls = [], nodeEls = [], labelEls = [];
+  var focusCat = 'brand-reviews';
+
+  edges.forEach(function (e) {
+    var a = byId[e[0]], b = byId[e[1]];
+    var line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+    line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+    line.setAttribute('class', 'edge');
+    svg.appendChild(line);
+    edgeEls.push({ el: line, s: e[0], t: e[1] });
+  });
+
+  MAP_NODES.forEach(function (n) {
+    var label = document.createElementNS(NS, 'text');
+    label.setAttribute('x', n.x);
+    label.setAttribute('y', n.y - 13);
+    label.setAttribute('class', 'node-label');
+    label.textContent = n.title.length > 16 ? n.title.slice(0, 15) + '…' : n.title;
+    svg.appendChild(label);
+    labelEls.push({ el: label, n: n });
+
+    var c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', n.x); c.setAttribute('cy', n.y);
+    c.setAttribute('r', 6);
+    c.setAttribute('style', 'fill:' + (MAP_COLORS[n.category] || '#999'));
+    c.setAttribute('stroke', 'var(--color-background-primary)');
+    c.setAttribute('stroke-width', 2);
+    c.setAttribute('class', 'node-circle');
+    c.addEventListener('mouseenter', function () { focusNode(n, c); });
+    c.addEventListener('mouseleave', clearFocus);
+    c.addEventListener('click', function () { window.location.href = '/' + (n.section || 'ideas') + '/' + n.id + '/'; });
+    svg.appendChild(c);
+    nodeEls.push({ el: c, n: n });
+  });
+
+  function neighbors(id) {
+    var set = {}; set[id] = true;
+    edges.forEach(function (e) {
+      if (e[0] === id) set[e[1]] = true;
+      if (e[1] === id) set[e[0]] = true;
+    });
+    return set;
+  }
+
+  function focusNode(n, c) {
+    c.setAttribute('r', 9);
+    var near = neighbors(n.id);
+    nodeEls.forEach(function (x) { x.el.style.opacity = near[x.n.id] ? 1 : 0.12; });
+    labelEls.forEach(function (x) { x.el.style.opacity = near[x.n.id] ? 1 : 0.12; });
+    edgeEls.forEach(function (x) {
+      var on = x.s === n.id || x.t === n.id;
+      x.el.classList.toggle('highlight', on);
+      x.el.style.opacity = on ? 1 : 0.06;
+    });
+    tooltip.innerHTML =
+      '<div class="tooltip-category">' + (MAP_LABELS[n.category] || n.category) + '</div>' +
+      '<div class="tooltip-title">' + n.title + '</div>' +
+      '<div class="tooltip-summary">' + n.summary + '</div>' +
+      '<div class="tooltip-link">Click to read →</div>';
+    tooltip.style.display = 'block';
+    var scale = area.clientWidth / W;
+    var tx = n.x * scale + 14, ty = n.y * scale + 14;
+    if (tx + 270 > area.clientWidth) tx = n.x * scale - 274;
+    if (ty + 140 > area.clientHeight) ty = n.y * scale - 150;
+    tooltip.style.left = Math.max(8, tx) + 'px';
+    tooltip.style.top = Math.max(8, ty) + 'px';
+  }
+
+  function clearFocus() {
+    tooltip.style.display = 'none';
+    nodeEls.forEach(function (x) { x.el.setAttribute('r', 6); x.el.style.opacity = ''; });
+    labelEls.forEach(function (x) { x.el.style.opacity = ''; });
+    edgeEls.forEach(function (x) { x.el.classList.remove('highlight'); x.el.style.opacity = ''; });
+    if (focusCat) applyCatFocus();
+  }
+
+  function applyCatFocus() {
+    nodeEls.forEach(function (x) {
+      var em = x.n.category === focusCat;
+      x.el.setAttribute('r', em ? 8 : 5);
+      x.el.style.opacity = em ? 1 : 0.25;
+    });
+    labelEls.forEach(function (x) {
+      x.el.style.opacity = x.n.category === focusCat ? 1 : 0.15;
+    });
+    edgeEls.forEach(function (x) {
+      var sa = byId[x.s], ta = byId[x.t];
+      var on = sa && ta && (sa.category === focusCat || ta.category === focusCat);
+      x.el.style.opacity = on ? 0.4 : 0.06;
+      x.el.classList.toggle('highlight', !!on);
+    });
+  }
+
+  function clearCatFocus() {
+    nodeEls.forEach(function (x) {
+      x.el.setAttribute('r', 6);
+      x.el.style.opacity = '';
+    });
+    labelEls.forEach(function (x) { x.el.style.opacity = ''; });
+    edgeEls.forEach(function (x) {
+      x.el.style.opacity = '';
+      x.el.classList.remove('highlight');
+    });
+  }
+
+  var cats = {};
+  MAP_NODES.forEach(function (n) { cats[n.category] = true; });
+  ['brand-reviews', 'concepts', 'frameworks', 'reflections', 'services', 'work', 'about'].forEach(function (cat) {
+    if (!cats[cat]) return;
+    var pill = document.createElement('button');
+    pill.className = 'legend-pill' + (cat === focusCat ? ' active' : '');
+    pill.setAttribute('data-cat', cat);
+    pill.innerHTML = '<span class="legend-dot" style="background:' + (MAP_COLORS[cat] || '#999') + '"></span>' + (MAP_LABELS[cat] || cat);
+    pill.addEventListener('click', function () {
+      if (focusCat === cat) {
+        focusCat = null;
+        clearCatFocus();
+        legendEl.querySelectorAll('.legend-pill').forEach(function (p) { p.classList.remove('active'); });
+      } else {
+        focusCat = cat;
+        applyCatFocus();
+        legendEl.querySelectorAll('.legend-pill').forEach(function (p) { p.classList.toggle('active', p.getAttribute('data-cat') === cat); });
+      }
+    });
+    legendEl.appendChild(pill);
+  });
+
+  applyCatFocus();
+})();
+</script>
 
 <section class="pc-subscribe" style="margin-bottom: var(--space-2xl);">
   <div class="pc-subscribe-inner">
