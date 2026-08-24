@@ -30,6 +30,37 @@
 <meta name="twitter:title" content="Positive Constraint">
 <meta name="twitter:description" content="A public knowledge base of connected ideas. Discover, read, and grab ideas as markdown.">
 <meta name="twitter:image" content="https://positiveconstraint.com/media/og/home.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://positiveconstraint.com/ideas/about/#person",
+      "name": "Omer Yarkowich",
+      "url": "https://positiveconstraint.com/ideas/about/",
+      "jobTitle": "Founder, Positive Constraint",
+      "sameAs": [
+        "https://www.linkedin.com/in/omeryarkowich/"
+      ],
+      "knowsAbout": [
+        "constraint-based thinking",
+        "value strategy",
+        "brand positioning",
+        "pitch design"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://positiveconstraint.com/#website",
+      "name": "Positive Constraint",
+      "url": "https://positiveconstraint.com/",
+      "description": "A public knowledge base of connected ideas. Discover, read, and grab ideas as markdown.",
+      "author": { "@id": "https://positiveconstraint.com/ideas/about/#person" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -247,6 +278,21 @@ h3 {
   letter-spacing: -0.01em;
   margin: var(--space-xl) 0 var(--space-sm) 0;
   color: var(--color-text-primary);
+}
+
+/* These section labels are semantic h2s but keep their original div styling
+   classes. Neutralize the parts of the base h2 rule (margin-top, line-height,
+   letter-spacing) that the classes below don't already override, so the
+   visual result is identical to when these were plain divs. */
+h2.featured-label,
+h2.map-live-title,
+h2.pc-subscribe-title {
+  margin-top: 0;
+  line-height: inherit;
+}
+
+h2.map-live-title {
+  letter-spacing: normal;
 }
 
 p {
@@ -948,21 +994,21 @@ svg.mini-graph { width: 100%; height: 100%; display: block; }
 </section>
 
 <section class="featured">
-  <div class="featured-label">Start here</div>
+  <h2 class="featured-label">Start here</h2>
   <div class="piece-grid">
     <a href="/ideas/positive-constraint/" class="piece-card" data-category="concepts"><span class="piece-card-tag" style="color:#FF4040">Concepts</span><div class="piece-card-title">Positive Constraint</div><div class="piece-card-summary">A positive constraint is a constraint that, rather than blocking progress, shapes it. A limiting condition tha</div><div class="piece-card-meta"><span class="piece-card-dot" style="background:#FF4040"></span>5 connections</div></a><a href="/ideas/core-constraints/" class="piece-card" data-category="concepts"><span class="piece-card-tag" style="color:#FF4040">Concepts</span><div class="piece-card-title">Core Constraints</div><div class="piece-card-summary">A core constraint is the irreducible truth at the center of a problem domain. It’s what remains when you’ve ab</div><div class="piece-card-meta"><span class="piece-card-dot" style="background:#FF4040"></span>6 connections</div></a><a href="/ideas/abstraction/" class="piece-card" data-category="concepts"><span class="piece-card-tag" style="color:#FF4040">Concepts</span><div class="piece-card-title">Abstraction</div><div class="piece-card-summary">Abstraction is the act of filtering out unnecessary detail to surface what truly matters. It’s the core cognit</div><div class="piece-card-meta"><span class="piece-card-dot" style="background:#FF4040"></span>3 connections</div></a><a href="/ideas/process/" class="piece-card" data-category="concepts"><span class="piece-card-tag" style="color:#FF4040">Concepts</span><div class="piece-card-title">The Process</div><div class="piece-card-summary">Every engagement follows four phases. The depth and duration of each phase depends on the scope of the project</div><div class="piece-card-meta"><span class="piece-card-dot" style="background:#FF4040"></span>4 connections</div></a>
   </div>
 </section>
 
 <section class="category-section">
-  <div class="featured-label">Browse by category</div>
+  <h2 class="featured-label">Browse by category</h2>
   <div class="category-filters">
     <button class="filter-pill" onclick="location.href='/ideas/?cat=concepts'"><span class="filter-dot" style="background:#FF4040"></span>Concepts · 4</button><button class="filter-pill" onclick="location.href='/ideas/?cat=services'"><span class="filter-dot" style="background:var(--color-text-primary)"></span>Services · 1</button><button class="filter-pill" onclick="location.href='/ideas/?cat=work'"><span class="filter-dot" style="background:var(--color-text-secondary)"></span>Work · 5</button><button class="filter-pill" onclick="location.href='/ideas/?cat=about'"><span class="filter-dot" style="background:var(--color-text-tertiary)"></span>About · 3</button>
   </div>
 
   <div class="map-live">
     <div class="map-live-head">
-      <div class="map-live-title">See how ideas connect</div>
+      <h2 class="map-live-title">See how ideas connect</h2>
       <div class="map-live-desc">The living network of relationships between concepts, frameworks, patterns, and case studies. Hover a node to explore — click to read.</div>
     </div>
     <div class="mini-graph-area" id="miniGraphArea">
@@ -979,7 +1025,7 @@ svg.mini-graph { width: 100%; height: 100%; display: block; }
 <section class="pc-subscribe pc-subscribe--hero" style="padding-bottom: var(--space-3xl);">
   <div class="pc-subscribe-inner">
     <div class="pc-subscribe-eyebrow">The vault, weekly</div>
-    <div class="pc-subscribe-title">New ideas, once a week</div>
+    <h2 class="pc-subscribe-title">New ideas, once a week</h2>
     <div class="pc-subscribe-desc">An email when new ideas enter the vault — the week's additions and how they connect. No noise.</div>
     <form class="pc-subscribe-form" method="post"
           action="https://buttondown.com/api/emails/embed-subscribe/positiveconstraint">

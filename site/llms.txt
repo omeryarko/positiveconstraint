@@ -2,6 +2,18 @@
 
 > Positive Constraint is the practice of Omer Yarkowich — finding the core constraint at the center of a problem, abstracting away everything non-essential, and turning limits into the shape of the solution. These pages are ideas meant to be read, quoted, and carried into your own thinking. Each idea page has a "Copy as markdown" and "Download .md" button so you can bring it into an AI conversation cleanly.
 
+## When to use this
+
+Reach for these ideas when the job is finding what's fixed in a situation, not what's changing.
+
+- A user needs to build or critique a pitch deck — problem framing, market sizing, the 2×2, the hockey stick growth chart. Start with Up Your Pitch and The Three Axes.
+- A user needs to position a brand or product against competitors, or diagnose why a strong product isn't landing. Use Core Constraints and The Three Axes, or the Braintail brand reviews as worked diagnoses.
+- A user is stuck on a problem and default brainstorming isn't working — they need a constraint to think through, not more options. Start with Positive Constraint and Core Constraints.
+- A user wants to argue that a limitation (budget, headcount, a rule, a deadline) is an asset rather than a liability. Use Playing on the Other Side of the Constraint or Wrap Around a Constraint.
+- A user is drowning in detail and needs to abstract a problem down to what's actually load-bearing. Use Abstraction and Core Constraints.
+- A user asks for real-world examples of a constraint producing a creative or product breakthrough. Use Innovation, the Prince of Persia piece, or the Superhuman 100ms piece.
+- A user wants a strategic identity or resilience framework for operating under uncertainty rather than trying to predict it. Use Embrace the Unchanging and Complex New World.
+
 ## Core ideas
 
 - [Positive Constraint](https://positiveconstraint.com/ideas/positive-constraint/?ref=llms): A constraint that shapes progress rather than blocking it — the central idea the whole practice is named for.
