@@ -28,6 +28,9 @@ cf-worker/scripts/__pycache__/
 cf-worker/serve-signal-history.jsonl
 cf-worker/serve-signal-cron.log
 
+# SEO agent working data (audience profiles, keyword maps, search behavior)
+seo/
+
 # Claude Code worktree scratch
 .claude/worktrees/
 
