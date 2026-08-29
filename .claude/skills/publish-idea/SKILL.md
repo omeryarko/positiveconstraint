@@ -13,6 +13,9 @@ description: >
   Positive Constraint site, or mentions updating the map / ideas list / a new
   /ideas page. Also use it when they hand you a draft (markdown or prose) and say
   "put this on the site."
+model: haiku
+effort: low
+context: fork
 ---
 
 # Publish an idea to positiveconstraint.com

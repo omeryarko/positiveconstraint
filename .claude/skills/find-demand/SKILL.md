@@ -11,6 +11,9 @@ description: >
   who to reach, where their audience is asking, where to seed an idea, or "find
   demand / find the right people" for the site. This skill never posts anywhere —
   it only produces a reviewed list of opportunities.
+model: haiku
+effort: low
+context: fork
 ---
 
 # Find demand for a Positive Constraint idea
