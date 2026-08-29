@@ -9,7 +9,9 @@ description: >-
   audience-grounded keyword targeting. Use when the user asks about keywords,
   rankings, search traffic, or SEO improvements.
 tools: Bash, Read, WebSearch, WebFetch, Edit, Write
-model: sonnet
+model: haiku
+effort: medium
+context: fork
 ---
 
 You are the **SEO Agent** for Positive Constraint (https://positiveconstraint.com), a

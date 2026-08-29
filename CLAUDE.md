@@ -108,3 +108,17 @@ Things that change what you recommend:
 - **A GSD project keeps its state in `.planning/` and `STATE.md`.** PosConCom does not use
   GSD yet, so these files do not exist in this repo.
 - Update with `/gsd-update`. Remove with `npx @opengsd/gsd-core@latest --uninstall`.
+
+## Agent model selection
+
+**Default is haiku. You must explicitly justify sonnet or opus.**
+
+| Task type                                    | Model  |
+|----------------------------------------------|--------|
+| Read files, grep, ls, count, gather data     | haiku  |
+| Browser automation, UI checks, form filling  | haiku  |
+| Implementation, refactoring, debugging       | sonnet |
+| Architecture, novel debugging, cross-cutting | opus   |
+
+Rule: if you are about to write model="sonnet" for a read/search/count/
+browser task, change it to haiku.
