@@ -7,7 +7,8 @@ description: >-
   applies technical SEO fixes (canonical tags, meta descriptions, structural
   changes). Interfaces with the Audience Manager and Researcher skills for
   audience-grounded keyword targeting. Use when the user asks about keywords,
-  rankings, search traffic, or SEO improvements.
+  rankings, search traffic, or SEO improvements. For status checks and ranking
+  updates, use the seo-status skill instead — it uses only free data sources.
 tools: Bash, Read, WebSearch, WebFetch, Edit, Write
 model: haiku
 effort: medium
