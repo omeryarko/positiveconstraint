@@ -383,12 +383,48 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
-    // Grab beacon: first-party same-origin signal that a human chose to carry an
-    // idea (Copy as markdown / Download .md). Fires from the page JS via
-    // navigator.sendBeacon, so ad blockers (which kill gtag) don't touch it.
-    // Unlike Serve/Chain, grab is a *human* signal — write it regardless of UA
-    // class (uaClass is "other" for a normal browser). Log no IP/UA (human PII);
-    // drop known crawlers to keep scraper noise out.
+    // Head of Brand template install counter — anonymous, no PII.
+    if (url.pathname === "/api/hob-install") {
+      const corsH = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Max-Age": "86400",
+        "Content-Type": "application/json",
+      };
+      if (request.method === "OPTIONS") {
+        return new Response(null, { status: 200, headers: corsH });
+      }
+      if (request.method !== "GET" && request.method !== "POST") {
+        return new Response(JSON.stringify({ error: "method not allowed" }), {
+          status: 405,
+          headers: corsH,
+        });
+      }
+      const k = url.searchParams.get("k") || "";
+      let kHash = "";
+      let isDup = false;
+      if (k) {
+        const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(k));
+        kHash = [...new Uint8Array(buf.slice(0, 8))].map((b) => b.toString(16).padStart(2, "0")).join("");
+        if (env.HOB_INSTALL_DEDUP) {
+          const existing = await env.HOB_INSTALL_DEDUP.get("hob:" + kHash);
+          if (existing !== null) isDup = true;
+        }
+      }
+      if (!isDup) {
+        if (env.HOB_INSTALL_DEDUP && kHash) {
+          await env.HOB_INSTALL_DEDUP.put("hob:" + kHash, "1", { expirationTtl: 31536000 });
+        }
+        if (env.AI_SERVE_SIGNAL) {
+          env.AI_SERVE_SIGNAL.writeDataPoint({
+            blobs: ["hob_install", kHash],
+            indexes: ["hob_install"],
+          });
+        }
+      }
+      return new Response(JSON.stringify({ ok: true }), { status: 200, headers: corsH });
+    }
+
     if (url.pathname === "/grab" && request.method === "POST") {
       const beaconUA = request.headers.get("User-Agent") || "";
       if (env.AI_SERVE_SIGNAL && classifyUA(beaconUA) !== "ai-crawler") {

@@ -18,5 +18,11 @@
       "binding": "AI_SERVE_SIGNAL",
       "dataset": "ai_serve_signal"
     }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "HOB_INSTALL_DEDUP",
+      "id": "040995ae63864bf2942f4a18e52d029b"
+    }
   ]
 }

@@ -75,6 +75,19 @@ ORDER BY day DESC
 `.trim();
 }
 
+function hobInstallQuery(days) {
+  return `
+SELECT
+  toDate(timestamp) AS day,
+  count() AS hits
+FROM ${DATASET}
+WHERE index1 = 'hob_install'
+  AND timestamp > NOW() - INTERVAL '${days}' DAY
+GROUP BY day
+ORDER BY day DESC
+`.trim();
+}
+
 async function runSql(env, sql) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/analytics_engine/sql`;
   const resp = await fetch(url, {
@@ -110,7 +123,7 @@ function aggregate(rows) {
   return { byIdea, daily };
 }
 
-function buildResponsePayload(mainRows, chainRows, snippetRows, days) {
+function buildResponsePayload(mainRows, chainRows, snippetRows, hobRows, days) {
   const { byIdea, daily } = aggregate(mainRows);
 
   const ideas = Object.entries(byIdea)
@@ -181,7 +194,19 @@ function buildResponsePayload(mainRows, chainRows, snippetRows, days) {
     .map((day) => ({ day, hits: snippetDaily[day] }));
   const snippet = { total: snippetTotal, daily: snippetSeries };
 
-  return { days, generatedAt: new Date().toISOString(), totals, ideas, chains, activation, series, snippet };
+  let hobTotal = 0;
+  const hobDaily = {};
+  for (const r of hobRows) {
+    const hits = Number(r.hits);
+    hobTotal += hits;
+    hobDaily[r.day] = (hobDaily[r.day] || 0) + hits;
+  }
+  const hobSeries = Object.keys(hobDaily)
+    .sort()
+    .map((day) => ({ day, hits: hobDaily[day] }));
+  const hob = { total: hobTotal, daily: hobSeries };
+
+  return { days, generatedAt: new Date().toISOString(), totals, ideas, chains, activation, series, snippet, hob };
 }
 
 async function handleSignals(url, env) {
@@ -190,12 +215,13 @@ async function handleSignals(url, env) {
   if (days > 90) days = 90;
 
   try {
-    const [mainRows, chainRows, snippetRows] = await Promise.all([
+    const [mainRows, chainRows, snippetRows, hobRows] = await Promise.all([
       runSql(env, mainQuery(days)),
       runSql(env, chainQuery(days)),
       runSql(env, snippetQuery(days)),
+      runSql(env, hobInstallQuery(days)),
     ]);
-    const payload = buildResponsePayload(mainRows, chainRows, snippetRows, days);
+    const payload = buildResponsePayload(mainRows, chainRows, snippetRows, hobRows, days);
     return new Response(JSON.stringify(payload), {
       headers: { "content-type": "application/json", "cache-control": "no-store" },
     });
@@ -250,6 +276,7 @@ const DASHBOARD_HTML = `<!doctype html>
     --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #ddd; --accent: #2563eb;
     --grab: #7c3aed; --serve: #2563eb; --chain: #059669; --crawl: #d97706;
     --snippet: #0ea5e9;
+    --hob: #e11d48;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #14161a; --fg: #e6e6e6; --muted: #9aa0a6; --border: #2c2f36; }
@@ -360,6 +387,45 @@ function renderSnippetSection(sn) {
     + '</div>';
 }
 
+function renderHobSection(hob) {
+  if (!hob) return '';
+  const total = hob.total;
+  const daily = hob.daily || [];
+
+  let chart = '';
+  if (daily.length > 0) {
+    const W = 900, H = 90, padL = 28, padB = 18, padT = 6, padR = 10;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const n = daily.length;
+    const barStep = innerW / n;
+    const barW = Math.max(3, Math.min(22, barStep * 0.7));
+    const maxY = Math.max(1, ...daily.map(d => d.hits));
+    const bars = daily.map((d, i) => {
+      const cx = padL + i * barStep + barStep / 2;
+      const h = (d.hits / maxY) * innerH;
+      return '<rect x="' + (cx - barW / 2).toFixed(1) + '" y="' + (padT + innerH - h).toFixed(1)
+        + '" width="' + barW.toFixed(1) + '" height="' + h.toFixed(1)
+        + '" fill="var(--hob)" rx="2" opacity="0.85" />';
+    }).join('');
+    const step = Math.max(1, Math.ceil(n / 10));
+    const labels = daily.map((d, i) => {
+      if (i % step !== 0) return '';
+      const cx = padL + i * barStep + barStep / 2;
+      return '<text x="' + cx.toFixed(1) + '" y="' + (H - 2) + '" text-anchor="middle">' + d.day.slice(5) + '</text>';
+    }).join('');
+    chart = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;margin-top:0.25rem">' + bars + labels + '</svg>';
+  } else {
+    chart = '<div class="empty">No template installs in this window.</div>';
+  }
+
+  return '<div class="snippet-pin" style="border-color:color-mix(in srgb, var(--hob) 40%, transparent)">'
+    + '<h2 style="color:var(--hob)">Head of Brand installs</h2>'
+    + '<div class="snippet-sub">Grok Bot template installs — each hit is a unique setup start (deduped at write time)</div>'
+    + '<div class="totals"><div class="tile"><div class="n" style="color:var(--hob)">' + total + '</div><div class="l">installs</div></div></div>'
+    + chart
+    + '</div>';
+}
+
 function renderTotals(t) {
   return \`<div class="totals">
     \${["grabbed","served","chained","crawled"].map(k =>
@@ -457,6 +523,7 @@ async function load() {
 
     app.innerHTML = \`
       \${renderSnippetSection(data.snippet)}
+      \${renderHobSection(data.hob)}
       \${renderTotals(data.totals)}
       <section>
         <h2>Per-day trend</h2>
