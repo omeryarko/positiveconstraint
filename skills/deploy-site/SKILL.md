@@ -79,18 +79,9 @@ python3 scripts/deploy.py --site-dir ./site --stage-dir ./.publish-stage --cf-wo
   and a touched page explicitly for a real publish, e.g.:
 
   ```bash
-  --verify --verify-url https://positiveconstraint.omer-2c2.workers.dev/ideas/<slug>/ \
-           --verify-url https://positiveconstraint.omer-2c2.workers.dev/map/
+  --verify --verify-url https://positiveconstraint.com/ideas/<slug>/ \
+           --verify-url https://positiveconstraint.com/map/
   ```
-
-## Transitional note: workers.dev vs. the real domain
-
-Until positiveconstraint.com's nameservers move to Cloudflare (a separate,
-not-yet-done migration step), `wrangler deploy` publishes to the Worker's
-`*.workers.dev` URL, which is **not** yet what visitors to
-positiveconstraint.com see (that's still the old host). Use the
-`*.workers.dev` URL for `--verify-url` until DNS cutover completes, then the
-real domain afterward.
 
 ## Failure handling
 

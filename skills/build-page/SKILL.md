@@ -93,9 +93,9 @@ connections:
 `target` must be an existing page's slug — `build_page.py` looks it up (via
 `--site`) to get its title for the new page's "Related Ideas" card, and exits
 with a clear error if it doesn't exist. A piece cannot connect to itself.
-Labels are lowercase verb phrases; they no longer render on the page itself
-(the redesigned connections section is a flat, unlabeled grid) — they survive
-only in the "Copy as markdown" / "Download .md" export. Don't spend a
+Labels are lowercase verb phrases. They do not render on the page (the
+connections section is a flat, unlabeled grid); they appear only in the
+"Copy as markdown" / "Download .md" export. Don't spend a
 round-trip haggling over label wording.
 
 ## Usage

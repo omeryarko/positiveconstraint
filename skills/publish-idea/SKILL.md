@@ -40,14 +40,6 @@ and the only source of truth: nothing else can modify what's live, so
 successful deploy must be committed and pushed** (step 7) so GitHub stays in
 step with production.
 
-**Transitional note:** until positiveconstraint.com's nameservers actually
-move to Cloudflare (a separate, not-yet-done migration step — see
-`cloudflare-migration-worker` memory), `wrangler deploy` publishes to the
-Worker's `*.workers.dev` URL, which is **not** yet what visitors to
-positiveconstraint.com see. Publishing right now updates `./site` and the
-Worker correctly, but won't appear on the real domain until cutover
-completes.
-
 ## The four skills, and what each owns
 
 | Skill | Owns | You run it |
@@ -131,9 +123,9 @@ connections:
 `reverse_label` defaults to `label` if omitted. A piece cannot connect to
 itself.
 
-**Labels are no longer shown on the page.** Idea pages render connections as
-a single flat "Related Ideas" grid (title + summary cards only). Labels
-survive in exactly one place: the "Copy as markdown" / "Download .md" export
+**Labels are not shown on the page.** Idea pages render connections as a
+flat "Related Ideas" grid (title + summary cards only). Labels appear in
+exactly one place: the "Copy as markdown" / "Download .md" export
 (`- Title — label → url`). Keep labels free text, lowercase and verb-like,
 and don't spend a round-trip haggling over wording.
 
@@ -154,10 +146,9 @@ template), renders its OG image via render-og, and prints:
 - the new page's body as plain text, under a **verbatim check** header.
 
 **Read the verbatim check back to the author and get an explicit yes** that
-the wording is exactly theirs — this is the guard against content drifting
-during conversion. (This is the exact failure from the "Innovation" publish:
-the body was expanded during conversion before the script ever ran.
-build-page is faithful; the risk is in step 1.)
+the wording is exactly theirs. build-page reproduces its input faithfully, so
+the only place the body can drift is your conversion in step 1 — this check
+is what catches it.
 
 It also writes `.publish-stage/idea.json`, which the next step consumes.
 
@@ -179,9 +170,8 @@ prints:
 ### 5. Review the diff with the user
 
 Show the staged summary and diffs from step 4, plus the verbatim check from
-step 3. Point out anything notable — especially that the header counts
-change (they self-correct a pre-existing stale count: the live "12 ideas ·
-34 connections" becomes the true node/edge totals). Get explicit sign-off on
+step 3. Point out anything notable, such as changes to the header counts.
+Get explicit sign-off on
 both the diff and the verbatim wording. **This is the only safety gate
 before production.**
 
@@ -191,7 +181,7 @@ before production.**
 set -a; source .claude/secrets/cloudflare.env; set +a
 python3 skills/deploy-site/scripts/deploy.py \
   --site-dir ./site --stage-dir ./.publish-stage --cf-worker ./cf-worker \
-  --verify --verify-url https://positiveconstraint.omer-2c2.workers.dev/<section>/<slug>/
+  --verify --verify-url https://positiveconstraint.com/<section>/<slug>/
 ```
 
 Applies the staged files onto `./site` (the git-tracked source the Worker
@@ -201,9 +191,7 @@ returns a healthy status. If `wrangler deploy` fails, `./site` has already
 been updated locally but nothing went live — fix the error and re-run, or
 `git checkout` the touched paths to revert before trying again.
 
-Use the `*.workers.dev` URL for `--verify-url` until DNS cutover to
-Cloudflare completes (see the transitional note above), then the real domain
-afterward. Spot-check the map and ideas index in a browser too if the user
+Spot-check the map and ideas index in a browser too if the user
 wants.
 
 ### 7. Snapshot to git

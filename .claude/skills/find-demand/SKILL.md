@@ -105,8 +105,8 @@ surface a *person asking*, not a listicle marketing at them. Techniques:
   `site:indiehackers.com`, `site:*.stackexchange.com`, `site:quora.com`.
 - Prefer question/venting phrasings over topic keywords ("how do I decide what
   to build first" beats "product prioritization").
-- Add recency terms when a venue lets you ("2025", "this year") — fresh threads
-  are actionable; a 2019 thread is not.
+- Add recency terms when a venue lets you (the current year, "this year") —
+  fresh threads are actionable; a thread several years old is not.
 
 Collect concrete URLs. Optionally `WebFetch` a promising thread to confirm it's a
 real person with a real problem before scoring it.

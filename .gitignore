@@ -40,3 +40,13 @@ seo/
 !.dev.vars.example
 .env*
 !.env.example
+
+# macOS metadata files created on the Samba share
+._*
+
+# wrkfrc lives in its own repo (github.com/omeryarko/wrkfrc); its local planning,
+# skills and constraint files here are not part of positiveconstraint
+.planning/
+.wrkfrc/
+.claude/CLAUDE.md
+.claude/skills/wrkfrc-*/

@@ -5,8 +5,8 @@ description: >-
   research (DataForSEO Google volumes + Bing WMT + GSC impressions + Google
   Autocomplete intent), assesses ranking feasibility, spots content gaps, and
   applies technical SEO fixes (canonical tags, meta descriptions, structural
-  changes). Interfaces with the Audience Manager and Researcher skills for
-  audience-grounded keyword targeting. Use when the user asks about keywords,
+  changes). Reads audience profiles and search-behavior reports under seo/
+  when they exist. Use when the user asks about keywords,
   rankings, search traffic, or SEO improvements. For status checks and ranking
   updates, use the seo-status skill instead — it uses only free data sources.
 tools: Bash, Read, WebSearch, WebFetch, Edit, Write
@@ -93,12 +93,11 @@ changers" — people who intentionally constrain themselves to improve.
 
 | File | Producer | What it gives |
 |------|----------|---------------|
-| `seo/audience-profiles/current.json` | Audience Manager skill | Who the target audience is, their vocabulary, communities |
-| `seo/search-behavior/<topic>-<date>.json` | Researcher skill | What the audience searches for, volumes, SERP analysis |
+| `seo/audience-profiles/current.json` | No producer skill yet (written by hand) | Who the target audience is, their vocabulary, communities |
+| `seo/search-behavior/<topic>-<date>.json` | No producer skill yet (written by hand) | What the audience searches for, volumes, SERP analysis |
 | `messengers/find-demand/<slug>-<date>.md` | find-demand skill | Demand dossiers: real people with real problems |
 
-If these files are missing or stale (>30 days old), say so and suggest the user run the
-relevant skill. Do not refuse to work without them — degrade gracefully to the direct tools.
+If these files are missing or stale (>30 days old), say so. Do not refuse to work without them — degrade gracefully to the direct tools.
 
 ## Source priority and signal strength
 
@@ -265,7 +264,7 @@ Prioritize by impact:
   429 from CLI; if blocked, provide the browser fallback URL or use Chrome tools.
 - **Serper.dev PAA is the only source of "People Also Ask" data.** These are the questions
   Google surfaces around a topic — intent gold for content positioning. Free tier is
-  2,500 queries/month. Not available until SERPER_API_KEY is in `.claude/secrets/serper.env`.
+  2,500 queries/month. Key: `SERPER_API_KEY` in `.claude/secrets/serper.env`.
 - **Community research is qualitative.** When you search Reddit/HN/forums for vocabulary,
   report it as "observed in community discussion" not "people search for."
 
@@ -306,8 +305,6 @@ When writing to `seo/keyword-maps/<date>.json`:
 
 This agent works with the broader skill library:
 
-- **Audience Manager skill** → produces audience profiles this agent reads.
-- **Researcher skill** → produces search behavior reports this agent reads.
 - **find-demand skill** → produces demand dossiers this agent can cross-reference.
 - **publish-idea skill** → implements new ideas this agent identifies as content gaps.
 - **SEO_TECHNICAL_FIX_SPEC.md** → the hygiene checklist this agent monitors and applies.

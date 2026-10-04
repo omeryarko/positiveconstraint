@@ -54,17 +54,14 @@ figures updated 2026-08-13.
 
 Things that change what you recommend on this machine:
 
-- **The disk is no longer a constraint.** Omer freed the volume on 2026-08-13: 92 GiB are
-  now available of 233 GiB. A `node_modules` install, a Docker pull, or a headless Chrome
-  run fits. (Before that date this machine had only 6.48 GB free, so ignore older advice
-  that tells you to check the disk first.)
+- **The disk is not a constraint.** 92 GiB of 233 GiB are free (2026-08-13). A
+  `node_modules` install, a Docker pull, or a headless Chrome run fits.
 - **8 GB of soldered RAM and 2 physical cores. This is the first constraint to check.**
   This is the weaker of the two machines and the memory cannot be upgraded. The graphics
   take up to 1536 MB of that same 8 GB.
 - **Prefer the Linux minipc for heavy work.** It has twice the RAM and twice the cores.
   Site builds, OG image rendering with headless Chrome, and any data job belong there.
-  Use the Mac for editing, review, and deploys. Disk space is no longer the reason —
-  RAM and CPU are.
+  Use the Mac for editing, review, and deploys. The reason is RAM and CPU, not disk.
 - **macOS 13 Ventura is the last major release for this model.** Do not recommend tools
   that need macOS 14 or later.
 
@@ -74,7 +71,7 @@ Things that change what you recommend on this machine:
 |---|---|
 | Site builds, headless Chrome OG rendering, data jobs, anything memory- or CPU-heavy | Linux minipc |
 | Editing, review, git, `wrangler` deploys | Either |
-| Large installs and clones (both machines now have 90 GB or more free) | Either |
+| Large installs and clones (both machines have 90 GB or more free) | Either |
 
 ## Tooling
 
